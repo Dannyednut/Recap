@@ -1,0 +1,1 @@
+# V2 DEX protocol adapters (Uniswap V2, SushiSwap, etc.)

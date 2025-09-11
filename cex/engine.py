@@ -8,7 +8,7 @@ from datetime import datetime
 from decimal import Decimal, getcontext
 from typing import Dict, List, Optional
 import aiohttp
-from models import Opportunity, asdict
+from .models import Opportunity, asdict
 
 # Set Decimal precision high for financial math
 getcontext().prec = 60

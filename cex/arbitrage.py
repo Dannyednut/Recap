@@ -3,11 +3,11 @@ import asyncio
 import traceback
 from datetime import datetime
 
-from config import Config
-from cross import CrossExchange
-from triangular import Triangular
-from engine import logger, Engine
-from models import TradeResult
+from .config import Config
+from .cross import CrossExchange
+from .triangular import Triangular
+from .engine import logger, Engine
+from .models import TradeResult
 from telegram_alert import TelegramNotifier
 
 # --- Main Application Class ---

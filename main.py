@@ -4,9 +4,10 @@ from quart import Quart, jsonify, request
 from datetime import datetime
 
 # Custom imports
-from config import Config
-from models import TradeResult
-from arbitrage import ArbitrageApp, logger
+from cex.config import Config
+from cex.models import TradeResult
+from cex.arbitrage import ArbitrageApp, logger
+
 
 # --- Quart App and Global App Instance ---
 app = Quart(__name__)

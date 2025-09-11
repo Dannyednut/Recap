@@ -1,0 +1,46 @@
+#CEX dependencies
+ccxt==4.1.77
+websockets==12.0
+
+# Telegram 
+requests==2.31.0
+aiogram==3.22.0
+
+# Server
+quart==0.20.0
+uvicorn==0.35.0
+
+
+# Core blockchain dependencies
+web3>=6.9.0
+eth-abi>=4.1.0
+eth-account>=0.9.0
+eth-utils>=2.2.0
+hexbytes>=0.3.0
+
+#Solana dependencies
+solana>=0.36.9
+construct>=2.10.68
+base58>=2.1.1
+solders>=0.26.0
+
+# API and async support
+aiohttp>=3.8.0
+asyncio-throttle>=1.0.2
+
+# Data handling
+python-dotenv>=1.0.0
+pydantic>=2.0.0
+
+# Math and calculations
+scipy>=1.10.0
+
+# Flash loan contracts (if using Brownie/Web3)
+brownie-contracts>=1.1.0
+
+# Testing and development
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+
+# Logging and monitoring
+structlog>=22.3.0

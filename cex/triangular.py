@@ -1,8 +1,10 @@
 import asyncio
 import ccxt.pro as ccxt
 from datetime import datetime
-from engine import Engine, logger
-from models import TradeResult, Opportunity
+
+from .engine import Engine, logger
+from .models import TradeResult, Opportunity
+
 from typing import Dict, List, Optional
 from decimal import Decimal, getcontext
 import traceback

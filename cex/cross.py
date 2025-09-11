@@ -2,12 +2,13 @@ import asyncio
 import traceback
 import time
 
-from engine import Engine, logger
-from models import TradeResult, Opportunity
 from typing import List, Dict
 from decimal import Decimal, getcontext
 from datetime import datetime
-from config import Config
+
+from .config import Config
+from .engine import Engine, logger
+from .models import TradeResult, Opportunity
 
 getcontext().prec = 60
 

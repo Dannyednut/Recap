@@ -2,9 +2,9 @@ import logging
 import aiohttp
 from aiogram import Bot, Dispatcher, types
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
-from models import Opportunity, TradeResult
-from config import Config
-from engine import logger
+from cex.models import Opportunity, TradeResult
+from cex.config import Config
+from cex.engine import logger
 
 # Simple whitelist check
 def is_whitelisted_chat(chat_id):
