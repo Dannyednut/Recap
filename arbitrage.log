@@ -1,0 +1,1555 @@
+2025-09-10 21:54:38,322 - INFO - Initializing exchanges...
+2025-09-10 21:54:38,409 - INFO - Running on http://0.0.0.0:5001 (CTRL + C to quit)
+2025-09-10 21:54:43,119 - INFO - Successfully initialized bybit
+2025-09-10 21:54:54,619 - ERROR - Failed to initialize kucoin: kucoin GET https://api.kucoin.com/api/v3/currencies
+2025-09-10 21:55:07,252 - ERROR - Failed to initialize bingx: bingx GET https://open-api.bingx.com/openApi/cswap/v1/market/contracts?timestamp=1757537695052
+2025-09-10 21:55:21,059 - ERROR - Failed to initialize gate: gate GET https://api.gateio.ws/api/v4/spot/currencies
+2025-09-10 21:55:28,446 - ERROR - Failed to initialize binance: binance GET https://api.binance.com/api/v3/exchangeInfo
+2025-09-10 21:55:28,706 - INFO - Starting all arbitrage scanners...
+2025-09-10 21:55:28,710 - INFO - Starting cross-exchange price streams...
+2025-09-10 21:55:28,713 - INFO - Starting Triangular Arbitrage Engine...
+2025-09-10 21:55:28,715 - INFO - Initialized 1 exchanges: ['bybit']
+2025-09-10 21:55:28,718 - INFO - Starting triangular opportunity scanning...
+2025-09-10 21:55:28,732 - INFO - Start polling
+2025-09-10 21:55:28,734 - INFO - [bybit] Subscribing to FIL/USDT...
+2025-09-10 21:55:28,736 - INFO - [bybit] Subscribing to QTUM/USDT...
+2025-09-10 21:55:28,738 - INFO - [bybit] Subscribing to DOT/USDT...
+2025-09-10 21:55:28,743 - INFO - [bybit] Subscribing to XRP/USDT...
+2025-09-10 21:55:28,743 - INFO - [bybit] Subscribing to ADA/USDT...
+2025-09-10 21:55:28,743 - INFO - [bybit] Initializing triangular scanner...
+2025-09-10 21:55:28,743 - INFO - [bybit] Found 668 active spot markets.
+2025-09-10 21:55:29,281 - INFO - [bybit] Generated 675 total triangular paths.
+2025-09-10 21:55:29,303 - INFO - [bybit] Filtered to 669 priority paths.
+2025-09-10 21:55:29,307 - INFO - [bybit] Generated 669 paths across 260 symbols.
+2025-09-10 21:55:30,900 - ERROR - [HTTP] Error when calling https://app.base44.com/api/apps/68a64cab1d8018e91bdafa59/entities/Exchange: Cannot connect to host app.base44.com:443 ssl:default [Timeout while contacting DNS servers]
+2025-09-10 21:55:30,900 - ERROR - Failed to fetch exchanges from Base44 (status=None)
+2025-09-10 21:55:31,357 - INFO - Polling stopped
+2025-09-10 21:55:33,747 - INFO - Updating account balances...
+2025-09-10 21:55:33,858 - WARNING - Failed to fetch balance for bybit (attempt 1): bybit requires "apiKey" credential
+2025-09-10 21:55:36,962 - WARNING - Failed to fetch balance for bybit (attempt 2): bybit requires "apiKey" credential
+2025-09-10 21:55:42,112 - WARNING - Failed to fetch balance for bybit (attempt 3): bybit requires "apiKey" credential
+2025-09-10 21:55:49,114 - ERROR - Unable to fetch balances for bybit after retries.
+2025-09-10 21:55:49,116 - INFO - Account balances updated successfully.
+2025-09-10 21:56:02,197 - ERROR - [HTTP] Error when calling https://app.base44.com/api/apps/68a64cab1d8018e91bdafa59/entities/Exchange: Cannot connect to host app.base44.com:443 ssl:default [Timeout while contacting DNS servers]
+2025-09-10 21:56:02,197 - ERROR - Failed to fetch exchanges from Base44 (status=None)
+2025-09-10 22:01:18,667 - INFO - Initializing exchanges...
+2025-09-10 22:01:18,726 - INFO - Running on http://0.0.0.0:5001 (CTRL + C to quit)
+2025-09-10 22:01:23,415 - INFO - Successfully initialized bybit
+2025-09-10 22:01:27,212 - INFO - Successfully initialized kucoin
+2025-09-10 22:01:30,063 - INFO - Successfully initialized bingx
+2025-09-10 22:01:48,369 - INFO - Successfully initialized gate
+2025-09-10 22:01:54,525 - INFO - Successfully initialized binance
+2025-09-10 22:01:54,525 - INFO - Starting all arbitrage scanners...
+2025-09-10 22:01:54,541 - INFO - Starting cross-exchange price streams...
+2025-09-10 22:01:54,541 - INFO - Starting Triangular Arbitrage Engine...
+2025-09-10 22:01:54,541 - INFO - Initialized 5 exchanges: ['bybit', 'kucoin', 'bingx', 'gate', 'binance']
+2025-09-10 22:01:54,541 - INFO - Starting triangular opportunity scanning...
+2025-09-10 22:01:54,548 - INFO - Start polling
+2025-09-10 22:01:54,549 - INFO - [bybit] Subscribing to FIL/USDT...
+2025-09-10 22:01:54,551 - INFO - [bybit] Subscribing to QTUM/USDT...
+2025-09-10 22:01:54,552 - INFO - [bybit] Subscribing to DOT/USDT...
+2025-09-10 22:01:54,556 - INFO - [bybit] Subscribing to XRP/USDT...
+2025-09-10 22:01:54,558 - INFO - [bybit] Subscribing to ADA/USDT...
+2025-09-10 22:01:54,560 - INFO - [kucoin] Subscribing to FIL/USDT...
+2025-09-10 22:01:54,565 - INFO - [kucoin] Subscribing to QTUM/USDT...
+2025-09-10 22:01:54,565 - INFO - [kucoin] Subscribing to DOT/USDT...
+2025-09-10 22:01:54,565 - INFO - [kucoin] Subscribing to XRP/USDT...
+2025-09-10 22:01:54,565 - INFO - [kucoin] Subscribing to ADA/USDT...
+2025-09-10 22:01:54,565 - INFO - [bingx] Subscribing to FIL/USDT...
+2025-09-10 22:01:54,574 - INFO - [bingx] Subscribing to QTUM/USDT...
+2025-09-10 22:01:54,575 - INFO - [bingx] Subscribing to DOT/USDT...
+2025-09-10 22:01:54,583 - INFO - [bingx] Subscribing to XRP/USDT...
+2025-09-10 22:01:54,598 - INFO - [bingx] Subscribing to ADA/USDT...
+2025-09-10 22:01:54,602 - INFO - [gate] Subscribing to FIL/USDT...
+2025-09-10 22:01:54,605 - INFO - [gate] Subscribing to QTUM/USDT...
+2025-09-10 22:01:54,606 - INFO - [gate] Subscribing to DOT/USDT...
+2025-09-10 22:01:54,607 - INFO - [gate] Subscribing to XRP/USDT...
+2025-09-10 22:01:54,609 - INFO - [gate] Subscribing to ADA/USDT...
+2025-09-10 22:01:54,611 - INFO - [binance] Subscribing to FIL/USDT...
+2025-09-10 22:01:54,614 - INFO - [binance] Subscribing to QTUM/USDT...
+2025-09-10 22:01:54,614 - INFO - [binance] Subscribing to DOT/USDT...
+2025-09-10 22:01:54,614 - INFO - [binance] Subscribing to XRP/USDT...
+2025-09-10 22:01:54,614 - INFO - [binance] Subscribing to ADA/USDT...
+2025-09-10 22:01:54,624 - INFO - [bybit] Initializing triangular scanner...
+2025-09-10 22:01:54,629 - INFO - [bybit] Found 668 active spot markets.
+2025-09-10 22:01:55,307 - INFO - [bybit] Generated 675 total triangular paths.
+2025-09-10 22:01:55,322 - INFO - [bybit] Filtered to 669 priority paths.
+2025-09-10 22:01:55,343 - INFO - [bybit] Generated 669 paths across 260 symbols.
+2025-09-10 22:01:55,349 - INFO - [kucoin] Initializing triangular scanner...
+2025-09-10 22:01:55,353 - INFO - [kucoin] Found 1298 active spot markets.
+2025-09-10 22:01:57,651 - INFO - [kucoin] Generated 1129 total triangular paths.
+2025-09-10 22:01:57,664 - INFO - [kucoin] Filtered to 1129 priority paths.
+2025-09-10 22:01:57,675 - INFO - [kucoin] Generated 1129 paths across 365 symbols.
+2025-09-10 22:01:57,679 - INFO - [bingx] Initializing triangular scanner...
+2025-09-10 22:01:57,683 - INFO - [bingx] Found 956 active spot markets.
+2025-09-10 22:02:00,040 - INFO - [bingx] Generated 69 total triangular paths.
+2025-09-10 22:02:00,040 - INFO - [bingx] Filtered to 69 priority paths.
+2025-09-10 22:02:00,040 - INFO - [bingx] Generated 69 paths across 44 symbols.
+2025-09-10 22:02:00,056 - INFO - [gate] Initializing triangular scanner...
+2025-09-10 22:02:00,061 - INFO - [gate] Found 2655 active spot markets.
+2025-09-10 22:02:12,499 - INFO - [gate] Generated 567 total triangular paths.
+2025-09-10 22:02:12,506 - INFO - [gate] Filtered to 567 priority paths.
+2025-09-10 22:02:12,510 - INFO - [gate] Generated 567 paths across 271 symbols.
+2025-09-10 22:02:12,512 - INFO - [binance] Initializing triangular scanner...
+2025-09-10 22:02:12,515 - INFO - [binance] Found 1524 active spot markets.
+2025-09-10 22:02:13,228 - INFO - [binance] Generated 7617 total triangular paths.
+2025-09-10 22:02:13,329 - INFO - [binance] Filtered to 7194 priority paths.
+2025-09-10 22:02:13,363 - INFO - [binance] Generated 7194 paths across 1478 symbols.
+2025-09-10 22:02:13,453 - INFO - Updating account balances...
+2025-09-10 22:02:13,471 - ERROR - [HTTP] Timeout when calling https://app.base44.com/api/apps/68a64cab1d8018e91bdafa59/entities/Exchange
+2025-09-10 22:02:13,471 - ERROR - Failed to fetch exchanges from Base44 (status=None)
+2025-09-10 22:02:13,578 - WARNING - Failed to fetch balance for bybit (attempt 1): bybit requires "apiKey" credential
+2025-09-10 22:02:13,946 - INFO - Run polling for bot @crest_price_bot id=7688967629 - 'Coin Price Updates'
+2025-09-10 22:02:16,682 - WARNING - Failed to fetch balance for bybit (attempt 2): bybit requires "apiKey" credential
+2025-09-10 22:02:21,446 - WARNING - [gate] Error in symbol watcher for SUI/USD1: gate nonce is behind cache after 3 tries.
+2025-09-10 22:02:21,461 - ERROR - Future exception was never retrieved
+future: <Future finished exception=RuntimeError('Session is closed')>
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 566, in load_order_book
+    order_book = await self.fetch_order_book(symbol, limit, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\gate.py", line 2564, in fetch_order_book
+    response = await self.publicSpotGetOrderBook(self.extend(request, query))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 978, in request
+    return await self.fetch2(path, api, method, params, headers, body, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 974, in fetch2
+    raise e
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 963, in fetch2
+    return await self.fetch(request['url'], request['method'], request['headers'], request['body'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 217, in fetch
+    async with session_method(yarl.URL(url, encoded=True),
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 1488, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 527, in _request
+    raise RuntimeError("Session is closed")
+RuntimeError: Session is closed
+2025-09-10 22:02:21,488 - WARNING - [gate] Error in symbol watcher for XRP/USDT: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,535 - WARNING - [gate] Error in symbol watcher for HNS/BTC: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,571 - WARNING - [gate] Error in symbol watcher for STX/ETH: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,619 - WARNING - [gate] Error in symbol watcher for BTRST/ETH: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,622 - WARNING - [gate] Error in symbol watcher for NEAR/USDC: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,628 - WARNING - [gate] Error in symbol watcher for FORTH/USDT: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,628 - WARNING - [gate] Error in symbol watcher for BTRST/USDT: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,630 - WARNING - [gate] Error in symbol watcher for GEL/USDT: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,630 - WARNING - [gate] Error in symbol watcher for IKA/USDT: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,631 - WARNING - [gate] Error in symbol watcher for AAVE/ETH: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,631 - WARNING - [gate] Error in symbol watcher for ALGO/USDT: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,633 - WARNING - [gate] Error in symbol watcher for RENDER/USDC: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,634 - WARNING - [gate] Error in symbol watcher for ARKM/USDC: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,634 - WARNING - [gate] Error in symbol watcher for QTUM/USDT: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,635 - WARNING - [gate] Error in symbol watcher for FIL/USDT: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,637 - WARNING - [gate] Error in symbol watcher for DOT/USDT: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,639 - WARNING - [gate] Error in symbol watcher for PENDLE/USDT: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,640 - WARNING - [gate] Error in symbol watcher for ADA/USDT: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,640 - WARNING - [gate] Error in symbol watcher for ALU/USDT: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,647 - WARNING - [gate] Error in symbol watcher for ARKM/USDT: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,673 - WARNING - [gate] Error in symbol watcher for ETH/GUSD: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,674 - WARNING - [gate] Error in symbol watcher for LTC/USDT: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,675 - WARNING - [gate] Error in symbol watcher for VELO/USDT: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,676 - WARNING - [gate] Error in symbol watcher for ADA/BTC: Connection closed by remote server, closing code 1006
+2025-09-10 22:02:21,879 - WARNING - Failed to fetch balance for bybit (attempt 3): bybit requires "apiKey" credential
+2025-09-10 22:02:21,921 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,921 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,921 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,921 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,921 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,921 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,921 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,921 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,921 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,930 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,931 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,932 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,933 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,938 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,939 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,940 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,941 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,942 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,945 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,947 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,951 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,951 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,954 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,957 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:21,963 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-10 22:02:28,884 - ERROR - Unable to fetch balances for bybit after retries.
+2025-09-10 22:02:28,951 - WARNING - Failed to fetch balance for kucoin (attempt 1): kucoin requires "apiKey" credential
+2025-09-10 22:02:32,043 - WARNING - Failed to fetch balance for kucoin (attempt 2): kucoin requires "apiKey" credential
+2025-09-10 22:02:37,111 - WARNING - Failed to fetch balance for kucoin (attempt 3): kucoin requires "apiKey" credential
+2025-09-10 22:02:44,106 - ERROR - Unable to fetch balances for kucoin after retries.
+2025-09-10 22:02:44,214 - WARNING - Failed to fetch balance for bingx (attempt 1): bingx requires "apiKey" credential
+2025-09-10 22:02:47,417 - WARNING - Failed to fetch balance for bingx (attempt 2): bingx requires "apiKey" credential
+2025-09-10 22:02:52,616 - WARNING - Failed to fetch balance for bingx (attempt 3): bingx requires "apiKey" credential
+2025-09-10 22:02:59,608 - ERROR - Unable to fetch balances for bingx after retries.
+2025-09-10 22:02:59,726 - WARNING - Failed to fetch balance for gate (attempt 1): gate requires "apiKey" credential
+2025-09-10 22:03:02,760 - WARNING - Failed to fetch balance for gate (attempt 2): gate requires "apiKey" credential
+2025-09-10 22:03:07,806 - WARNING - Failed to fetch balance for gate (attempt 3): gate requires "apiKey" credential
+2025-09-10 22:03:14,825 - ERROR - Unable to fetch balances for gate after retries.
+2025-09-10 22:03:15,327 - WARNING - Failed to fetch balance for binance (attempt 1): binance requires "apiKey" credential
+2025-09-10 22:03:18,752 - WARNING - Failed to fetch balance for binance (attempt 2): binance requires "apiKey" credential
+2025-09-10 22:03:23,949 - WARNING - Failed to fetch balance for binance (attempt 3): binance requires "apiKey" credential
+2025-09-10 22:03:30,975 - ERROR - Unable to fetch balances for binance after retries.
+2025-09-10 22:03:30,976 - INFO - Account balances updated successfully.
+2025-09-10 22:05:10,170 - WARNING - [gate] Error in symbol watcher for STX/ETH: gate GET https://api.gateio.ws/api/v4/spot/order_book?currency_pair=STX_ETH&limit=100&with_id=true
+2025-09-10 22:05:10,571 - ERROR - Exception in callback Exchange.spawn.<locals>.callback(<Task cancell...hange.py:556>>) at C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py:380
+handle: <Handle Exchange.spawn.<locals>.callback(<Task cancell...hange.py:556>>) at C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py:380>
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 117, in resolve
+    resp = await self._resolver.getaddrinfo(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+aiodns.error.DNSError: (12, 'Timeout while contacting DNS servers')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1148, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1179, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 126, in resolve
+    raise OSError(None, msg) from exc
+OSError: [Errno None] Timeout while contacting DNS servers
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 217, in fetch
+    async with session_method(yarl.URL(url, encoded=True),
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 1488, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1209, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1538, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host api.gateio.ws:443 ssl:default [Timeout while contacting DNS servers]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\Desktop\codes\ArbitrageWise-Refined\triangular.py", line 72, in _watch_symbol
+    ob = await asyncio.wait_for(exchange.watch_order_book(symbol), timeout=None)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.1264.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py", line 442, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\pro\gate.py", line 399, in watch_order_book
+    orderbook = await self.subscribe_public(url, messageHash, payload, channel, query, subscription)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\pro\gate.py", line 1855, in subscribe_public
+    return await self.watch(url, messageHash, message, messageHash, subscription)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 566, in load_order_book
+    order_book = await self.fetch_order_book(symbol, limit, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\gate.py", line 2564, in fetch_order_book
+    response = await self.publicSpotGetOrderBook(self.extend(request, query))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 978, in request
+    return await self.fetch2(path, api, method, params, headers, body, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 972, in fetch2
+    raise e
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 963, in fetch2
+    return await self.fetch(request['url'], request['method'], request['headers'], request['body'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 257, in fetch
+    raise ExchangeNotAvailable(details) from e
+ccxt.base.errors.ExchangeNotAvailable: gate GET https://api.gateio.ws/api/v4/spot/order_book?currency_pair=STX_ETH&limit=100&with_id=true
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.1264.0_x64__qbz5n2kfra8p0\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 381, in callback
+    exception = asyncio_future.exception()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 566, in load_order_book
+    order_book = await self.fetch_order_book(symbol, limit, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 963, in fetch2
+    return await self.fetch(request['url'], request['method'], request['headers'], request['body'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 217, in fetch
+    async with session_method(yarl.URL(url, encoded=True),
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1148, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+2025-09-10 22:05:10,858 - INFO - [gate] Reconnecting in 60 seconds...
+2025-09-10 22:06:13,493 - WARNING - [gate] Error in symbol watcher for STX/ETH: Cannot connect to host api.gateio.ws:443 ssl:default [Timeout while contacting DNS servers]
+2025-09-10 22:06:13,739 - INFO - [gate] Reconnecting in 120 seconds...
+2025-09-10 22:08:30,990 - INFO - Updating account balances...
+2025-09-10 22:08:31,110 - WARNING - Failed to fetch balance for bybit (attempt 1): bybit requires "apiKey" credential
+2025-09-10 22:08:34,218 - WARNING - Failed to fetch balance for bybit (attempt 2): bybit requires "apiKey" credential
+2025-09-10 22:08:39,313 - WARNING - Failed to fetch balance for bybit (attempt 3): bybit requires "apiKey" credential
+2025-09-10 22:08:46,310 - ERROR - Unable to fetch balances for bybit after retries.
+2025-09-10 22:08:46,379 - WARNING - Failed to fetch balance for kucoin (attempt 1): kucoin requires "apiKey" credential
+2025-09-10 22:08:49,874 - WARNING - Failed to fetch balance for kucoin (attempt 2): kucoin requires "apiKey" credential
+2025-09-10 22:08:54,945 - WARNING - Failed to fetch balance for kucoin (attempt 3): kucoin requires "apiKey" credential
+2025-09-10 22:09:01,920 - ERROR - Unable to fetch balances for kucoin after retries.
+2025-09-10 22:09:02,119 - WARNING - Failed to fetch balance for bingx (attempt 1): bingx requires "apiKey" credential
+2025-09-10 22:09:05,303 - WARNING - Failed to fetch balance for bingx (attempt 2): bingx requires "apiKey" credential
+2025-09-10 22:09:10,557 - WARNING - Failed to fetch balance for bingx (attempt 3): bingx requires "apiKey" credential
+2025-09-10 22:09:17,546 - ERROR - Unable to fetch balances for bingx after retries.
+2025-09-10 22:09:17,598 - WARNING - Failed to fetch balance for gate (attempt 1): gate requires "apiKey" credential
+2025-09-10 22:09:20,652 - WARNING - Failed to fetch balance for gate (attempt 2): gate requires "apiKey" credential
+2025-09-10 22:09:25,696 - WARNING - Failed to fetch balance for gate (attempt 3): gate requires "apiKey" credential
+2025-09-10 22:09:32,681 - ERROR - Unable to fetch balances for gate after retries.
+2025-09-10 22:09:32,869 - WARNING - Failed to fetch balance for binance (attempt 1): binance requires "apiKey" credential
+2025-09-10 22:09:36,075 - WARNING - Failed to fetch balance for binance (attempt 2): binance requires "apiKey" credential
+2025-09-10 22:09:41,291 - WARNING - Failed to fetch balance for binance (attempt 3): binance requires "apiKey" credential
+2025-09-10 22:09:48,287 - ERROR - Unable to fetch balances for binance after retries.
+2025-09-10 22:09:48,287 - INFO - Account balances updated successfully.
+2025-09-10 22:14:48,287 - INFO - Updating account balances...
+2025-09-10 22:14:48,388 - WARNING - Failed to fetch balance for bybit (attempt 1): bybit requires "apiKey" credential
+2025-09-10 22:14:51,473 - WARNING - Failed to fetch balance for bybit (attempt 2): bybit requires "apiKey" credential
+2025-09-10 22:14:56,546 - WARNING - Failed to fetch balance for bybit (attempt 3): bybit requires "apiKey" credential
+2025-09-10 22:15:03,735 - ERROR - Unable to fetch balances for bybit after retries.
+2025-09-10 22:15:04,539 - WARNING - Failed to fetch balance for kucoin (attempt 1): kucoin requires "apiKey" credential
+2025-09-10 22:15:07,629 - WARNING - Failed to fetch balance for kucoin (attempt 2): kucoin requires "apiKey" credential
+2025-09-10 22:15:12,713 - WARNING - Failed to fetch balance for kucoin (attempt 3): kucoin requires "apiKey" credential
+2025-09-10 22:15:19,707 - ERROR - Unable to fetch balances for kucoin after retries.
+2025-09-10 22:15:19,916 - WARNING - Failed to fetch balance for bingx (attempt 1): bingx requires "apiKey" credential
+2025-09-10 22:15:23,143 - WARNING - Failed to fetch balance for bingx (attempt 2): bingx requires "apiKey" credential
+2025-09-10 22:15:29,031 - WARNING - Failed to fetch balance for bingx (attempt 3): bingx requires "apiKey" credential
+2025-09-10 22:15:36,213 - ERROR - Unable to fetch balances for bingx after retries.
+2025-09-10 22:15:36,434 - WARNING - Failed to fetch balance for gate (attempt 1): gate requires "apiKey" credential
+2025-09-10 22:15:39,434 - WARNING - Failed to fetch balance for gate (attempt 2): gate requires "apiKey" credential
+2025-09-10 22:15:44,469 - WARNING - Failed to fetch balance for gate (attempt 3): gate requires "apiKey" credential
+2025-09-10 22:15:51,451 - ERROR - Unable to fetch balances for gate after retries.
+2025-09-10 22:15:51,644 - WARNING - Failed to fetch balance for binance (attempt 1): binance requires "apiKey" credential
+2025-09-10 22:15:54,847 - WARNING - Failed to fetch balance for binance (attempt 2): binance requires "apiKey" credential
+2025-09-10 22:16:00,022 - WARNING - Failed to fetch balance for binance (attempt 3): binance requires "apiKey" credential
+2025-09-10 22:16:07,016 - ERROR - Unable to fetch balances for binance after retries.
+2025-09-10 22:16:07,017 - INFO - Account balances updated successfully.
+2025-09-10 22:21:06,998 - INFO - Updating account balances...
+2025-09-10 22:21:07,099 - WARNING - Failed to fetch balance for bybit (attempt 1): bybit requires "apiKey" credential
+2025-09-10 22:21:10,202 - WARNING - Failed to fetch balance for bybit (attempt 2): bybit requires "apiKey" credential
+2025-09-10 22:21:15,307 - WARNING - Failed to fetch balance for bybit (attempt 3): bybit requires "apiKey" credential
+2025-09-10 22:21:22,300 - ERROR - Unable to fetch balances for bybit after retries.
+2025-09-10 22:21:22,371 - WARNING - Failed to fetch balance for kucoin (attempt 1): kucoin requires "apiKey" credential
+2025-09-10 22:21:25,448 - WARNING - Failed to fetch balance for kucoin (attempt 2): kucoin requires "apiKey" credential
+2025-09-10 22:21:30,501 - WARNING - Failed to fetch balance for kucoin (attempt 3): kucoin requires "apiKey" credential
+2025-09-10 22:21:37,503 - ERROR - Unable to fetch balances for kucoin after retries.
+2025-09-10 22:21:37,684 - WARNING - Failed to fetch balance for bingx (attempt 1): bingx requires "apiKey" credential
+2025-09-10 22:21:40,885 - WARNING - Failed to fetch balance for bingx (attempt 2): bingx requires "apiKey" credential
+2025-09-10 22:21:46,096 - WARNING - Failed to fetch balance for bingx (attempt 3): bingx requires "apiKey" credential
+2025-09-10 22:21:53,142 - ERROR - Unable to fetch balances for bingx after retries.
+2025-09-10 22:21:53,319 - WARNING - Failed to fetch balance for gate (attempt 1): gate requires "apiKey" credential
+2025-09-10 22:21:56,320 - WARNING - Failed to fetch balance for gate (attempt 2): gate requires "apiKey" credential
+2025-09-10 22:22:01,376 - WARNING - Failed to fetch balance for gate (attempt 3): gate requires "apiKey" credential
+2025-09-10 22:22:08,385 - ERROR - Unable to fetch balances for gate after retries.
+2025-09-10 22:22:08,600 - WARNING - Failed to fetch balance for binance (attempt 1): binance requires "apiKey" credential
+2025-09-10 22:22:12,102 - WARNING - Failed to fetch balance for binance (attempt 2): binance requires "apiKey" credential
+2025-09-10 22:22:17,275 - WARNING - Failed to fetch balance for binance (attempt 3): binance requires "apiKey" credential
+2025-09-10 22:22:24,260 - ERROR - Unable to fetch balances for binance after retries.
+2025-09-10 22:22:24,260 - INFO - Account balances updated successfully.
+2025-09-10 22:27:24,248 - INFO - Updating account balances...
+2025-09-10 22:27:24,347 - WARNING - Failed to fetch balance for bybit (attempt 1): bybit requires "apiKey" credential
+2025-09-10 22:27:27,462 - WARNING - Failed to fetch balance for bybit (attempt 2): bybit requires "apiKey" credential
+2025-09-10 22:27:32,565 - WARNING - Failed to fetch balance for bybit (attempt 3): bybit requires "apiKey" credential
+2025-09-10 22:27:39,556 - ERROR - Unable to fetch balances for bybit after retries.
+2025-09-10 22:27:39,631 - WARNING - Failed to fetch balance for kucoin (attempt 1): kucoin requires "apiKey" credential
+2025-09-10 22:27:42,706 - WARNING - Failed to fetch balance for kucoin (attempt 2): kucoin requires "apiKey" credential
+2025-09-10 22:27:47,790 - WARNING - Failed to fetch balance for kucoin (attempt 3): kucoin requires "apiKey" credential
+2025-09-10 22:27:54,790 - ERROR - Unable to fetch balances for kucoin after retries.
+2025-09-10 22:27:54,993 - WARNING - Failed to fetch balance for bingx (attempt 1): bingx requires "apiKey" credential
+2025-09-10 22:27:58,181 - WARNING - Failed to fetch balance for bingx (attempt 2): bingx requires "apiKey" credential
+2025-09-10 22:28:03,388 - WARNING - Failed to fetch balance for bingx (attempt 3): bingx requires "apiKey" credential
+2025-09-10 22:28:10,382 - ERROR - Unable to fetch balances for bingx after retries.
+2025-09-10 22:28:10,433 - WARNING - Failed to fetch balance for gate (attempt 1): gate requires "apiKey" credential
+2025-09-10 22:28:13,612 - WARNING - Failed to fetch balance for gate (attempt 2): gate requires "apiKey" credential
+2025-09-10 22:28:18,631 - WARNING - Failed to fetch balance for gate (attempt 3): gate requires "apiKey" credential
+2025-09-10 22:28:25,641 - ERROR - Unable to fetch balances for gate after retries.
+2025-09-10 22:28:25,834 - WARNING - Failed to fetch balance for binance (attempt 1): binance requires "apiKey" credential
+2025-09-10 22:28:29,072 - WARNING - Failed to fetch balance for binance (attempt 2): binance requires "apiKey" credential
+2025-09-10 22:28:34,236 - WARNING - Failed to fetch balance for binance (attempt 3): binance requires "apiKey" credential
+2025-09-10 22:28:41,260 - ERROR - Unable to fetch balances for binance after retries.
+2025-09-10 22:28:41,260 - INFO - Account balances updated successfully.
+2025-09-10 22:33:41,260 - INFO - Updating account balances...
+2025-09-10 22:33:41,359 - WARNING - Failed to fetch balance for bybit (attempt 1): bybit requires "apiKey" credential
+2025-09-10 22:33:44,472 - WARNING - Failed to fetch balance for bybit (attempt 2): bybit requires "apiKey" credential
+2025-09-10 22:33:49,587 - WARNING - Failed to fetch balance for bybit (attempt 3): bybit requires "apiKey" credential
+2025-09-10 22:33:56,587 - ERROR - Unable to fetch balances for bybit after retries.
+2025-09-10 22:33:56,665 - WARNING - Failed to fetch balance for kucoin (attempt 1): kucoin requires "apiKey" credential
+2025-09-10 22:33:59,743 - WARNING - Failed to fetch balance for kucoin (attempt 2): kucoin requires "apiKey" credential
+2025-09-10 22:34:04,815 - WARNING - Failed to fetch balance for kucoin (attempt 3): kucoin requires "apiKey" credential
+2025-09-10 22:34:11,798 - ERROR - Unable to fetch balances for kucoin after retries.
+2025-09-10 22:34:11,992 - WARNING - Failed to fetch balance for bingx (attempt 1): bingx requires "apiKey" credential
+2025-09-10 22:34:15,196 - WARNING - Failed to fetch balance for bingx (attempt 2): bingx requires "apiKey" credential
+2025-09-10 22:34:20,384 - WARNING - Failed to fetch balance for bingx (attempt 3): bingx requires "apiKey" credential
+2025-09-10 22:34:27,374 - ERROR - Unable to fetch balances for bingx after retries.
+2025-09-10 22:34:27,428 - WARNING - Failed to fetch balance for gate (attempt 1): gate requires "apiKey" credential
+2025-09-10 22:34:30,462 - WARNING - Failed to fetch balance for gate (attempt 2): gate requires "apiKey" credential
+2025-09-10 22:34:35,537 - WARNING - Failed to fetch balance for gate (attempt 3): gate requires "apiKey" credential
+2025-09-10 22:34:42,536 - ERROR - Unable to fetch balances for gate after retries.
+2025-09-10 22:34:42,746 - WARNING - Failed to fetch balance for binance (attempt 1): binance requires "apiKey" credential
+2025-09-10 22:34:45,963 - WARNING - Failed to fetch balance for binance (attempt 2): binance requires "apiKey" credential
+2025-09-10 22:34:51,165 - WARNING - Failed to fetch balance for binance (attempt 3): binance requires "apiKey" credential
+2025-09-10 22:34:58,166 - ERROR - Unable to fetch balances for binance after retries.
+2025-09-10 22:34:58,166 - INFO - Account balances updated successfully.
+2025-09-10 22:39:58,171 - INFO - Updating account balances...
+2025-09-10 22:39:58,272 - WARNING - Failed to fetch balance for bybit (attempt 1): bybit requires "apiKey" credential
+2025-09-10 22:40:01,603 - WARNING - Failed to fetch balance for bybit (attempt 2): bybit requires "apiKey" credential
+2025-09-10 22:40:06,745 - WARNING - Failed to fetch balance for bybit (attempt 3): bybit requires "apiKey" credential
+2025-09-10 22:40:13,745 - ERROR - Unable to fetch balances for bybit after retries.
+2025-09-10 22:40:13,824 - WARNING - Failed to fetch balance for kucoin (attempt 1): kucoin requires "apiKey" credential
+2025-09-10 22:40:16,878 - WARNING - Failed to fetch balance for kucoin (attempt 2): kucoin requires "apiKey" credential
+2025-09-10 22:40:21,979 - WARNING - Failed to fetch balance for kucoin (attempt 3): kucoin requires "apiKey" credential
+2025-09-10 22:40:28,989 - ERROR - Unable to fetch balances for kucoin after retries.
+2025-09-10 22:40:29,185 - WARNING - Failed to fetch balance for bingx (attempt 1): bingx requires "apiKey" credential
+2025-09-10 22:40:32,388 - WARNING - Failed to fetch balance for bingx (attempt 2): bingx requires "apiKey" credential
+2025-09-10 22:40:37,602 - WARNING - Failed to fetch balance for bingx (attempt 3): bingx requires "apiKey" credential
+2025-09-10 22:40:43,900 - WARNING - [kucoin] Error in symbol watcher for XYO/BTC: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,900 - WARNING - [kucoin] Error in symbol watcher for ASTR/BTC: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,900 - WARNING - [kucoin] Error in symbol watcher for WIN/BTC: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,900 - WARNING - [kucoin] Error in symbol watcher for IOTX/ETH: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,917 - WARNING - [kucoin] Error in symbol watcher for TEL/ETH: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,921 - WARNING - [kucoin] Error in symbol watcher for GMT/USDT: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,923 - WARNING - [kucoin] Error in symbol watcher for FLUX/USDT: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,927 - WARNING - [kucoin] Error in symbol watcher for TRAC/USDT: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,930 - WARNING - [kucoin] Error in symbol watcher for VRA/USDT: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,941 - WARNING - [kucoin] Error in symbol watcher for DOT/USDT: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,947 - WARNING - [kucoin] Error in symbol watcher for COTI/USDT: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,948 - WARNING - [kucoin] Error in symbol watcher for XYO/ETH: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,949 - WARNING - [kucoin] Error in symbol watcher for QTUM/USDT: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,951 - WARNING - [kucoin] Error in symbol watcher for JUP/USDT: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,953 - WARNING - [kucoin] Error in symbol watcher for XMR/USDC: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,955 - WARNING - [kucoin] Error in symbol watcher for ETC/USDC: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,956 - WARNING - [kucoin] Error in symbol watcher for TRX/ETH: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,957 - WARNING - [kucoin] Error in symbol watcher for ALGO/USDT: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,963 - WARNING - [kucoin] Error in symbol watcher for HYPE/KCS: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,963 - WARNING - [kucoin] Error in symbol watcher for TRUMP/USDC: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,963 - WARNING - [kucoin] Error in symbol watcher for XRP/USDT: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,963 - WARNING - [kucoin] Error in symbol watcher for WAN/BTC: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,974 - WARNING - [kucoin] Error in symbol watcher for ONE/USDT: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,975 - WARNING - [kucoin] Error in symbol watcher for ADA/USDT: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:43,976 - WARNING - [kucoin] Error in symbol watcher for FIL/USDT: Connection to wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ9tozapFqfuP4UwbyBxqHb_rk1tcFtHDbNiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEEsnh_-1HLi-sLmwPQYVQouJBvJHl5Vs9Y%3D.Ee9mTxTC5ZH6JGp-rBAEBw%3D%3D&privateChannel=false&connectId=public timed out due to a ping-pong keepalive missing on time
+2025-09-10 22:40:44,227 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,227 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,227 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,227 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,227 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,227 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,227 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,227 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,227 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,227 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,227 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,238 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,239 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,242 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,245 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,246 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,247 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,248 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,248 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,249 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,249 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,250 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,251 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,253 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,257 - INFO - [kucoin] Reconnecting in 30 seconds...
+2025-09-10 22:40:44,599 - ERROR - Unable to fetch balances for bingx after retries.
+2025-09-10 22:40:44,638 - WARNING - Failed to fetch balance for gate (attempt 1): gate requires "apiKey" credential
+2025-09-10 22:40:47,697 - WARNING - Failed to fetch balance for gate (attempt 2): gate requires "apiKey" credential
+2025-09-10 22:40:52,737 - WARNING - Failed to fetch balance for gate (attempt 3): gate requires "apiKey" credential
+2025-09-10 22:40:59,743 - ERROR - Unable to fetch balances for gate after retries.
+2025-09-10 22:40:59,924 - WARNING - Failed to fetch balance for binance (attempt 1): binance requires "apiKey" credential
+2025-09-10 22:41:03,240 - WARNING - Failed to fetch balance for binance (attempt 2): binance requires "apiKey" credential
+2025-09-10 22:41:08,399 - WARNING - Failed to fetch balance for binance (attempt 3): binance requires "apiKey" credential
+2025-09-10 22:41:15,558 - ERROR - Unable to fetch balances for binance after retries.
+2025-09-10 22:41:15,559 - INFO - Account balances updated successfully.
+2025-09-10 22:41:24,542 - WARNING - [kucoin] Error in symbol watcher for QTUM/USDT: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=QTUM-USDT
+2025-09-10 22:41:24,542 - WARNING - [kucoin] Error in symbol watcher for JUP/USDT: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=JUP-USDT
+2025-09-10 22:41:24,542 - WARNING - [kucoin] Error in symbol watcher for FIL/USDT: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=FIL-USDT
+2025-09-10 22:41:24,542 - WARNING - [kucoin] Error in symbol watcher for WAN/BTC: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=WAN-BTC
+2025-09-10 22:41:24,542 - WARNING - [kucoin] Error in symbol watcher for ALGO/USDT: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=ALGO-USDT
+2025-09-10 22:41:24,542 - WARNING - [kucoin] Error in symbol watcher for TRX/ETH: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=TRX-ETH
+2025-09-10 22:41:24,542 - WARNING - [kucoin] Error in symbol watcher for DOT/USDT: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=DOT-USDT
+2025-09-10 22:41:24,553 - WARNING - [kucoin] Error in symbol watcher for ONE/USDT: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=ONE-USDT
+2025-09-10 22:41:24,554 - WARNING - [kucoin] Error in symbol watcher for ADA/USDT: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=ADA-USDT
+2025-09-10 22:41:24,555 - WARNING - [kucoin] Error in symbol watcher for TEL/ETH: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=TEL-ETH
+2025-09-10 22:41:24,556 - WARNING - [kucoin] Error in symbol watcher for HYPE/KCS: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=HYPE-KCS
+2025-09-10 22:41:24,557 - WARNING - [kucoin] Error in symbol watcher for VRA/USDT: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=VRA-USDT
+2025-09-10 22:41:24,559 - WARNING - [kucoin] Error in symbol watcher for TRUMP/USDC: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=TRUMP-USDC
+2025-09-10 22:41:24,561 - WARNING - [kucoin] Error in symbol watcher for WIN/BTC: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=WIN-BTC
+2025-09-10 22:41:24,563 - WARNING - [kucoin] Error in symbol watcher for XRP/USDT: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=XRP-USDT
+2025-09-10 22:41:24,564 - WARNING - [kucoin] Error in symbol watcher for XMR/USDC: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=XMR-USDC
+2025-09-10 22:41:24,809 - INFO - [kucoin] Reconnecting in 60 seconds...
+2025-09-10 22:41:24,811 - INFO - [kucoin] Reconnecting in 60 seconds...
+2025-09-10 22:41:24,813 - INFO - [kucoin] Reconnecting in 60 seconds...
+2025-09-10 22:41:24,815 - INFO - [kucoin] Reconnecting in 60 seconds...
+2025-09-10 22:41:24,819 - INFO - [kucoin] Reconnecting in 60 seconds...
+2025-09-10 22:41:24,822 - INFO - [kucoin] Reconnecting in 60 seconds...
+2025-09-10 22:41:24,826 - INFO - [kucoin] Reconnecting in 60 seconds...
+2025-09-10 22:41:24,830 - INFO - [kucoin] Reconnecting in 60 seconds...
+2025-09-10 22:41:24,832 - INFO - [kucoin] Reconnecting in 60 seconds...
+2025-09-10 22:41:24,834 - INFO - [kucoin] Reconnecting in 60 seconds...
+2025-09-10 22:41:24,836 - INFO - [kucoin] Reconnecting in 60 seconds...
+2025-09-10 22:41:24,846 - INFO - [kucoin] Reconnecting in 60 seconds...
+2025-09-10 22:41:24,847 - INFO - [kucoin] Reconnecting in 60 seconds...
+2025-09-10 22:41:24,848 - INFO - [kucoin] Reconnecting in 60 seconds...
+2025-09-10 22:41:24,849 - INFO - [kucoin] Reconnecting in 60 seconds...
+2025-09-10 22:41:24,850 - INFO - [kucoin] Reconnecting in 60 seconds...
+2025-09-10 22:42:30,009 - WARNING - [kucoin] Error in symbol watcher for XRP/USDT: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=XRP-USDT
+2025-09-10 22:42:30,009 - WARNING - [kucoin] Error in symbol watcher for VRA/USDT: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=VRA-USDT
+2025-09-10 22:42:30,024 - WARNING - [kucoin] Error in symbol watcher for WAN/BTC: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=WAN-BTC
+2025-09-10 22:42:30,024 - WARNING - [kucoin] Error in symbol watcher for TRUMP/USDC: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=TRUMP-USDC
+2025-09-10 22:42:30,024 - WARNING - [kucoin] Error in symbol watcher for ALGO/USDT: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=ALGO-USDT
+2025-09-10 22:42:30,029 - WARNING - [kucoin] Error in symbol watcher for FIL/USDT: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=FIL-USDT
+2025-09-10 22:42:30,030 - WARNING - [kucoin] Error in symbol watcher for ADA/USDT: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=ADA-USDT
+2025-09-10 22:42:30,031 - WARNING - [kucoin] Error in symbol watcher for ONE/USDT: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=ONE-USDT
+2025-09-10 22:42:30,034 - WARNING - [kucoin] Error in symbol watcher for TRX/ETH: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=TRX-ETH
+2025-09-10 22:42:30,036 - WARNING - [kucoin] Error in symbol watcher for WIN/BTC: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=WIN-BTC
+2025-09-10 22:42:30,036 - WARNING - [kucoin] Error in symbol watcher for XMR/USDC: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=XMR-USDC
+2025-09-10 22:42:30,290 - INFO - [kucoin] Reconnecting in 120 seconds...
+2025-09-10 22:42:30,290 - INFO - [kucoin] Reconnecting in 120 seconds...
+2025-09-10 22:42:30,290 - INFO - [kucoin] Reconnecting in 120 seconds...
+2025-09-10 22:42:30,290 - INFO - [kucoin] Reconnecting in 120 seconds...
+2025-09-10 22:42:30,290 - INFO - [kucoin] Reconnecting in 120 seconds...
+2025-09-10 22:42:30,290 - INFO - [kucoin] Reconnecting in 120 seconds...
+2025-09-10 22:42:30,311 - INFO - [kucoin] Reconnecting in 120 seconds...
+2025-09-10 22:42:30,318 - INFO - [kucoin] Reconnecting in 120 seconds...
+2025-09-10 22:42:30,318 - INFO - [kucoin] Reconnecting in 120 seconds...
+2025-09-10 22:42:30,323 - INFO - [kucoin] Reconnecting in 120 seconds...
+2025-09-10 22:42:30,327 - INFO - [kucoin] Reconnecting in 120 seconds...
+2025-09-10 22:42:59,940 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("unsupported operand type(s) for -: 'NoneType' and 'int'")>
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 117, in resolve
+    resp = await self._resolver.getaddrinfo(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+aiodns.error.DNSError: (12, 'Timeout while contacting DNS servers')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1148, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1123, in _resolve_host
+    await future
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1179, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 126, in resolve
+    raise OSError(None, msg) from exc
+OSError: [Errno None] Timeout while contacting DNS servers
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 217, in fetch
+    async with session_method(yarl.URL(url, encoded=True),
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1538, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host api.kucoin.com:443 ssl:default [Timeout while contacting DNS servers]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 566, in load_order_book
+    order_book = await self.fetch_order_book(symbol, limit, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 972, in fetch2
+    raise e
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 963, in fetch2
+    return await self.fetch(request['url'], request['method'], request['headers'], request['body'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 257, in fetch
+    raise ExchangeNotAvailable(details) from e
+ccxt.base.errors.ExchangeNotAvailable: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=WAN-BTC
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  [Previous line repeated 2 more times]
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 567, in load_order_book
+    index = self.get_cache_index(order_book, cache)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\pro\kucoin.py", line 807, in get_cache_index
+    if nonce < firstDeltaStart - 1:
+               ~~~~~~~~~~~~~~~~^~~
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'int'
+2025-09-10 22:43:00,132 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("unsupported operand type(s) for -: 'NoneType' and 'int'")>
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 117, in resolve
+    resp = await self._resolver.getaddrinfo(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+aiodns.error.DNSError: (12, 'Timeout while contacting DNS servers')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1148, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1123, in _resolve_host
+    await future
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1179, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 126, in resolve
+    raise OSError(None, msg) from exc
+OSError: [Errno None] Timeout while contacting DNS servers
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 217, in fetch
+    async with session_method(yarl.URL(url, encoded=True),
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1538, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host api.kucoin.com:443 ssl:default [Timeout while contacting DNS servers]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 566, in load_order_book
+    order_book = await self.fetch_order_book(symbol, limit, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 972, in fetch2
+    raise e
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 963, in fetch2
+    return await self.fetch(request['url'], request['method'], request['headers'], request['body'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 257, in fetch
+    raise ExchangeNotAvailable(details) from e
+ccxt.base.errors.ExchangeNotAvailable: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=TRX-ETH
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  [Previous line repeated 2 more times]
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 567, in load_order_book
+    index = self.get_cache_index(order_book, cache)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\pro\kucoin.py", line 807, in get_cache_index
+    if nonce < firstDeltaStart - 1:
+               ~~~~~~~~~~~~~~~~^~~
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'int'
+2025-09-10 22:43:00,152 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("unsupported operand type(s) for -: 'NoneType' and 'int'")>
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 117, in resolve
+    resp = await self._resolver.getaddrinfo(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+aiodns.error.DNSError: (12, 'Timeout while contacting DNS servers')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1148, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1123, in _resolve_host
+    await future
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1179, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 126, in resolve
+    raise OSError(None, msg) from exc
+OSError: [Errno None] Timeout while contacting DNS servers
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 217, in fetch
+    async with session_method(yarl.URL(url, encoded=True),
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1538, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host api.kucoin.com:443 ssl:default [Timeout while contacting DNS servers]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 566, in load_order_book
+    order_book = await self.fetch_order_book(symbol, limit, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 972, in fetch2
+    raise e
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 963, in fetch2
+    return await self.fetch(request['url'], request['method'], request['headers'], request['body'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 257, in fetch
+    raise ExchangeNotAvailable(details) from e
+ccxt.base.errors.ExchangeNotAvailable: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=TRUMP-USDC
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  [Previous line repeated 11 more times]
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 567, in load_order_book
+    index = self.get_cache_index(order_book, cache)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\pro\kucoin.py", line 807, in get_cache_index
+    if nonce < firstDeltaStart - 1:
+               ~~~~~~~~~~~~~~~~^~~
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'int'
+2025-09-10 22:43:00,191 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("unsupported operand type(s) for -: 'NoneType' and 'int'")>
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 117, in resolve
+    resp = await self._resolver.getaddrinfo(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+aiodns.error.DNSError: (12, 'Timeout while contacting DNS servers')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1148, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1123, in _resolve_host
+    await future
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1179, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 126, in resolve
+    raise OSError(None, msg) from exc
+OSError: [Errno None] Timeout while contacting DNS servers
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 217, in fetch
+    async with session_method(yarl.URL(url, encoded=True),
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1538, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host api.kucoin.com:443 ssl:default [Timeout while contacting DNS servers]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 566, in load_order_book
+    order_book = await self.fetch_order_book(symbol, limit, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 972, in fetch2
+    raise e
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 963, in fetch2
+    return await self.fetch(request['url'], request['method'], request['headers'], request['body'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 257, in fetch
+    raise ExchangeNotAvailable(details) from e
+ccxt.base.errors.ExchangeNotAvailable: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=WIN-BTC
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  [Previous line repeated 2 more times]
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 567, in load_order_book
+    index = self.get_cache_index(order_book, cache)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\pro\kucoin.py", line 807, in get_cache_index
+    if nonce < firstDeltaStart - 1:
+               ~~~~~~~~~~~~~~~~^~~
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'int'
+2025-09-10 22:43:00,307 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("unsupported operand type(s) for -: 'NoneType' and 'int'")>
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 117, in resolve
+    resp = await self._resolver.getaddrinfo(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+aiodns.error.DNSError: (12, 'Timeout while contacting DNS servers')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1148, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1123, in _resolve_host
+    await future
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1179, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 126, in resolve
+    raise OSError(None, msg) from exc
+OSError: [Errno None] Timeout while contacting DNS servers
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 217, in fetch
+    async with session_method(yarl.URL(url, encoded=True),
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1538, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host api.kucoin.com:443 ssl:default [Timeout while contacting DNS servers]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 566, in load_order_book
+    order_book = await self.fetch_order_book(symbol, limit, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 972, in fetch2
+    raise e
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 963, in fetch2
+    return await self.fetch(request['url'], request['method'], request['headers'], request['body'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 257, in fetch
+    raise ExchangeNotAvailable(details) from e
+ccxt.base.errors.ExchangeNotAvailable: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=ALGO-USDT
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  [Previous line repeated 11 more times]
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 567, in load_order_book
+    index = self.get_cache_index(order_book, cache)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\pro\kucoin.py", line 807, in get_cache_index
+    if nonce < firstDeltaStart - 1:
+               ~~~~~~~~~~~~~~~~^~~
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'int'
+2025-09-10 22:43:00,326 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("unsupported operand type(s) for -: 'NoneType' and 'int'")>
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 117, in resolve
+    resp = await self._resolver.getaddrinfo(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+aiodns.error.DNSError: (12, 'Timeout while contacting DNS servers')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1148, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1123, in _resolve_host
+    await future
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1179, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 126, in resolve
+    raise OSError(None, msg) from exc
+OSError: [Errno None] Timeout while contacting DNS servers
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 217, in fetch
+    async with session_method(yarl.URL(url, encoded=True),
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1538, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host api.kucoin.com:443 ssl:default [Timeout while contacting DNS servers]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 566, in load_order_book
+    order_book = await self.fetch_order_book(symbol, limit, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 972, in fetch2
+    raise e
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 963, in fetch2
+    return await self.fetch(request['url'], request['method'], request['headers'], request['body'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 257, in fetch
+    raise ExchangeNotAvailable(details) from e
+ccxt.base.errors.ExchangeNotAvailable: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=ADA-USDT
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  [Previous line repeated 11 more times]
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 567, in load_order_book
+    index = self.get_cache_index(order_book, cache)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\pro\kucoin.py", line 807, in get_cache_index
+    if nonce < firstDeltaStart - 1:
+               ~~~~~~~~~~~~~~~~^~~
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'int'
+2025-09-10 22:43:00,352 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("unsupported operand type(s) for -: 'NoneType' and 'int'")>
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 117, in resolve
+    resp = await self._resolver.getaddrinfo(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+aiodns.error.DNSError: (12, 'Timeout while contacting DNS servers')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1148, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1123, in _resolve_host
+    await future
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1179, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 126, in resolve
+    raise OSError(None, msg) from exc
+OSError: [Errno None] Timeout while contacting DNS servers
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 217, in fetch
+    async with session_method(yarl.URL(url, encoded=True),
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1538, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host api.kucoin.com:443 ssl:default [Timeout while contacting DNS servers]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 566, in load_order_book
+    order_book = await self.fetch_order_book(symbol, limit, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 972, in fetch2
+    raise e
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 963, in fetch2
+    return await self.fetch(request['url'], request['method'], request['headers'], request['body'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 257, in fetch
+    raise ExchangeNotAvailable(details) from e
+ccxt.base.errors.ExchangeNotAvailable: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=FIL-USDT
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  [Previous line repeated 2 more times]
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 567, in load_order_book
+    index = self.get_cache_index(order_book, cache)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\pro\kucoin.py", line 807, in get_cache_index
+    if nonce < firstDeltaStart - 1:
+               ~~~~~~~~~~~~~~~~^~~
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'int'
+2025-09-10 22:43:00,384 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("unsupported operand type(s) for -: 'NoneType' and 'int'")>
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 117, in resolve
+    resp = await self._resolver.getaddrinfo(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+aiodns.error.DNSError: (12, 'Timeout while contacting DNS servers')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1148, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1123, in _resolve_host
+    await future
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1179, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 126, in resolve
+    raise OSError(None, msg) from exc
+OSError: [Errno None] Timeout while contacting DNS servers
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 217, in fetch
+    async with session_method(yarl.URL(url, encoded=True),
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1538, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host api.kucoin.com:443 ssl:default [Timeout while contacting DNS servers]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 566, in load_order_book
+    order_book = await self.fetch_order_book(symbol, limit, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 972, in fetch2
+    raise e
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 963, in fetch2
+    return await self.fetch(request['url'], request['method'], request['headers'], request['body'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 257, in fetch
+    raise ExchangeNotAvailable(details) from e
+ccxt.base.errors.ExchangeNotAvailable: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=XMR-USDC
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  [Previous line repeated 2 more times]
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 567, in load_order_book
+    index = self.get_cache_index(order_book, cache)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\pro\kucoin.py", line 807, in get_cache_index
+    if nonce < firstDeltaStart - 1:
+               ~~~~~~~~~~~~~~~~^~~
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'int'
+2025-09-10 22:43:00,413 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("unsupported operand type(s) for -: 'NoneType' and 'int'")>
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 117, in resolve
+    resp = await self._resolver.getaddrinfo(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+aiodns.error.DNSError: (12, 'Timeout while contacting DNS servers')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1148, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1123, in _resolve_host
+    await future
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1179, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 126, in resolve
+    raise OSError(None, msg) from exc
+OSError: [Errno None] Timeout while contacting DNS servers
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 217, in fetch
+    async with session_method(yarl.URL(url, encoded=True),
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1538, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host api.kucoin.com:443 ssl:default [Timeout while contacting DNS servers]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 566, in load_order_book
+    order_book = await self.fetch_order_book(symbol, limit, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 972, in fetch2
+    raise e
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 963, in fetch2
+    return await self.fetch(request['url'], request['method'], request['headers'], request['body'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 257, in fetch
+    raise ExchangeNotAvailable(details) from e
+ccxt.base.errors.ExchangeNotAvailable: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=QTUM-USDT
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  [Previous line repeated 11 more times]
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 567, in load_order_book
+    index = self.get_cache_index(order_book, cache)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\pro\kucoin.py", line 807, in get_cache_index
+    if nonce < firstDeltaStart - 1:
+               ~~~~~~~~~~~~~~~~^~~
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'int'
+2025-09-10 22:43:00,448 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("unsupported operand type(s) for -: 'NoneType' and 'int'")>
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 117, in resolve
+    resp = await self._resolver.getaddrinfo(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+aiodns.error.DNSError: (12, 'Timeout while contacting DNS servers')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1148, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1123, in _resolve_host
+    await future
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1179, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 126, in resolve
+    raise OSError(None, msg) from exc
+OSError: [Errno None] Timeout while contacting DNS servers
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 217, in fetch
+    async with session_method(yarl.URL(url, encoded=True),
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1538, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host api.kucoin.com:443 ssl:default [Timeout while contacting DNS servers]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 566, in load_order_book
+    order_book = await self.fetch_order_book(symbol, limit, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 972, in fetch2
+    raise e
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 963, in fetch2
+    return await self.fetch(request['url'], request['method'], request['headers'], request['body'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 257, in fetch
+    raise ExchangeNotAvailable(details) from e
+ccxt.base.errors.ExchangeNotAvailable: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=VRA-USDT
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  [Previous line repeated 11 more times]
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 567, in load_order_book
+    index = self.get_cache_index(order_book, cache)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\pro\kucoin.py", line 807, in get_cache_index
+    if nonce < firstDeltaStart - 1:
+               ~~~~~~~~~~~~~~~~^~~
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'int'
+2025-09-10 22:43:00,489 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("unsupported operand type(s) for -: 'NoneType' and 'int'")>
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 117, in resolve
+    resp = await self._resolver.getaddrinfo(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+aiodns.error.DNSError: (12, 'Timeout while contacting DNS servers')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1148, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1123, in _resolve_host
+    await future
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1179, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 126, in resolve
+    raise OSError(None, msg) from exc
+OSError: [Errno None] Timeout while contacting DNS servers
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 217, in fetch
+    async with session_method(yarl.URL(url, encoded=True),
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1538, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host api.kucoin.com:443 ssl:default [Timeout while contacting DNS servers]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 566, in load_order_book
+    order_book = await self.fetch_order_book(symbol, limit, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 972, in fetch2
+    raise e
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 963, in fetch2
+    return await self.fetch(request['url'], request['method'], request['headers'], request['body'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 257, in fetch
+    raise ExchangeNotAvailable(details) from e
+ccxt.base.errors.ExchangeNotAvailable: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=ONE-USDT
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  [Previous line repeated 11 more times]
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 567, in load_order_book
+    index = self.get_cache_index(order_book, cache)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\pro\kucoin.py", line 807, in get_cache_index
+    if nonce < firstDeltaStart - 1:
+               ~~~~~~~~~~~~~~~~^~~
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'int'
+2025-09-10 22:43:00,519 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("unsupported operand type(s) for -: 'NoneType' and 'int'")>
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 117, in resolve
+    resp = await self._resolver.getaddrinfo(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+aiodns.error.DNSError: (12, 'Timeout while contacting DNS servers')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1148, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1123, in _resolve_host
+    await future
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1179, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\resolver.py", line 126, in resolve
+    raise OSError(None, msg) from exc
+OSError: [Errno None] Timeout while contacting DNS servers
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 217, in fetch
+    async with session_method(yarl.URL(url, encoded=True),
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1538, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host api.kucoin.com:443 ssl:default [Timeout while contacting DNS servers]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 566, in load_order_book
+    order_book = await self.fetch_order_book(symbol, limit, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 972, in fetch2
+    raise e
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 963, in fetch2
+    return await self.fetch(request['url'], request['method'], request['headers'], request['body'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 257, in fetch
+    raise ExchangeNotAvailable(details) from e
+ccxt.base.errors.ExchangeNotAvailable: kucoin GET https://api.kucoin.com/api/v1/market/orderbook/level2_100?symbol=XRP-USDT
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  [Previous line repeated 2 more times]
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 567, in load_order_book
+    index = self.get_cache_index(order_book, cache)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\pro\kucoin.py", line 807, in get_cache_index
+    if nonce < firstDeltaStart - 1:
+               ~~~~~~~~~~~~~~~~^~~
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'int'
+2025-09-11 12:07:38,174 - INFO - Initializing exchanges...
+2025-09-11 12:07:38,266 - INFO - Running on http://0.0.0.0:5001 (CTRL + C to quit)
+2025-09-11 12:07:43,214 - INFO - Successfully initialized bybit
+2025-09-11 12:07:49,266 - INFO - Successfully initialized kucoin
+2025-09-11 12:07:52,996 - INFO - Successfully initialized bingx
+2025-09-11 12:08:11,386 - INFO - Successfully initialized gate
+2025-09-11 12:08:20,917 - INFO - Successfully initialized binance
+2025-09-11 12:08:20,917 - INFO - Starting all arbitrage scanners...
+2025-09-11 12:08:20,917 - INFO - Starting cross-exchange price streams...
+2025-09-11 12:08:20,917 - INFO - Starting Triangular Arbitrage Engine...
+2025-09-11 12:08:20,917 - INFO - Initialized 5 exchanges: ['bybit', 'kucoin', 'bingx', 'gate', 'binance']
+2025-09-11 12:08:20,917 - INFO - Starting triangular opportunity scanning...
+2025-09-11 12:08:20,935 - INFO - Start polling
+2025-09-11 12:08:20,940 - INFO - [bybit] Subscribing to FIL/USDT...
+2025-09-11 12:08:20,940 - INFO - [bybit] Subscribing to QTUM/USDT...
+2025-09-11 12:08:20,940 - INFO - [bybit] Subscribing to DOT/USDT...
+2025-09-11 12:08:20,952 - INFO - [bybit] Subscribing to XRP/USDT...
+2025-09-11 12:08:20,952 - INFO - [bybit] Subscribing to ADA/USDT...
+2025-09-11 12:08:20,952 - INFO - [kucoin] Subscribing to FIL/USDT...
+2025-09-11 12:08:20,952 - INFO - [kucoin] Subscribing to QTUM/USDT...
+2025-09-11 12:08:20,952 - INFO - [kucoin] Subscribing to DOT/USDT...
+2025-09-11 12:08:20,966 - INFO - [kucoin] Subscribing to XRP/USDT...
+2025-09-11 12:08:20,968 - INFO - [kucoin] Subscribing to ADA/USDT...
+2025-09-11 12:08:20,968 - INFO - [bingx] Subscribing to FIL/USDT...
+2025-09-11 12:08:20,968 - INFO - [bingx] Subscribing to QTUM/USDT...
+2025-09-11 12:08:20,983 - INFO - [bingx] Subscribing to DOT/USDT...
+2025-09-11 12:08:20,983 - INFO - [bingx] Subscribing to XRP/USDT...
+2025-09-11 12:08:20,983 - INFO - [bingx] Subscribing to ADA/USDT...
+2025-09-11 12:08:20,983 - INFO - [gate] Subscribing to FIL/USDT...
+2025-09-11 12:08:20,999 - INFO - [gate] Subscribing to QTUM/USDT...
+2025-09-11 12:08:20,999 - INFO - [gate] Subscribing to DOT/USDT...
+2025-09-11 12:08:20,999 - INFO - [gate] Subscribing to XRP/USDT...
+2025-09-11 12:08:20,999 - INFO - [gate] Subscribing to ADA/USDT...
+2025-09-11 12:08:21,015 - INFO - [binance] Subscribing to FIL/USDT...
+2025-09-11 12:08:21,018 - INFO - [binance] Subscribing to QTUM/USDT...
+2025-09-11 12:08:21,018 - INFO - [binance] Subscribing to DOT/USDT...
+2025-09-11 12:08:21,018 - INFO - [binance] Subscribing to XRP/USDT...
+2025-09-11 12:08:21,031 - INFO - [binance] Subscribing to ADA/USDT...
+2025-09-11 12:08:21,035 - INFO - [bybit] Initializing triangular scanner...
+2025-09-11 12:08:21,035 - INFO - [bybit] Found 669 active spot markets.
+2025-09-11 12:08:22,119 - INFO - [bybit] Generated 681 total triangular paths.
+2025-09-11 12:08:22,155 - INFO - [bybit] Filtered to 675 priority paths.
+2025-09-11 12:08:22,180 - INFO - [bybit] Generated 675 paths across 261 symbols.
+2025-09-11 12:08:22,183 - INFO - [kucoin] Initializing triangular scanner...
+2025-09-11 12:08:22,183 - INFO - [kucoin] Found 1303 active spot markets.
+2025-09-11 12:08:27,097 - INFO - [kucoin] Generated 1156 total triangular paths.
+2025-09-11 12:08:27,138 - INFO - [kucoin] Filtered to 1156 priority paths.
+2025-09-11 12:08:27,145 - INFO - [kucoin] Generated 1156 paths across 370 symbols.
+2025-09-11 12:08:27,145 - INFO - [bingx] Initializing triangular scanner...
+2025-09-11 12:08:27,154 - INFO - [bingx] Found 955 active spot markets.
+2025-09-11 12:08:30,076 - INFO - [bingx] Generated 69 total triangular paths.
+2025-09-11 12:08:30,076 - INFO - [bingx] Filtered to 69 priority paths.
+2025-09-11 12:08:30,076 - INFO - [bingx] Generated 69 paths across 44 symbols.
+2025-09-11 12:08:30,076 - INFO - [gate] Initializing triangular scanner...
+2025-09-11 12:08:30,096 - INFO - [gate] Found 2648 active spot markets.
