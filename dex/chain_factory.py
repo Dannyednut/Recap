@@ -188,43 +188,38 @@ class ChainFactory:
             return None
     
     @classmethod
-    def create_contract_executor(cls, 
-                                chain_id: str, 
-                                engine: BaseEngine, 
-                                config: Dict[str, Any]) -> Optional[Any]:
-        """Create a chain-specific contract executor"""
+    def create_contract_executor(cls, chain: str):
+        """Create contract executor for the specified chain with MEV protection"""
         try:
-            if chain_id not in cls.SUPPORTED_CHAINS:
-                logger.error(f"Unsupported chain: {chain_id}")
-                return None
+            # Get chain configuration
+            config = cls._get_chain_config(chain)
             
-            # Import the chain-specific module
-            module_path = cls.SUPPORTED_CHAINS[chain_id]
-            module = importlib.import_module(f"{module_path}.contract_executor")
+            # Import the appropriate contract executor module
+            module_name = f"dex.{chain}_service.contract_executor"
+            module = importlib.import_module(module_name)
             
             # Get the contract executor class
-            executor_class_name = f"{chain_id.capitalize()}ContractExecutor"
-            executor_class = getattr(module, executor_class_name)
+            class_name = f"{chain.upper()}ContractExecutor"
+            if chain == "ethereum":
+                class_name = "ContractExecutor"
+            elif chain == "bsc":
+                class_name = "BSCContractExecutor"
+            elif chain == "polygon":
+                class_name = "PolygonContractExecutor"
+            elif chain == "solana":
+                class_name = "SolanaContractExecutor"
             
-            # Create config object
-            config_module = importlib.import_module(f"{module_path}.config")
-            config_class_name = f"{chain_id.capitalize()}Config"
-            config_class = getattr(config_module, config_class_name)
-            # Check if config class needs instantiation or is static
-            try:
-                # Try to instantiate with config parameters
-                chain_config = config_class(**config)
-            except TypeError:
-                # If it fails, use the class directly (static config)
-                chain_config = config_class
+            executor_class = getattr(module, class_name)
             
-            # Create and return contract executor instance
-            executor = executor_class(engine, chain_config)
-            return executor
+            # Create engine first
+            engine = cls.create_engine(chain)
+            
+            # Create and return contract executor with MEV protection
+            return executor_class(engine, config)
             
         except Exception as e:
-            logger.error(f"Error creating contract executor for chain {chain_id}: {e}")
-            return None
+            logger.error(f"Error creating contract executor for {chain}: {e}")
+            raise
     
     @classmethod
     def create_token_discovery(cls, 

@@ -1,15 +1,18 @@
 import os
+import asyncio
+import logging
+from typing import Dict, Any, Optional
+from web3 import AsyncWeb3
+from web3.contract import AsyncContract
+from eth_account import Account
+from eth_account.signers.local import LocalAccount
 import json
-from web3 import Web3
-from typing import Dict, List, Tuple, Optional, Union, Any
-from eth_typing import ChecksumAddress
-from decimal import Decimal
+import os
+from ..shared.mev_protection import UniversalMEVProtection
+from .engine import PolygonEngine
+from .config import PolygonConfig
 
-from shared.logger import get_logger
-from polygon_service.engine import PolygonEngine
-from shared.utils import load_contract_abi
-
-logger = get_logger("PolygonContractExecutor")
+logger = logging.getLogger(__name__)
 
 class PolygonContractExecutor:
     """Class for executing arbitrage contracts on Polygon network"""
@@ -23,14 +26,25 @@ class PolygonContractExecutor:
     # Flash loan providers on Polygon
     AAVE_POOL = "0x794a61358D6845594F94dc1DB02A252b5b4814aD"
     
-    def __init__(self, engine: PolygonEngine):
+    def __init__(self, engine: PolygonEngine, config: PolygonConfig):
         """Initialize the contract executor with the Polygon engine
         
         Args:
             engine: PolygonEngine instance for blockchain interaction
+            config: PolygonConfig instance for configuration
         """
         self.engine = engine
+        self.config = config
         self.w3 = engine.w3
+        self.account = engine.account
+        self.wallet_address = engine.wallet_address
+        
+        # MEV Protection for Polygon (chain_id = 137)
+        self.mev_protection = UniversalMEVProtection(
+            chain_id=137,
+            w3=self.w3,
+            private_key=config.PRIVATE_KEY
+        )
         
         # Router addresses mapping
         self.routers = {
@@ -181,7 +195,7 @@ class PolygonContractExecutor:
             'profit_info': profit_info
         }
     
-    def execute_triangular_arbitrage(
+    async def execute_triangular_arbitrage(
         self,
         path: List[str],
         routers: List[str],
@@ -234,14 +248,41 @@ class PolygonContractExecutor:
             'from': self.engine.account.address
         })
         
-        # Execute transaction
-        tx_hash = self.arbitrage_executor_contract.functions.executeTriangularArbitrage(params).transact({
-            'from': self.engine.account.address,
-            'gas': int(gas_estimate * 1.2)  # Add 20% buffer
+        # Build transaction
+        tx = self.arbitrage_executor_contract.functions.executeTriangularArbitrage(params).build_transaction({
+            'from': self.wallet_address,
+            'gas': int(gas_estimate * 1.2),
+            'nonce': await self.w3.eth.get_transaction_count(self.wallet_address)
         })
         
+        # Check if MEV protection should be used
+        if params.get("useMEVProtection", True):
+            current_block = await self.w3.eth.block_number
+            target_block = current_block + 1
+            
+            signed_tx = self.account.sign_transaction(tx)
+            tx_data = {
+                "raw_tx": signed_tx.rawTransaction.hex(),
+                "priority_fee": tx.get("maxPriorityFeePerGas", 2000000000),
+                "max_fee": tx.get("maxFeePerGas", 50000000000)
+            }
+            
+            bundle_hash = await self.mev_protection.submit_arbitrage_bundle(
+                [tx_data], target_block
+            )
+            
+            if bundle_hash:
+                logger.info(f"Polygon triangular arbitrage bundle submitted via MEV protection: {bundle_hash}")
+                return {'tx_hash': bundle_hash, 'status': 'submitted_via_mev'}
+            else:
+                logger.warning("Polygon MEV protection failed, falling back to mempool")
+        
+        # Fallback to standard mempool submission
+        signed_tx = self.account.sign_transaction(tx)
+        tx_hash = await self.w3.eth.send_raw_transaction(signed_tx.rawTransaction)
+        
         # Wait for transaction receipt
-        tx_receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash)
+        tx_receipt = await self.w3.eth.wait_for_transaction_receipt(tx_hash)
         
         # Parse events to get profit information
         profit_info = self._parse_arbitrage_events(tx_receipt)
@@ -253,7 +294,7 @@ class PolygonContractExecutor:
             'profit_info': profit_info
         }
     
-    def execute_backrun_arbitrage(
+    async def execute_backrun_arbitrage(
         self,
         target_tx_hash: str,
         path: List[str],

@@ -7,11 +7,14 @@ import logging
 from decimal import Decimal
 from typing import Dict, Any, Optional, List
 from web3 import AsyncWeb3
+from web3.contract import AsyncContract
 from eth_account import Account
+from eth_account.signers.local import LocalAccount
 import os
 
 from .engine import BSCEngine
 from .config import BSCConfig
+from ..shared.mev_protection import UniversalMEVProtection
 
 logger = logging.getLogger(__name__)
 
@@ -41,6 +44,13 @@ class BSCContractExecutor:
         # Contract management
         self.arbitrage_executor = None
         self.contract_address = None
+        
+        # MEV Protection for BSC (chain_id = 56)
+        self.mev_protection = UniversalMEVProtection(
+            chain_id=56,
+            w3=self.w3,
+            private_key=config.PRIVATE_KEY
+        )
         
         # Deployment info file
         self.deployment_file_path = os.path.join(
@@ -238,11 +248,34 @@ class BSCContractExecutor:
                     'nonce': await self.w3.eth.get_transaction_count(self.wallet_address)
                 })
             
-            # Sign and send transaction
+            # Check if MEV protection should be used
+            if params.get("useMEVProtection", True):
+                # Submit via BSC MEV protection (48Club relay)
+                current_block = await self.w3.eth.block_number
+                target_block = current_block + 1
+                
+                signed_tx = self.account.sign_transaction(tx)
+                tx_data = {
+                    "raw_tx": signed_tx.rawTransaction.hex(),
+                    "priority_fee": tx.get("maxPriorityFeePerGas", 2000000000),
+                    "max_fee": tx.get("maxFeePerGas", 50000000000)
+                }
+                
+                bundle_hash = await self.mev_protection.submit_arbitrage_bundle(
+                    [tx_data], target_block
+                )
+                
+                if bundle_hash:
+                    logger.info(f"BSC arbitrage bundle submitted via MEV protection: {bundle_hash}")
+                    return bundle_hash
+                else:
+                    logger.warning("MEV protection failed, falling back to mempool")
+            
+            # Fallback to standard mempool submission
             signed_tx = self.account.sign_transaction(tx)
             tx_hash = await self.w3.eth.send_raw_transaction(signed_tx.rawTransaction)
             
-            logger.info(f"Arbitrage transaction sent: {tx_hash.hex()}")
+            logger.info(f"BSC arbitrage transaction sent to mempool: {tx_hash.hex()}")
             return tx_hash.hex()
             
         except Exception as e:
@@ -315,11 +348,34 @@ class BSCContractExecutor:
                 'maxFeePerGas': params["maxGasPrice"]
             })
             
-            # Sign and send transaction
+            # Check if MEV protection should be used for backrun
+            if params.get("useMEVProtection", True) and params.get("targetTx"):
+                # Submit via BSC MEV protection for backrun
+                current_block = await self.w3.eth.block_number
+                target_block = current_block + 1
+                
+                signed_tx = self.account.sign_transaction(tx)
+                tx_data = {
+                    "raw_tx": signed_tx.rawTransaction.hex(),
+                    "priority_fee": tx.get("maxPriorityFeePerGas", 2000000000),
+                    "max_fee": params["maxGasPrice"]
+                }
+                
+                bundle_hash = await self.mev_protection.submit_backrun_bundle(
+                    params["targetTx"], tx_data, target_block
+                )
+                
+                if bundle_hash:
+                    logger.info(f"BSC backrun bundle submitted via MEV protection: {bundle_hash}")
+                    return bundle_hash
+                else:
+                    logger.warning("BSC MEV protection failed, falling back to mempool")
+            
+            # Fallback to standard mempool submission
             signed_tx = self.account.sign_transaction(tx)
             tx_hash = await self.w3.eth.send_raw_transaction(signed_tx.rawTransaction)
             
-            logger.info(f"Backrun arbitrage transaction sent: {tx_hash.hex()}")
+            logger.info(f"BSC backrun arbitrage transaction sent to mempool: {tx_hash.hex()}")
             return tx_hash.hex()
             
         except Exception as e:
