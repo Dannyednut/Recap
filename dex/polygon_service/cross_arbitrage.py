@@ -218,15 +218,37 @@ class PolygonCrossArbitrageEngine(BaseArbitrageEngine):
         return prices
     
     async def _get_v2_price(self, token_a: str, token_b: str, dex_config: Dict) -> Optional[Decimal]:
-        """Get price from V2 DEX"""
+        """Get real price from V2 DEX using factory and pair contracts"""
         try:
-            # Mock price with DEX-specific variations
-            base_price = await self._get_base_price(token_a, token_b)
-            variation = Decimal("0.005") * (hash(dex_config["router"]) % 20 - 10)  # -5% to +5%
-            return base_price * (1 + variation)
+            # Get pair address from factory contract
+            pair_address = await self._get_pair_address(token_a, token_b, dex_config["factory"])
+            if not pair_address:
+                return None
+            
+            # Get reserves from pair contract
+            reserves = await self._get_pair_reserves(pair_address)
+            if not reserves:
+                return None
+            
+            reserve0, reserve1, _ = reserves
+            
+            # Get token order in pair
+            token0 = await self._get_pair_token0(pair_address)
+            
+            # Calculate price based on reserves and token order
+            if token0.lower() == token_a.lower():
+                if reserve0 == 0:
+                    return None
+                price = Decimal(reserve1) / Decimal(reserve0)
+            else:
+                if reserve1 == 0:
+                    return None
+                price = Decimal(reserve0) / Decimal(reserve1)
+            
+            return price
             
         except Exception as e:
-            logger.debug(f"Error getting V2 price: {e}")
+            logger.debug(f"Error getting V2 price from {dex_config.get('router', 'unknown')}: {e}")
             return None
     
     async def _get_v3_price(self, token_a: str, token_b: str, dex_config: Dict) -> Optional[Decimal]:

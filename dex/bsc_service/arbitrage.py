@@ -15,6 +15,7 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'shared'))
 from models.arbitrage_models import ArbitrageOpportunity, ExecutionResult
+from telegram_notifier import DEXTelegramNotifier
 
 logger = logging.getLogger(__name__)
 
@@ -28,6 +29,9 @@ class BSCArbitrageService:
         
         # Core engine
         self.engine = BSCEngine(self.config)
+        
+        # Telegram notifier for trade results
+        self.telegram_notifier = DEXTelegramNotifier()
         
         # Arbitrage engines
         self.cross_arbitrage = BSCCrossArbitrageEngine(self.engine, self.config)
@@ -94,17 +98,23 @@ class BSCArbitrageService:
             logger.info(f"Executing BSC opportunity {opportunity.id} of type {opportunity.type}")
             
             if opportunity.type == "cross_exchange":
-                return await self.cross_arbitrage.execute_opportunity(opportunity)
+                result = await self.cross_arbitrage.execute_opportunity(opportunity)
             elif opportunity.type == "triangular":
-                return await self.triangular_arbitrage.execute_opportunity(opportunity)
+                result = await self.triangular_arbitrage.execute_opportunity(opportunity)
             elif opportunity.type == "flash_loan":
-                return await self.flash_loan.execute_opportunity(opportunity)
+                result = await self.flash_loan.execute_opportunity(opportunity)
             else:
                 raise ValueError(f"Unknown opportunity type: {opportunity.type}")
+            
+            # Send Telegram notification for completed trade
+            if self.telegram_notifier and result:
+                await self.telegram_notifier.send_trade_result(opportunity, result)
+            
+            return result
                 
         except Exception as e:
             logger.error(f"Error executing BSC opportunity {opportunity.id}: {e}")
-            return ExecutionResult(
+            result = ExecutionResult(
                 opportunity_id=opportunity.id,
                 success=False,
                 profit_usd=Decimal("0"),
@@ -112,6 +122,12 @@ class BSCArbitrageService:
                 execution_time=0.0,
                 error=str(e)
             )
+            
+            # Send Telegram notification for failed trade
+            if self.telegram_notifier:
+                await self.telegram_notifier.send_trade_result(opportunity, result)
+            
+            return result
     
     async def get_health_status(self) -> Dict[str, Any]:
         """Get service health status"""

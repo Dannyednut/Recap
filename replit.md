@@ -47,9 +47,15 @@ Preferred communication style: Simple, everyday language.
 
 ## Configuration Management
 
+**Centralized Network Configuration**
+- Single `MAINNET` environment variable controls all blockchain networks
+- Automatic switching between mainnet and testnet configurations
+- Centralized management of chain IDs, RPC URLs, token addresses, and DEX contracts
+- Eliminates configuration drift between blockchain services
+
 **Environment-Based Configuration**
 - Uses .env files and environment variables for sensitive data
-- Separate configuration classes for each chain and service
+- Shared configuration classes inheriting from centralized network config
 - Validates required parameters on startup with meaningful error messages
 
 **Trading Parameters**

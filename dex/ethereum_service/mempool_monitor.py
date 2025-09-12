@@ -17,7 +17,7 @@ from .config import EthereumConfig
 
 logger = logging.getLogger(__name__)
 
-class EthereumMempoolMonitor:
+class MempoolMonitor:
     """Monitor Ethereum mempool for MEV/backrun opportunities"""
     
     def __init__(self, engine: EthereumEngine, config: EthereumConfig):

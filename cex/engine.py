@@ -70,7 +70,7 @@ class Engine:
         self.cache_ttl = 60  # seconds
         self.loaded_config = None
         self.seen_timestamps = {}
-        self.running = False
+        self.running = True  # Set to True by default for proper initialization
 
         # lock for critical execution sections (optional usage)
         self._internal_lock = asyncio.Lock()

@@ -16,6 +16,7 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'shared'))
 from models.arbitrage_models import ArbitrageOpportunity, ExecutionResult
+from telegram_notifier import DEXTelegramNotifier
 
 logger = logging.getLogger(__name__)
 
@@ -35,6 +36,9 @@ class EthereumArbitrageService:
         self.triangular_arbitrage = TriangularArbitrageEngine(self.engine, self.config)
         self.flash_loan = FlashLoanEngine(self.engine, self.config)
         self.mempool_monitor = MempoolMonitor(self.engine, self.config)
+        
+        # Telegram notifier for trade results
+        self.telegram_notifier = DEXTelegramNotifier()
         
         self.is_initialized = False
         self.last_health_check = datetime.now()
@@ -92,7 +96,7 @@ class EthereumArbitrageService:
             return []
     
     async def execute_opportunity(self, opportunity: ArbitrageOpportunity) -> ExecutionResult:
-        """Execute a specific arbitrage opportunity"""
+        """Execute an arbitrage opportunity"""
         if not self.is_initialized:
             raise RuntimeError("Service not initialized")
         
@@ -100,17 +104,23 @@ class EthereumArbitrageService:
             logger.info(f"Executing opportunity {opportunity.id} of type {opportunity.type}")
             
             if opportunity.type == "cross_exchange":
-                return await self.cross_arbitrage.execute_opportunity(opportunity)
+                result = await self.cross_arbitrage.execute_opportunity(opportunity)
             elif opportunity.type == "triangular":
-                return await self.triangular_arbitrage.execute_opportunity(opportunity)
+                result = await self.triangular_arbitrage.execute_opportunity(opportunity)
             elif opportunity.type == "flash_loan":
-                return await self.flash_loan.execute_opportunity(opportunity)
+                result = await self.flash_loan.execute_opportunity(opportunity)
             else:
                 raise ValueError(f"Unknown opportunity type: {opportunity.type}")
+            
+            # Send Telegram notification for completed trade
+            if self.telegram_notifier and result:
+                await self.telegram_notifier.send_trade_result(opportunity, result)
+            
+            return result
                 
         except Exception as e:
             logger.error(f"Error executing opportunity {opportunity.id}: {e}")
-            return ExecutionResult(
+            result = ExecutionResult(
                 opportunity_id=opportunity.id,
                 success=False,
                 profit_usd=Decimal("0"),
@@ -118,6 +128,12 @@ class EthereumArbitrageService:
                 execution_time=0.0,
                 error=str(e)
             )
+            
+            # Send Telegram notification for failed trade
+            if self.telegram_notifier:
+                await self.telegram_notifier.send_trade_result(opportunity, result)
+            
+            return result
     
     async def get_health_status(self) -> Dict[str, Any]:
         """Get service health status"""

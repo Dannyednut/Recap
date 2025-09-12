@@ -234,7 +234,7 @@ class SolanaCrossArbitrageEngine(BaseArbitrageEngine):
     async def _get_jupiter_price(self, token_a: str, token_b: str) -> Optional[Decimal]:
         """Get price from Jupiter aggregator"""
         try:
-            # Jupiter aggregator would provide best price across all DEXes
+            # Use real Jupiter API integration
             price = await self.engine.get_token_price_jupiter(token_a, token_b)
             return price
         except Exception as e:
@@ -242,11 +242,13 @@ class SolanaCrossArbitrageEngine(BaseArbitrageEngine):
             return None
     
     async def _get_amm_price(self, token_a: str, token_b: str, dex_config: Dict) -> Optional[Decimal]:
-        """Get price from AMM DEX"""
+        """Get price from AMM DEX (Raydium)"""
         try:
-            base_price = await self._get_base_price(token_a, token_b)
-            variation = Decimal("0.004") * (hash(dex_config["program_id"]) % 20 - 10)  # -4% to +4%
-            return base_price * (1 + variation)
+            if dex_config["program_id"] == self.config.RAYDIUM_AMM:
+                return await self._get_raydium_price(token_a, token_b)
+            else:
+                # Fallback to Jupiter for other AMMs
+                return await self._get_jupiter_price(token_a, token_b)
         except Exception as e:
             logger.debug(f"Error getting AMM price: {e}")
             return None
@@ -254,19 +256,16 @@ class SolanaCrossArbitrageEngine(BaseArbitrageEngine):
     async def _get_clmm_price(self, token_a: str, token_b: str, dex_config: Dict) -> Optional[Decimal]:
         """Get price from Concentrated Liquidity Market Maker"""
         try:
-            base_price = await self._get_base_price(token_a, token_b)
-            variation = Decimal("0.002") * (hash(dex_config["program_id"]) % 20 - 10)  # -2% to +2%
-            return base_price * (1 + variation)
+            # Use Jupiter for CLMM pools as well
+            return await self.engine.get_token_price_jupiter(token_a, token_b)
         except Exception as e:
             logger.debug(f"Error getting CLMM price: {e}")
             return None
     
     async def _get_whirlpool_price(self, token_a: str, token_b: str, dex_config: Dict) -> Optional[Decimal]:
-        """Get price from Whirlpool DEX"""
+        """Get price from Whirlpool DEX (Orca)"""
         try:
-            base_price = await self._get_base_price(token_a, token_b)
-            variation = Decimal("0.003") * (hash(dex_config["program_id"]) % 20 - 10)  # -3% to +3%
-            return base_price * (1 + variation)
+            return await self._get_orca_price(token_a, token_b)
         except Exception as e:
             logger.debug(f"Error getting Whirlpool price: {e}")
             return None
@@ -274,9 +273,7 @@ class SolanaCrossArbitrageEngine(BaseArbitrageEngine):
     async def _get_orderbook_price(self, token_a: str, token_b: str, dex_config: Dict) -> Optional[Decimal]:
         """Get price from orderbook DEX (Serum)"""
         try:
-            base_price = await self._get_base_price(token_a, token_b)
-            variation = Decimal("0.001") * (hash(dex_config["program_id"]) % 20 - 10)  # -1% to +1%
-            return base_price * (1 + variation)
+            return await self._get_serum_price(token_a, token_b)
         except Exception as e:
             logger.debug(f"Error getting orderbook price: {e}")
             return None
@@ -284,26 +281,41 @@ class SolanaCrossArbitrageEngine(BaseArbitrageEngine):
     async def _get_generic_price(self, token_a: str, token_b: str, dex_config: Dict) -> Optional[Decimal]:
         """Get price from generic DEX"""
         try:
-            base_price = await self._get_base_price(token_a, token_b)
-            return base_price
+            # Use Jupiter for generic DEX pricing
+            return await self.engine.get_token_price_jupiter(token_a, token_b)
         except Exception as e:
             logger.debug(f"Error getting generic price: {e}")
             return None
     
-    async def _get_base_price(self, token_a: str, token_b: str) -> Decimal:
-        """Get base price for token pair"""
-        # Mock base prices for common Solana pairs
-        if token_a == self.config.TOKENS["SOL"]:
-            if token_b == self.config.TOKENS["USDC"]:
-                return Decimal("180.50")  # SOL/USDC
-            elif token_b == self.config.TOKENS["RAY"]:
-                return Decimal("120.0")   # SOL/RAY
-            elif token_b == self.config.TOKENS["ORCA"]:
-                return Decimal("45.0")    # SOL/ORCA
-        elif self._is_stablecoin_pair(token_a, token_b):
-            return Decimal("1.001")  # Stablecoin pairs
-        
-        return Decimal("1.0")  # Default
+    async def _get_raydium_price(self, token_a: str, token_b: str) -> Optional[Decimal]:
+        """Get price from Raydium AMM pools"""
+        try:
+            # Use Jupiter as it aggregates Raydium pools
+            # In a more advanced implementation, you could query Raydium pools directly
+            return await self.engine.get_token_price_jupiter(token_a, token_b)
+        except Exception as e:
+            logger.debug(f"Error getting Raydium price: {e}")
+            return None
+    
+    async def _get_orca_price(self, token_a: str, token_b: str) -> Optional[Decimal]:
+        """Get price from Orca Whirlpools"""
+        try:
+            # Use Jupiter as it aggregates Orca pools
+            # In a more advanced implementation, you could query Orca pools directly
+            return await self.engine.get_token_price_jupiter(token_a, token_b)
+        except Exception as e:
+            logger.debug(f"Error getting Orca price: {e}")
+            return None
+    
+    async def _get_serum_price(self, token_a: str, token_b: str) -> Optional[Decimal]:
+        """Get price from Serum orderbook"""
+        try:
+            # Use Jupiter as it can route through Serum
+            # In a more advanced implementation, you could query Serum orderbooks directly
+            return await self.engine.get_token_price_jupiter(token_a, token_b)
+        except Exception as e:
+            logger.debug(f"Error getting Serum price: {e}")
+            return None
     
     def _is_stablecoin_pair(self, token_a: str, token_b: str) -> bool:
         """Check if pair consists of stablecoins"""
@@ -342,20 +354,34 @@ class SolanaCrossArbitrageEngine(BaseArbitrageEngine):
             return Decimal("0")
     
     async def _get_token_price_usd(self, token: str) -> Decimal:
-        """Get token price in USD"""
-        # Mock USD prices
-        prices = {
-            self.config.TOKENS["SOL"]: Decimal("180.00"),
-            self.config.TOKENS["USDC"]: Decimal("1.00"),
-            self.config.TOKENS["USDT"]: Decimal("1.00"),
-            self.config.TOKENS["RAY"]: Decimal("1.50"),
-            self.config.TOKENS["ORCA"]: Decimal("4.00"),
-            self.config.TOKENS["SRM"]: Decimal("0.60"),
-            self.config.TOKENS["BTC"]: Decimal("65000.00"),
-            self.config.TOKENS["ETH"]: Decimal("3200.00"),
-            self.config.TOKENS["BONK"]: Decimal("0.000025")
-        }
-        return prices.get(token, Decimal("1.00"))
+        """Get token price in USD using real price feeds"""
+        try:
+            # For stablecoins, return 1.0
+            if token in [self.config.TOKENS["USDC"], self.config.TOKENS["USDT"]]:
+                return Decimal("1.00")
+            
+            # Get price against USDC using Jupiter
+            usdc_token = self.config.TOKENS["USDC"]
+            if token != usdc_token:
+                price = await self.engine.get_token_price_jupiter(token, usdc_token)
+                if price:
+                    return price
+            
+            # Fallback prices for common tokens
+            fallback_prices = {
+                self.config.TOKENS["SOL"]: Decimal("180.00"),
+                self.config.TOKENS["RAY"]: Decimal("1.50"),
+                self.config.TOKENS["ORCA"]: Decimal("4.00"),
+                self.config.TOKENS["SRM"]: Decimal("0.60"),
+                self.config.TOKENS["BTC"]: Decimal("65000.00"),
+                self.config.TOKENS["ETH"]: Decimal("3200.00"),
+                self.config.TOKENS["BONK"]: Decimal("0.000025")
+            }
+            return fallback_prices.get(token, Decimal("1.00"))
+            
+        except Exception as e:
+            logger.debug(f"Error getting USD price for {token}: {e}")
+            return Decimal("1.00")
     
     async def _estimate_transaction_cost(self) -> Decimal:
         """Estimate transaction cost in USD"""
@@ -376,8 +402,33 @@ class SolanaCrossArbitrageEngine(BaseArbitrageEngine):
             return Decimal("0.01")  # Very low fallback
     
     async def _estimate_liquidity(self, token_a: str, token_b: str) -> Decimal:
-        """Estimate available liquidity"""
-        return Decimal("2000000")  # $2M mock liquidity
+        """Estimate available liquidity using Jupiter quote"""
+        try:
+            # Get a large quote to estimate available liquidity
+            token_a_decimals = await self.engine._get_token_decimals(token_a)
+            large_amount = 10 ** (token_a_decimals + 3)  # 1000 units
+            
+            quote = await self.engine._get_jupiter_quote(token_a, token_b, large_amount)
+            
+            if quote and "priceImpactPct" in quote:
+                price_impact = float(quote["priceImpactPct"])
+                
+                # Estimate liquidity based on price impact
+                # Lower price impact = higher liquidity
+                if price_impact < 0.1:  # < 0.1% impact
+                    return Decimal("10000000")  # $10M+
+                elif price_impact < 0.5:  # < 0.5% impact
+                    return Decimal("5000000")   # $5M
+                elif price_impact < 1.0:  # < 1% impact
+                    return Decimal("2000000")   # $2M
+                else:
+                    return Decimal("500000")    # $500K
+            
+            return Decimal("1000000")  # Default $1M
+            
+        except Exception as e:
+            logger.debug(f"Error estimating liquidity: {e}")
+            return Decimal("1000000")  # Default fallback
     
     async def _estimate_price_impact(
         self, 
@@ -385,8 +436,39 @@ class SolanaCrossArbitrageEngine(BaseArbitrageEngine):
         buy_data: Dict, 
         sell_data: Dict
     ) -> float:
-        """Estimate price impact"""
-        return 0.05  # 0.05% estimated impact
+        """Estimate price impact using real quotes"""
+        try:
+            total_impact = 0.0
+            
+            # Get price impact for buy side
+            if "token_a" in buy_data and "token_b" in buy_data:
+                token_a_decimals = await self.engine._get_token_decimals(buy_data["token_a"])
+                amount_raw = int(amount * Decimal(10 ** token_a_decimals))
+                
+                quote = await self.engine._get_jupiter_quote(
+                    buy_data["token_a"], buy_data["token_b"], amount_raw
+                )
+                
+                if quote and "priceImpactPct" in quote:
+                    total_impact += float(quote["priceImpactPct"])
+            
+            # Get price impact for sell side
+            if "token_a" in sell_data and "token_b" in sell_data:
+                token_a_decimals = await self.engine._get_token_decimals(sell_data["token_a"])
+                amount_raw = int(amount * Decimal(10 ** token_a_decimals))
+                
+                quote = await self.engine._get_jupiter_quote(
+                    sell_data["token_a"], sell_data["token_b"], amount_raw
+                )
+                
+                if quote and "priceImpactPct" in quote:
+                    total_impact += float(quote["priceImpactPct"])
+            
+            return total_impact / 100.0  # Convert percentage to decimal
+            
+        except Exception as e:
+            logger.debug(f"Error estimating price impact: {e}")
+            return 0.05  # 0.05% fallback
     
     async def _execute_buy(
         self, 
@@ -399,15 +481,42 @@ class SolanaCrossArbitrageEngine(BaseArbitrageEngine):
         try:
             logger.info(f"Executing buy on {dex}: {amount_in} {token_in} -> {token_out}")
             
-            # Mock execution
-            return {
-                "success": True,
-                "amount_out": amount_in * Decimal("0.997"),  # After fees
-                "tx_signature": f"{'solana_buy' * 8}{'1' * 16}",
-                "transaction_cost": Decimal("0.005")
-            }
+            # Convert to lamports/smallest unit
+            token_in_decimals = await self.engine._get_token_decimals(token_in)
+            amount_in_raw = int(amount_in * Decimal(10 ** token_in_decimals))
+            
+            # Execute swap using Jupiter (which routes through the best DEX)
+            result = await self.engine.execute_jupiter_swap(
+                input_mint=token_in,
+                output_mint=token_out,
+                amount=amount_in_raw,
+                slippage_bps=50  # 0.5% slippage
+            )
+            
+            if result["success"]:
+                # Convert output amount back to decimal
+                token_out_decimals = await self.engine._get_token_decimals(token_out)
+                amount_out = Decimal(result["output_amount"]) / Decimal(10 ** token_out_decimals)
+                
+                # Estimate transaction cost
+                transaction_cost = await self._estimate_transaction_cost()
+                
+                return {
+                    "success": True,
+                    "amount_out": amount_out,
+                    "tx_signature": result["tx_signature"],
+                    "transaction_cost": transaction_cost,
+                    "price_impact": result["price_impact"]
+                }
+            else:
+                return {
+                    "success": False,
+                    "error": result.get("error", "Unknown error"),
+                    "transaction_cost": Decimal("0")
+                }
             
         except Exception as e:
+            logger.error(f"Error executing buy: {e}")
             return {
                 "success": False,
                 "error": str(e),
@@ -425,15 +534,42 @@ class SolanaCrossArbitrageEngine(BaseArbitrageEngine):
         try:
             logger.info(f"Executing sell on {dex}: {amount_in} {token_in} -> {token_out}")
             
-            # Mock execution
-            return {
-                "success": True,
-                "amount_out": amount_in * Decimal("1.003"),  # Favorable rate
-                "tx_signature": f"{'solana_sell' * 8}{'2' * 16}",
-                "transaction_cost": Decimal("0.005")
-            }
+            # Convert to lamports/smallest unit
+            token_in_decimals = await self.engine._get_token_decimals(token_in)
+            amount_in_raw = int(amount_in * Decimal(10 ** token_in_decimals))
+            
+            # Execute swap using Jupiter
+            result = await self.engine.execute_jupiter_swap(
+                input_mint=token_in,
+                output_mint=token_out,
+                amount=amount_in_raw,
+                slippage_bps=50  # 0.5% slippage
+            )
+            
+            if result["success"]:
+                # Convert output amount back to decimal
+                token_out_decimals = await self.engine._get_token_decimals(token_out)
+                amount_out = Decimal(result["output_amount"]) / Decimal(10 ** token_out_decimals)
+                
+                # Estimate transaction cost
+                transaction_cost = await self._estimate_transaction_cost()
+                
+                return {
+                    "success": True,
+                    "amount_out": amount_out,
+                    "tx_signature": result["tx_signature"],
+                    "transaction_cost": transaction_cost,
+                    "price_impact": result["price_impact"]
+                }
+            else:
+                return {
+                    "success": False,
+                    "error": result.get("error", "Unknown error"),
+                    "transaction_cost": Decimal("0")
+                }
             
         except Exception as e:
+            logger.error(f"Error executing sell: {e}")
             return {
                 "success": False,
                 "error": str(e),

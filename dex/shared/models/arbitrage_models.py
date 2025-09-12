@@ -54,10 +54,19 @@ class FlashLoanParams:
 
 @dataclass
 class ExecutionResult:
-    tx_hash: str
-    status: str  # "success", "failed", "pending"
-    gas_used: int
-    gas_price: int
+    opportunity_id: str
+    success: bool
+    profit_usd: Decimal
+    gas_cost_usd: Decimal
+    execution_time: float
+    transaction_hashes: Optional[List[str]] = None
+    error: Optional[str] = None
+    
+    # Legacy compatibility fields
+    tx_hash: Optional[str] = None
+    status: Optional[str] = None
+    gas_used: Optional[int] = None
+    gas_price: Optional[int] = None
     profit_realized: Optional[Decimal] = None
     execution_time_ms: Optional[int] = None
     error_message: Optional[str] = None

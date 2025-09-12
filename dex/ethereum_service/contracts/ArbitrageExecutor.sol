@@ -201,10 +201,27 @@ contract ArbitrageExecutor is ReentrancyGuard, Ownable {
         require(msg.sender == AAVE_POOL, "Unauthorized");
         require(initiator == address(this), "Invalid initiator");
         
-        FlashLoanData memory flashData = abi.decode(params, (FlashLoanData));
+        uint256 profit = 0;
         
-        // Execute arbitrage
-        uint256 profit = _performArbitrageTrade(flashData.params);
+        // Try to decode as regular arbitrage params
+        try this.tryDecodeRegularArbitrage(params) returns (FlashLoanData memory flashData) {
+            // Execute regular arbitrage
+            profit = _performArbitrageTrade(flashData.params);
+        } catch {
+            // Try to decode as triangular arbitrage params
+            try this.tryDecodeTriangularArbitrage(params) returns (TriangularArbitrageParams memory triangularParams) {
+                // Execute triangular arbitrage
+                profit = _executeDirectTriangularArbitrage(triangularParams);
+            } catch {
+                // Try to decode as backrun arbitrage params
+                try this.tryDecodeBackrunArbitrage(params) returns (BackrunArbitrageParams memory backrunParams) {
+                    // Execute backrun arbitrage
+                    profit = _executeDirectBackrunArbitrage(backrunParams);
+                } catch {
+                    revert("Invalid flash loan parameters");
+                }
+            }
+        }
         
         // Repay flash loan
         uint256 totalRepayment = amounts[0] + premiums[0];
@@ -215,6 +232,19 @@ contract ArbitrageExecutor is ReentrancyGuard, Ownable {
         emit FlashLoanExecuted(assets[0], amounts[0], profit - totalRepayment);
         
         return true;
+    }
+    
+    // Helper functions for decoding flash loan parameters
+    function tryDecodeRegularArbitrage(bytes calldata params) external pure returns (FlashLoanData memory) {
+        return abi.decode(params, (FlashLoanData));
+    }
+    
+    function tryDecodeTriangularArbitrage(bytes calldata params) external pure returns (TriangularArbitrageParams memory) {
+        return abi.decode(params, (TriangularArbitrageParams));
+    }
+    
+    function tryDecodeBackrunArbitrage(bytes calldata params) external pure returns (BackrunArbitrageParams memory) {
+        return abi.decode(params, (BackrunArbitrageParams));
     }
     
     /**
@@ -228,10 +258,27 @@ contract ArbitrageExecutor is ReentrancyGuard, Ownable {
     ) external {
         require(msg.sender == BALANCER_VAULT, "Unauthorized");
         
-        FlashLoanData memory flashData = abi.decode(userData, (FlashLoanData));
+        uint256 profit = 0;
         
-        // Execute arbitrage
-        uint256 profit = _performArbitrageTrade(flashData.params);
+        // Try to decode as regular arbitrage params
+        try this.tryDecodeRegularArbitrage(userData) returns (FlashLoanData memory flashData) {
+            // Execute regular arbitrage
+            profit = _performArbitrageTrade(flashData.params);
+        } catch {
+            // Try to decode as triangular arbitrage params
+            try this.tryDecodeTriangularArbitrage(userData) returns (TriangularArbitrageParams memory triangularParams) {
+                // Execute triangular arbitrage
+                profit = _executeDirectTriangularArbitrage(triangularParams);
+            } catch {
+                // Try to decode as backrun arbitrage params
+                try this.tryDecodeBackrunArbitrage(userData) returns (BackrunArbitrageParams memory backrunParams) {
+                    // Execute backrun arbitrage
+                    profit = _executeDirectBackrunArbitrage(backrunParams);
+                } catch {
+                    revert("Invalid flash loan parameters");
+                }
+            }
+        }
         
         // Repay flash loan (Balancer has 0 fees)
         require(profit > 0, "Arbitrage not profitable");
@@ -263,7 +310,8 @@ contract ArbitrageExecutor is ReentrancyGuard, Ownable {
             params.tokenB,
             params.amountIn,
             params.buyRouter,
-            params.buyFee
+            params.buyFee,
+            address(this) // Receive tokens in this contract
         );
         
         // Step 2: Sell on expensive DEX (tokenB -> tokenA)
@@ -272,7 +320,8 @@ contract ArbitrageExecutor is ReentrancyGuard, Ownable {
             params.tokenA,
             tokenBReceived,
             params.sellRouter,
-            params.sellFee
+            params.sellFee,
+            address(this) // Receive tokens in this contract
         );
         
         uint256 finalBalance = IERC20(params.tokenA).balanceOf(address(this));
@@ -291,7 +340,7 @@ contract ArbitrageExecutor is ReentrancyGuard, Ownable {
     }
     
     /**
-     * @dev Execute trade on specified router
+     * @dev Execute trade on specified router with default recipient (this contract)
      */
     function _executeTrade(
         address tokenIn,
@@ -299,6 +348,21 @@ contract ArbitrageExecutor is ReentrancyGuard, Ownable {
         uint256 amountIn,
         address router,
         uint24 fee
+    ) internal returns (uint256) {
+        return _executeTrade(tokenIn, tokenOut, amountIn, router, fee, address(this));
+    }
+    
+    /**
+     * @dev Execute trade on specified router with custom recipient
+     * This overloaded function is necessary for triangular and backrun arbitrage
+     */
+    function _executeTrade(
+        address tokenIn,
+        address tokenOut,
+        uint256 amountIn,
+        address router,
+        uint24 fee,
+        address recipient
     ) internal returns (uint256) {
         IERC20(tokenIn).safeApprove(router, amountIn);
         
@@ -308,7 +372,7 @@ contract ArbitrageExecutor is ReentrancyGuard, Ownable {
                 tokenIn: tokenIn,
                 tokenOut: tokenOut,
                 fee: fee,
-                recipient: address(this),
+                recipient: recipient,
                 deadline: block.timestamp + 300,
                 amountIn: amountIn,
                 amountOutMinimum: 0,
@@ -326,7 +390,7 @@ contract ArbitrageExecutor is ReentrancyGuard, Ownable {
                 amountIn,
                 0, // Accept any amount of tokens out
                 path,
-                address(this),
+                recipient,
                 block.timestamp + 300
             );
             
@@ -399,4 +463,283 @@ contract ArbitrageExecutor is ReentrancyGuard, Ownable {
     }
     
     receive() external payable {}
+}
+
+// Add new struct for triangular arbitrage
+struct TriangularArbitrageParams {
+    address[] path;           // Array of token addresses in the triangular path (must be 3 or 4 tokens)
+    address[] routers;        // Array of routers to use for each hop
+    uint24[] fees;           // Array of fees for each hop (for Uniswap V3)
+    uint256 amountIn;        // Amount of the first token to trade
+    uint256 minProfitAmount; // Minimum profit required
+    uint8 flashLoanProvider; // Flash loan provider to use
+}
+
+// Add new struct for mempool backrun opportunity
+struct BackrunArbitrageParams {
+    bytes32 targetTxHash;    // Transaction hash to backrun
+    address[] path;          // Token path for the backrun
+    address[] routers;       // Routers to use
+    uint24[] fees;           // Fees for each hop (for Uniswap V3)
+    uint256 amountIn;        // Amount to trade
+    uint256 minProfitAmount; // Minimum profit required
+    uint8 flashLoanProvider; // Flash loan provider
+    uint256 maxGasPrice;     // Maximum gas price to use
+}
+
+/**
+ * @dev Execute triangular arbitrage (e.g., ETH -> USDC -> DAI -> ETH)
+ */
+function executeTriangularArbitrage(
+    TriangularArbitrageParams calldata params
+) external onlyOwner nonReentrant returns (uint256 profit) {
+    require(params.path.length >= 3, "Invalid path length");
+    require(params.path.length == params.routers.length + 1, "Path/routers length mismatch");
+    require(params.routers.length == params.fees.length, "Routers/fees length mismatch");
+    require(params.path[0] == params.path[params.path.length - 1], "Start/end tokens must match");
+    
+    // Record starting balance
+    address startToken = params.path[0];
+    uint256 startBalance = IERC20(startToken).balanceOf(address(this));
+    
+    if (params.flashLoanProvider > 0) {
+        // Execute with flash loan
+        return _executeTriangularFlashLoan(params);
+    } else {
+        // Execute direct triangular trade
+        return _executeDirectTriangularArbitrage(params);
+    }
+}
+
+/**
+ * @dev Execute backrun arbitrage after a target transaction
+ */
+function executeBackrunArbitrage(
+    BackrunArbitrageParams calldata params
+) external onlyOwner nonReentrant returns (uint256 profit) {
+    require(params.path.length >= 2, "Invalid path length");
+    require(params.path.length == params.routers.length + 1, "Path/routers length mismatch");
+    require(params.routers.length == params.fees.length, "Routers/fees length mismatch");
+    
+    // This would be implemented to monitor for the target transaction
+    // and execute immediately after it
+    // For now, we'll just execute the trade directly
+    
+    if (params.flashLoanProvider > 0) {
+        // Execute with flash loan
+        return _executeBackrunFlashLoan(params);
+    } else {
+        // Execute direct backrun trade
+        return _executeDirectBackrunArbitrage(params);
+    }
+}
+
+/**
+ * @dev Execute direct triangular arbitrage without flash loan
+ */
+function _executeDirectTriangularArbitrage(
+    TriangularArbitrageParams calldata params
+) internal returns (uint256 profit) {
+    address startToken = params.path[0];
+    uint256 startBalance = IERC20(startToken).balanceOf(address(this));
+    
+    require(startBalance >= params.amountIn, "Insufficient balance");
+    
+    // Execute each swap in the path
+    uint256 currentAmount = params.amountIn;
+    for (uint i = 0; i < params.routers.length; i++) {
+        address tokenIn = params.path[i];
+        address tokenOut = params.path[i + 1];
+        address router = params.routers[i];
+        uint24 fee = params.fees[i];
+        
+        // Approve router to spend token
+        IERC20(tokenIn).safeApprove(router, 0);
+        IERC20(tokenIn).safeApprove(router, currentAmount);
+        
+        // Execute the swap with this contract as recipient for all trades except the last one
+        // For the last trade, use this contract as recipient to receive the final tokens
+        address recipient = address(this);
+        currentAmount = _executeTrade(tokenIn, tokenOut, currentAmount, router, fee, recipient);
+    }
+    
+    // Calculate profit
+    uint256 endBalance = IERC20(startToken).balanceOf(address(this));
+    profit = endBalance > startBalance ? endBalance - startBalance : 0;
+    
+    require(profit >= params.minProfitAmount, "Insufficient profit");
+    
+    emit ArbitrageExecuted(
+        "Triangular",
+        startToken,
+        params.path[1],
+        params.amountIn,
+        profit,
+        _getRouterName(params.routers[0])
+    );
+    
+    return profit;
+}
+
+/**
+ * @dev Execute triangular arbitrage with flash loan
+ */
+function _executeTriangularFlashLoan(
+    TriangularArbitrageParams calldata params
+) internal returns (uint256 profit) {
+    // Choose flash loan provider
+    if (params.flashLoanProvider == 1) { // Aave
+        address[] memory assets = new address[](1);
+        assets[0] = params.path[0];
+        
+        uint256[] memory amounts = new uint256[](1);
+        amounts[0] = params.amountIn;
+        
+        uint256[] memory modes = new uint256[](1);
+        modes[0] = 0; // No debt
+        
+        // Encode triangular arbitrage parameters
+        bytes memory callbackData = abi.encode(params);
+        
+        IAavePool(AAVE_POOL).flashLoan(
+            address(this),
+            assets,
+            amounts,
+            modes,
+            address(this),
+            callbackData,
+            0
+        );
+        
+        // Profit will be calculated in the callback
+        return 0;
+    } 
+    else if (params.flashLoanProvider == 2) { // Balancer
+        address[] memory tokens = new address[](1);
+        tokens[0] = params.path[0];
+        
+        uint256[] memory amounts = new uint256[](1);
+        amounts[0] = params.amountIn;
+        
+        // Encode triangular arbitrage parameters
+        bytes memory callbackData = abi.encode(params);
+        
+        IBalancerVault(BALANCER_VAULT).flashLoan(
+            address(this),
+            tokens,
+            amounts,
+            callbackData
+        );
+        
+        // Profit will be calculated in the callback
+        return 0;
+    }
+    else {
+        revert("Unsupported flash loan provider");
+    }
+}
+
+/**
+ * @dev Execute direct backrun arbitrage without flash loan
+ */
+function _executeDirectBackrunArbitrage(
+    BackrunArbitrageParams calldata params
+) internal returns (uint256 profit) {
+    address startToken = params.path[0];
+    uint256 startBalance = IERC20(startToken).balanceOf(address(this));
+    
+    require(startBalance >= params.amountIn, "Insufficient balance");
+    
+    // Execute each swap in the path
+    uint256 currentAmount = params.amountIn;
+    for (uint i = 0; i < params.routers.length; i++) {
+        address tokenIn = params.path[i];
+        address tokenOut = params.path[i + 1];
+        address router = params.routers[i];
+        uint24 fee = params.fees[i];
+        
+        // Approve router to spend token
+        IERC20(tokenIn).safeApprove(router, 0);
+        IERC20(tokenIn).safeApprove(router, currentAmount);
+        
+        // Execute the swap with this contract as recipient
+        // This allows for proper backrun arbitrage execution
+        address recipient = address(this);
+        currentAmount = _executeTrade(tokenIn, tokenOut, currentAmount, router, fee, recipient);
+    }
+    
+    // Calculate profit
+    uint256 endBalance = IERC20(startToken).balanceOf(address(this));
+    profit = endBalance > startBalance ? endBalance - startBalance : 0;
+    
+    require(profit >= params.minProfitAmount, "Insufficient profit");
+    
+    emit ArbitrageExecuted(
+        "Backrun",
+        startToken,
+        params.path[1],
+        params.amountIn,
+        profit,
+        _getRouterName(params.routers[0])
+    );
+    
+    return profit;
+}
+
+/**
+ * @dev Execute backrun arbitrage with flash loan
+ */
+function _executeBackrunFlashLoan(
+    BackrunArbitrageParams calldata params
+) internal returns (uint256 profit) {
+    // Choose flash loan provider
+    if (params.flashLoanProvider == 1) { // Aave
+        address[] memory assets = new address[](1);
+        assets[0] = params.path[0];
+        
+        uint256[] memory amounts = new uint256[](1);
+        amounts[0] = params.amountIn;
+        
+        uint256[] memory modes = new uint256[](1);
+        modes[0] = 0; // No debt
+        
+        // Encode backrun arbitrage parameters
+        bytes memory callbackData = abi.encode(params);
+        
+        IAavePool(AAVE_POOL).flashLoan(
+            address(this),
+            assets,
+            amounts,
+            modes,
+            address(this),
+            callbackData,
+            0
+        );
+        
+        // Profit will be calculated in the callback
+        return 0;
+    } 
+    else if (params.flashLoanProvider == 2) { // Balancer
+        address[] memory tokens = new address[](1);
+        tokens[0] = params.path[0];
+        
+        uint256[] memory amounts = new uint256[](1);
+        amounts[0] = params.amountIn;
+        
+        // Encode backrun arbitrage parameters
+        bytes memory callbackData = abi.encode(params);
+        
+        IBalancerVault(BALANCER_VAULT).flashLoan(
+            address(this),
+            tokens,
+            amounts,
+            callbackData
+        );
+        
+        // Profit will be calculated in the callback
+        return 0;
+    }
+    else {
+        revert("Unsupported flash loan provider");
+    }
 }

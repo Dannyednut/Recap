@@ -2,15 +2,24 @@
 
 ## FlashLoanArbitrage.sol
 
-This contract enables flash loan arbitrage execution using Aave V3 as the flash loan provider.
+This contract enables flash loan arbitrage execution using Aave V3 as the flash loan provider. The contract automatically adapts to the network environment based on the ArbitrageWise centralized configuration system.
 
 ### Features
 
 - **Cross-DEX Arbitrage**: Buy on one DEX, sell on another
 - **Triangular Arbitrage**: Execute 3-hop trades within the same DEX  
 - **Flash Loan Integration**: Uses Aave V3 for capital-free arbitrage
-- **Multi-DEX Support**: Uniswap V2, V3, and SushiSwap
+- **Multi-Chain Support**: Ethereum, BSC, and Polygon networks
+- **Multi-DEX Support**: Uniswap V2/V3, SushiSwap, PancakeSwap, QuickSwap
+- **Network-Aware Deployment**: Automatically uses correct addresses for mainnet/testnet
 - **Safety Features**: Minimum profit checks, reentrancy protection
+
+### Network Configuration
+
+The contract deployment uses ArbitrageWise's centralized network configuration:
+
+- **Mainnet Deployment** (`MAINNET=True`): Uses production DEX routers and token addresses
+- **Testnet Deployment** (`MAINNET=False`): Uses testnet DEX routers and token addresses
 
 ### Deployment
 
@@ -21,7 +30,7 @@ npm install @aave/core-v3 @openzeppelin/contracts
 # Compile with Hardhat/Foundry
 npx hardhat compile
 
-# Deploy using the Python script
+# Deploy using the Python script (respects MAINNET environment variable)
 python deploy.py
 ```
 

@@ -27,7 +27,7 @@ class BSCEngine(BaseEngine):
         self.account: Optional[Account] = None
         self.wallet_address: Optional[str] = None
         
-    async def initialize(self) -> None:
+    async def initialize(self) -> bool:
         """Initialize Web3 connection and wallet"""
         try:
             # Initialize Web3 connection
@@ -49,10 +49,11 @@ class BSCEngine(BaseEngine):
                 logger.warning(f"BSC Chain ID mismatch: expected {self.config.CHAIN_ID}, got {chain_id}")
             
             logger.info(f"BSC engine initialized on chain {chain_id}")
+            return True
             
         except Exception as e:
             logger.error(f"Failed to initialize BSC engine: {e}")
-            raise
+            return False
     
     async def get_balance(self, token_address: str, wallet_address: str = None) -> Decimal:
         """Get token balance for wallet"""
@@ -165,6 +166,131 @@ class BSCEngine(BaseEngine):
         except Exception as e:
             logger.error(f"Error executing BSC transaction: {e}")
             raise
+    
+    async def call_contract(
+        self,
+        contract_address: str,
+        function_name: str,
+        params: list
+    ) -> Any:
+        """Call contract function"""
+        try:
+            # This is a simplified implementation
+            # In production, you would need proper ABI for each contract
+            if function_name == "getPair":
+                # Factory.getPair(tokenA, tokenB)
+                factory_abi = [
+                    {
+                        "constant": True,
+                        "inputs": [
+                            {"name": "tokenA", "type": "address"},
+                            {"name": "tokenB", "type": "address"}
+                        ],
+                        "name": "getPair",
+                        "outputs": [{"name": "pair", "type": "address"}],
+                        "type": "function"
+                    }
+                ]
+                contract = self.w3.eth.contract(address=contract_address, abi=factory_abi)
+                return await contract.functions.getPair(params[0], params[1]).call()
+            
+            elif function_name == "getReserves":
+                # Pair.getReserves()
+                pair_abi = [
+                    {
+                        "constant": True,
+                        "inputs": [],
+                        "name": "getReserves",
+                        "outputs": [
+                            {"name": "_reserve0", "type": "uint112"},
+                            {"name": "_reserve1", "type": "uint112"},
+                            {"name": "_blockTimestampLast", "type": "uint32"}
+                        ],
+                        "type": "function"
+                    }
+                ]
+                contract = self.w3.eth.contract(address=contract_address, abi=pair_abi)
+                return await contract.functions.getReserves().call()
+            
+            elif function_name == "token0":
+                # Pair.token0()
+                pair_abi = [
+                    {
+                        "constant": True,
+                        "inputs": [],
+                        "name": "token0",
+                        "outputs": [{"name": "", "type": "address"}],
+                        "type": "function"
+                    }
+                ]
+                contract = self.w3.eth.contract(address=contract_address, abi=pair_abi)
+                return await contract.functions.token0().call()
+            
+            elif function_name == "quoteExactInputSingle":
+                # Quoter.quoteExactInputSingle()
+                quoter_abi = [
+                    {
+                        "inputs": [
+                            {"name": "tokenIn", "type": "address"},
+                            {"name": "tokenOut", "type": "address"},
+                            {"name": "fee", "type": "uint24"},
+                            {"name": "amountIn", "type": "uint256"},
+                            {"name": "sqrtPriceLimitX96", "type": "uint160"}
+                        ],
+                        "name": "quoteExactInputSingle",
+                        "outputs": [{"name": "amountOut", "type": "uint256"}],
+                        "type": "function"
+                    }
+                ]
+                contract = self.w3.eth.contract(address=contract_address, abi=quoter_abi)
+                return await contract.functions.quoteExactInputSingle(
+                    params[0], params[1], params[2], params[3], params[4]
+                ).call()
+            
+            else:
+                raise ValueError(f"Unsupported function: {function_name}")
+                
+        except Exception as e:
+            logger.error(f"Error calling contract function {function_name}: {e}")
+            raise
+    
+    async def build_transaction(
+        self,
+        contract_address: str,
+        function_name: str,
+        params: list
+    ) -> Dict[str, Any]:
+        """Build transaction data for contract call"""
+        try:
+            # Simplified transaction building
+            return {
+                "to": contract_address,
+                "data": "0x",  # Would contain encoded function call
+                "value": 0
+            }
+        except Exception as e:
+            logger.error(f"Error building transaction: {e}")
+            raise
+    
+    async def wait_for_transaction(self, tx_hash: str) -> Dict[str, Any]:
+        """Wait for transaction confirmation"""
+        try:
+            # Wait for transaction receipt
+            receipt = await self.w3.eth.wait_for_transaction_receipt(tx_hash, timeout=120)
+            
+            return {
+                "success": receipt.status == 1,
+                "gas_used": receipt.gasUsed,
+                "block_number": receipt.blockNumber,
+                "transaction_hash": tx_hash
+            }
+            
+        except Exception as e:
+            logger.error(f"Error waiting for BSC transaction: {e}")
+            return {
+                "success": False,
+                "error": str(e)
+            }
     
     async def wait_for_transaction_receipt(self, tx_hash: str, timeout: int = 60) -> Dict[str, Any]:
         """Wait for transaction confirmation"""

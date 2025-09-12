@@ -91,10 +91,12 @@ class UniswapV3Adapter:
     # Common fee tiers in Uniswap V3
     FEE_TIERS = [500, 3000, 10000]  # 0.05%, 0.3%, 1%
     
-    def __init__(self, w3: AsyncWeb3):
+    def __init__(self, w3: AsyncWeb3, factory_address: str = None, router_address: str = None):
         self.w3 = w3
+        self.factory_address = factory_address or self.FACTORY_ADDRESS
+        self.router_address = router_address or self.ROUTER_ADDRESS
         self.factory_contract = w3.eth.contract(
-            address=self.FACTORY_ADDRESS,
+            address=self.factory_address,
             abi=self.FACTORY_ABI
         )
         self.quoter_contract = w3.eth.contract(

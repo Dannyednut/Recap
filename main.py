@@ -7,16 +7,16 @@ from datetime import datetime
 from cex.config import Config
 from cex.models import TradeResult
 from cex.arbitrage import ArbitrageApp, logger
+from shared_telegram_manager import telegram_manager
 
 # DEX imports
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), 'dex'))
 
-# Import just the Ethereum service directly (avoiding complex orchestrator imports)
+# Import the multi-chain DEX service
 try:
-    from ethereum_service.service import EthereumArbitrageService
-    from ethereum_service.config import EthereumConfig
+    from dex.dex_service import MultiChainDEXService
     DEX_AVAILABLE = True
 except ImportError as e:
     logger.warning(f"DEX imports failed: {e}")
@@ -27,8 +27,8 @@ except ImportError as e:
 app = Quart(__name__)
 arbitrage_app = ArbitrageApp(Config())
 
-# Global DEX service (Ethereum only for now)
-ethereum_dex_service = None
+# Global DEX service
+multi_chain_dex_service = None
 
 # Simple API key auth header name
 API_KEY_HEADER = "X-API-KEY"
@@ -45,10 +45,10 @@ async def get_balances():
     
     # Get DEX balances if available
     dex_balances = {}
-    if ethereum_dex_service:
+    if multi_chain_dex_service:
         try:
-            eth_status = await ethereum_dex_service.get_status()
-            dex_balances = {"ethereum": eth_status}
+            dex_status = await multi_chain_dex_service.get_status()
+            dex_balances = dex_status.get("chains", {})
         except Exception as e:
             logger.warning(f"Failed to get DEX balances: {e}")
     
@@ -128,13 +128,13 @@ async def _disabled_telegram_webhook():
 
 @app.route('/dex/status', methods=['GET'])
 async def get_dex_status():
-    """Get DEX system status"""
-    if not ethereum_dex_service:
-        return jsonify({"status": "not_initialized", "available": DEX_AVAILABLE}), 503
+    """Get status of the DEX service"""
+    if not multi_chain_dex_service:
+        return jsonify({"status": "unavailable", "message": "DEX service not available"}), 503
     
     try:
-        status = await ethereum_dex_service.get_status()
-        return jsonify({"ethereum": status, "status": "initialized"})
+        status = await multi_chain_dex_service.get_status()
+        return jsonify(status)
     except Exception as e:
         logger.error(f"Error getting DEX status: {e}")
         return jsonify({"status": "error", "message": str(e)}), 500
@@ -142,20 +142,95 @@ async def get_dex_status():
 
 @app.route('/dex/opportunities', methods=['GET'])
 async def get_dex_opportunities():
-    """Get DEX arbitrage opportunities"""
-    if not ethereum_dex_service:
-        return jsonify({"status": "error", "message": "DEX system not initialized"}), 503
+    """Get current DEX arbitrage opportunities"""
+    if not multi_chain_dex_service:
+        return jsonify({"status": "unavailable", "message": "DEX service not available"}), 503
     
     try:
-        # For now, just return placeholder - the service needs proper opportunity scanning
-        opportunities = {"ethereum": "scanning_not_implemented_yet"}
+        chain_id = request.args.get('chain_id')
+        opportunities = await multi_chain_dex_service.get_opportunities(chain_id)
         return jsonify({
+            "status": "success",
             "opportunities": opportunities,
-            "chains": ["ethereum"],
+            "count": len(opportunities),
             "timestamp": datetime.now().isoformat()
         })
     except Exception as e:
-        logger.error(f"Error scanning DEX opportunities: {e}")
+        logger.error(f"Error getting DEX opportunities: {e}")
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+
+@app.route('/dex/execute', methods=['POST'])
+async def execute_dex_opportunity():
+    """Execute a DEX arbitrage opportunity"""
+    # Require API key header for API-triggered execution
+    api_key = request.headers.get(API_KEY_HEADER) or request.args.get('api_key')
+    if not api_key:
+        return jsonify({"status": "error", "message": "API key required"}), 401
+    
+    if not multi_chain_dex_service:
+        return jsonify({"status": "unavailable", "message": "DEX service not available"}), 503
+    
+    try:
+        data = await request.get_json()
+        if not data or not all(k in data for k in ['opportunity_id', 'chain_id']):
+            return jsonify({"status": "error", "message": "Missing required parameters"}), 400
+        
+        opportunity_id = data['opportunity_id']
+        chain_id = data['chain_id']
+        
+        result = await multi_chain_dex_service.execute_opportunity(opportunity_id, chain_id)
+        status_code = 200 if result.get('status') == 'success' else 400
+        
+        return jsonify(result), status_code
+    
+    except asyncio.TimeoutError:
+        return jsonify({"status": "error", "message": "Execution timed out"}), 504
+    except Exception as e:
+        logger.error(f"Error executing DEX opportunity: {e}")
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+
+@app.route('/dex/chains', methods=['GET'])
+async def get_dex_chains():
+    """Get supported and active chains"""
+    if not multi_chain_dex_service:
+        return jsonify({"status": "unavailable", "message": "DEX service not available"}), 503
+    
+    try:
+        supported_chains = await multi_chain_dex_service.get_supported_chains()
+        status = await multi_chain_dex_service.get_status()
+        active_chains = status.get("active_chains", [])
+        
+        return jsonify({
+            "status": "success",
+            "supported_chains": supported_chains,
+            "active_chains": active_chains
+        })
+    except Exception as e:
+        logger.error(f"Error getting DEX chains: {e}")
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+
+@app.route('/dex/chain/<chain_id>', methods=['GET'])
+async def get_dex_chain_status(chain_id):
+    """Get status of a specific chain"""
+    if not multi_chain_dex_service:
+        return jsonify({"status": "unavailable", "message": "DEX service not available"}), 503
+    
+    try:
+        status = await multi_chain_dex_service.get_status()
+        chains = status.get("chains", {})
+        
+        if chain_id not in chains:
+            return jsonify({"status": "error", "message": f"Chain {chain_id} not found"}), 404
+        
+        return jsonify({
+            "status": "success",
+            "chain": chains[chain_id]
+        })
+    except Exception as e:
+        logger.error(f"Error getting chain status: {e}")
         return jsonify({"status": "error", "message": str(e)}), 500
 
 
@@ -169,10 +244,10 @@ async def get_system_status():
     }
     
     dex_status = {"initialized": False, "available": DEX_AVAILABLE}
-    if ethereum_dex_service:
+    if multi_chain_dex_service:
         try:
-            eth_status = await ethereum_dex_service.get_status()
-            dex_status = {"initialized": True, "ethereum": eth_status}
+            dex_status = await multi_chain_dex_service.get_status()
+            dex_status["initialized"] = True
         except Exception as e:
             dex_status = {"error": str(e)}
     
@@ -187,28 +262,27 @@ async def get_system_status():
 if __name__ == "__main__":
 
     async def main():
-        global ethereum_dex_service
+        global multi_chain_dex_service
         try:
-            # Initialize DEX system (Ethereum only for now)
+            # Initialize DEX system
             if DEX_AVAILABLE:
-                logger.info("Initializing Ethereum DEX service...")
+                logger.info("Initializing Multi-Chain DEX service...")
                 try:
-                    ethereum_config = EthereumConfig()
-                    ethereum_dex_service = EthereumArbitrageService()
-                    await ethereum_dex_service.initialize()
-                    logger.info("Ethereum DEX service initialized successfully")
+                    multi_chain_dex_service = MultiChainDEXService()
+                    await multi_chain_dex_service.initialize()
+                    logger.info("Multi-Chain DEX service initialized successfully")
                 except Exception as e:
-                    logger.warning(f"Ethereum DEX initialization failed (continuing with CEX only): {e}")
-                    ethereum_dex_service = None
+                    logger.warning(f"Multi-Chain DEX initialization failed (continuing with CEX only): {e}")
+                    multi_chain_dex_service = None
             
             # Start the CEX scanner tasks
             scanner_task = asyncio.create_task(arbitrage_app.run_scanners())
             
             # Start DEX service if available
             dex_task = None
-            if ethereum_dex_service:
-                dex_task = asyncio.create_task(ethereum_dex_service.start())
-                logger.info("Started Ethereum DEX service")
+            if multi_chain_dex_service:
+                dex_task = asyncio.create_task(multi_chain_dex_service.start())
+                logger.info("Started Multi-Chain DEX service")
             
             # Start Quart API server and wait for all services
             if dex_task:
@@ -225,11 +299,74 @@ if __name__ == "__main__":
         finally:
             # Shutdown both systems
             await arbitrage_app.engine.stop()
-            if ethereum_dex_service:
+            if multi_chain_dex_service:
                 try:
-                    await ethereum_dex_service.stop()
+                    await multi_chain_dex_service.stop()
                 except Exception as e:
-                    logger.warning(f"Error stopping Ethereum DEX service: {e}")
+                    logger.warning(f"Error stopping Multi-Chain DEX service: {e}")
             logger.info("Application shut down gracefully.")
 
     asyncio.run(main())
+
+
+async def startup():
+    """Startup tasks"""
+    # Initialize shared Telegram manager first
+    if telegram_manager.is_available():
+        logger.info("Starting shared Telegram bot manager...")
+        try:
+            # Start the shared Telegram bot polling
+            asyncio.create_task(telegram_manager.start_polling())
+            logger.info("Shared Telegram bot manager started successfully")
+        except Exception as e:
+            logger.error(f"Error starting Telegram manager: {e}")
+    else:
+        logger.warning("Telegram manager not available - notifications disabled")
+    
+    # Start CEX arbitrage
+    await arbitrage_app.startup()
+    
+    # Start DEX arbitrage if available
+    global multi_chain_dex_service
+    if DEX_AVAILABLE:
+        try:
+            multi_chain_dex_service = MultiChainDEXService()
+            if await multi_chain_dex_service.initialize():
+                await multi_chain_dex_service.start()
+                logger.info("DEX service started successfully")
+            else:
+                logger.error("Failed to initialize DEX service")
+        except Exception as e:
+            logger.error(f"Error starting DEX service: {e}")
+
+
+async def shutdown():
+    """Shutdown tasks"""
+    # Stop shared Telegram manager
+    try:
+        await telegram_manager.close()
+        logger.info("Shared Telegram manager stopped successfully")
+    except Exception as e:
+        logger.error(f"Error stopping Telegram manager: {e}")
+    
+    # Stop CEX arbitrage
+    await arbitrage_app.shutdown()
+    
+    # Stop DEX arbitrage if available
+    global multi_chain_dex_service
+    if multi_chain_dex_service:
+        try:
+            await multi_chain_dex_service.stop()
+            logger.info("DEX service stopped successfully")
+        except Exception as e:
+            logger.error(f"Error stopping DEX service: {e}")
+
+
+@app.before_serving
+async def before_serving():
+    await startup()
+
+
+@app.after_serving
+async def after_serving():
+    await shutdown()

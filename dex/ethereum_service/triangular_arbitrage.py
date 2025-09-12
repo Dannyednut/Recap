@@ -16,7 +16,7 @@ from .config import EthereumConfig
 
 logger = logging.getLogger(__name__)
 
-class EthereumTriangularArbitrage(BaseArbitrageStrategy):
+class TriangularArbitrageEngine(BaseArbitrageStrategy):
     """Triangular arbitrage within same DEX (e.g., ETH->USDC->DAI->ETH on Uniswap)"""
     
     def __init__(self, engine: EthereumEngine, config: EthereumConfig):

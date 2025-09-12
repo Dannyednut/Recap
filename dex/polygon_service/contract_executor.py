@@ -1,0 +1,561 @@
+import os
+import json
+from web3 import Web3
+from typing import Dict, List, Tuple, Optional, Union, Any
+from eth_typing import ChecksumAddress
+from decimal import Decimal
+
+from shared.logger import get_logger
+from polygon_service.engine import PolygonEngine
+from shared.utils import load_contract_abi
+
+logger = get_logger("PolygonContractExecutor")
+
+class PolygonContractExecutor:
+    """Class for executing arbitrage contracts on Polygon network"""
+    
+    # Polygon DEX router addresses
+    QUICKSWAP_V2_ROUTER = "0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff"
+    QUICKSWAP_V3_ROUTER = "0xf5b509bB0909a69B1c207E495f687a596C168E12"
+    SUSHISWAP_ROUTER = "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506"
+    UNISWAP_V3_ROUTER = "0xE592427A0AEce92De3Edee1F18E0157C05861564"
+    
+    # Flash loan providers on Polygon
+    AAVE_POOL = "0x794a61358D6845594F94dc1DB02A252b5b4814aD"
+    
+    def __init__(self, engine: PolygonEngine):
+        """Initialize the contract executor with the Polygon engine
+        
+        Args:
+            engine: PolygonEngine instance for blockchain interaction
+        """
+        self.engine = engine
+        self.w3 = engine.w3
+        
+        # Router addresses mapping
+        self.routers = {
+            "quickswap_v2": self.QUICKSWAP_V2_ROUTER,
+            "quickswap_v3": self.QUICKSWAP_V3_ROUTER,
+            "sushiswap": self.SUSHISWAP_ROUTER,
+            "uniswap_v3": self.UNISWAP_V3_ROUTER
+        }
+        
+        # Flash loan providers mapping
+        self.flash_loan_providers = {
+            "aave": self.AAVE_POOL
+        }
+        
+        # Load contract ABIs
+        self.arbitrage_executor_abi = load_contract_abi("PolygonArbitrageExecutor")
+        
+        # Contract instances
+        self.arbitrage_executor_address = None
+        self.arbitrage_executor_contract = None
+    
+    def load_arbitrage_executor(self, address: str) -> None:
+        """Load an existing arbitrage executor contract
+        
+        Args:
+            address: Address of the deployed contract
+        """
+        self.arbitrage_executor_address = Web3.to_checksum_address(address)
+        self.arbitrage_executor_contract = self.w3.eth.contract(
+            address=self.arbitrage_executor_address,
+            abi=self.arbitrage_executor_abi
+        )
+        logger.info(f"Loaded arbitrage executor contract at {address}")
+    
+    def deploy_arbitrage_executor(self) -> str:
+        """Deploy a new arbitrage executor contract
+        
+        Returns:
+            str: Address of the deployed contract
+        """
+        # Get contract bytecode
+        contract_path = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+            "polygon_service",
+            "contracts",
+            "compiled",
+            "PolygonArbitrageExecutor.json"
+        )
+        
+        with open(contract_path, 'r') as f:
+            contract_json = json.load(f)
+        
+        bytecode = contract_json['bytecode']
+        
+        # Deploy contract
+        contract = self.w3.eth.contract(abi=self.arbitrage_executor_abi, bytecode=bytecode)
+        tx_hash = contract.constructor().transact({'from': self.engine.account.address})
+        tx_receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash)
+        
+        # Set contract address and instance
+        self.arbitrage_executor_address = tx_receipt.contractAddress
+        self.arbitrage_executor_contract = self.w3.eth.contract(
+            address=self.arbitrage_executor_address,
+            abi=self.arbitrage_executor_abi
+        )
+        
+        logger.info(f"Deployed arbitrage executor contract at {self.arbitrage_executor_address}")
+        return self.arbitrage_executor_address
+    
+    def execute_cross_exchange_arbitrage(
+        self,
+        token_a: str,
+        token_b: str,
+        amount_in: int,
+        buy_dex: str,
+        sell_dex: str,
+        buy_fee: int = 3000,  # Default fee for V3 pools
+        sell_fee: int = 3000,  # Default fee for V3 pools
+        use_flash_loan: bool = False,
+        flash_loan_provider: str = "aave",
+        min_profit: int = 0
+    ) -> Dict[str, Any]:
+        """Execute cross-exchange arbitrage between two DEXes
+        
+        Args:
+            token_a: Address of the input token
+            token_b: Address of the output token
+            amount_in: Amount of token_a to trade
+            buy_dex: DEX to buy token_b (quickswap_v2, quickswap_v3, sushiswap, uniswap_v3)
+            sell_dex: DEX to sell token_b (quickswap_v2, quickswap_v3, sushiswap, uniswap_v3)
+            buy_fee: Fee tier for V3 pools (only for V3 DEXes)
+            sell_fee: Fee tier for V3 pools (only for V3 DEXes)
+            use_flash_loan: Whether to use flash loan
+            flash_loan_provider: Flash loan provider to use (aave)
+            min_profit: Minimum profit required
+            
+        Returns:
+            Dict with transaction details and profit information
+        """
+        if self.arbitrage_executor_contract is None:
+            raise ValueError("Arbitrage executor contract not loaded")
+        
+        # Get router addresses
+        buy_router = self.routers.get(buy_dex)
+        sell_router = self.routers.get(sell_dex)
+        
+        if not buy_router or not sell_router:
+            raise ValueError(f"Invalid DEX specified: {buy_dex} or {sell_dex}")
+        
+        # Get flash loan provider address if using flash loan
+        flash_loan_provider_address = self.flash_loan_providers.get(flash_loan_provider) if use_flash_loan else "0x0000000000000000000000000000000000000000"
+        
+        # Prepare transaction parameters
+        params = {
+            'tokenA': Web3.to_checksum_address(token_a),
+            'tokenB': Web3.to_checksum_address(token_b),
+            'amountIn': amount_in,
+            'buyRouter': buy_router,
+            'sellRouter': sell_router,
+            'buyFee': buy_fee,
+            'sellFee': sell_fee,
+            'useFlashLoan': use_flash_loan,
+            'flashLoanProvider': flash_loan_provider_address,
+            'minProfit': min_profit
+        }
+        
+        # Estimate gas
+        gas_estimate = self.arbitrage_executor_contract.functions.executeArbitrage(params).estimate_gas({
+            'from': self.engine.account.address
+        })
+        
+        # Execute transaction
+        tx_hash = self.arbitrage_executor_contract.functions.executeArbitrage(params).transact({
+            'from': self.engine.account.address,
+            'gas': int(gas_estimate * 1.2)  # Add 20% buffer
+        })
+        
+        # Wait for transaction receipt
+        tx_receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash)
+        
+        # Parse events to get profit information
+        profit_info = self._parse_arbitrage_events(tx_receipt)
+        
+        return {
+            'tx_hash': tx_hash.hex(),
+            'gas_used': tx_receipt.gasUsed,
+            'status': tx_receipt.status,
+            'profit_info': profit_info
+        }
+    
+    def execute_triangular_arbitrage(
+        self,
+        path: List[str],
+        routers: List[str],
+        fees: List[int],
+        amount_in: int,
+        min_profit: int = 0,
+        use_flash_loan: bool = False,
+        flash_loan_provider: str = "aave"
+    ) -> Dict[str, Any]:
+        """Execute triangular arbitrage across multiple DEXes
+        
+        Args:
+            path: List of token addresses in the triangular path
+            routers: List of router names for each hop
+            fees: List of fee tiers for each hop (for V3 pools)
+            amount_in: Amount of the first token to trade
+            min_profit: Minimum profit required
+            use_flash_loan: Whether to use flash loan
+            flash_loan_provider: Flash loan provider to use
+            
+        Returns:
+            Dict with transaction details and profit information
+        """
+        if self.arbitrage_executor_contract is None:
+            raise ValueError("Arbitrage executor contract not loaded")
+        
+        # Convert router names to addresses
+        router_addresses = [self.routers.get(router) for router in routers]
+        if None in router_addresses:
+            raise ValueError(f"Invalid router in: {routers}")
+        
+        # Get flash loan provider address if using flash loan
+        flash_loan_provider_address = self.flash_loan_providers.get(flash_loan_provider) if use_flash_loan else "0x0000000000000000000000000000000000000000"
+        
+        # Convert token addresses to checksum format
+        path_addresses = [Web3.to_checksum_address(token) for token in path]
+        
+        # Prepare transaction parameters
+        params = {
+            'path': path_addresses,
+            'routers': router_addresses,
+            'fees': fees,
+            'amountIn': amount_in,
+            'minProfitAmount': min_profit,
+            'flashLoanProvider': flash_loan_provider_address
+        }
+        
+        # Estimate gas
+        gas_estimate = self.arbitrage_executor_contract.functions.executeTriangularArbitrage(params).estimate_gas({
+            'from': self.engine.account.address
+        })
+        
+        # Execute transaction
+        tx_hash = self.arbitrage_executor_contract.functions.executeTriangularArbitrage(params).transact({
+            'from': self.engine.account.address,
+            'gas': int(gas_estimate * 1.2)  # Add 20% buffer
+        })
+        
+        # Wait for transaction receipt
+        tx_receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash)
+        
+        # Parse events to get profit information
+        profit_info = self._parse_arbitrage_events(tx_receipt)
+        
+        return {
+            'tx_hash': tx_hash.hex(),
+            'gas_used': tx_receipt.gasUsed,
+            'status': tx_receipt.status,
+            'profit_info': profit_info
+        }
+    
+    def execute_backrun_arbitrage(
+        self,
+        target_tx_hash: str,
+        path: List[str],
+        routers: List[str],
+        fees: List[int],
+        amount_in: int,
+        min_profit: int = 0,
+        max_gas_price: int = None,
+        use_flash_loan: bool = False,
+        flash_loan_provider: str = "aave"
+    ) -> Dict[str, Any]:
+        """Execute backrun arbitrage after a specific transaction
+        
+        Args:
+            target_tx_hash: Transaction hash to backrun
+            path: List of token addresses in the path
+            routers: List of router names for each hop
+            fees: List of fee tiers for each hop (for V3 pools)
+            amount_in: Amount of the first token to trade
+            min_profit: Minimum profit required
+            max_gas_price: Maximum gas price to use
+            use_flash_loan: Whether to use flash loan
+            flash_loan_provider: Flash loan provider to use
+            
+        Returns:
+            Dict with transaction details and profit information
+        """
+        if self.arbitrage_executor_contract is None:
+            raise ValueError("Arbitrage executor contract not loaded")
+        
+        # Convert router names to addresses
+        router_addresses = [self.routers.get(router) for router in routers]
+        if None in router_addresses:
+            raise ValueError(f"Invalid router in: {routers}")
+        
+        # Get flash loan provider address if using flash loan
+        flash_loan_provider_address = self.flash_loan_providers.get(flash_loan_provider) if use_flash_loan else "0x0000000000000000000000000000000000000000"
+        
+        # Convert token addresses to checksum format
+        path_addresses = [Web3.to_checksum_address(token) for token in path]
+        
+        # Set max gas price if not provided
+        if max_gas_price is None:
+            max_gas_price = self.w3.eth.gas_price * 2  # Default to 2x current gas price
+        
+        # Prepare transaction parameters
+        params = {
+            'targetTxHash': Web3.to_bytes(hexstr=target_tx_hash),
+            'path': path_addresses,
+            'routers': router_addresses,
+            'fees': fees,
+            'amountIn': amount_in,
+            'minProfitAmount': min_profit,
+            'flashLoanProvider': flash_loan_provider_address,
+            'maxGasPrice': max_gas_price
+        }
+        
+        # Estimate gas
+        gas_estimate = self.arbitrage_executor_contract.functions.executeBackrunArbitrage(params).estimate_gas({
+            'from': self.engine.account.address
+        })
+        
+        # Execute transaction
+        tx_hash = self.arbitrage_executor_contract.functions.executeBackrunArbitrage(params).transact({
+            'from': self.engine.account.address,
+            'gas': int(gas_estimate * 1.2),  # Add 20% buffer
+            'gasPrice': max_gas_price
+        })
+        
+        # Wait for transaction receipt
+        tx_receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash)
+        
+        # Parse events to get profit information
+        profit_info = self._parse_arbitrage_events(tx_receipt)
+        
+        return {
+            'tx_hash': tx_hash.hex(),
+            'gas_used': tx_receipt.gasUsed,
+            'status': tx_receipt.status,
+            'profit_info': profit_info
+        }
+    
+    def emergency_withdraw(self, token_address: str) -> Dict[str, Any]:
+        """Emergency withdraw function to recover stuck tokens
+        
+        Args:
+            token_address: Address of the token to withdraw
+            
+        Returns:
+            Dict with transaction details
+        """
+        if self.arbitrage_executor_contract is None:
+            raise ValueError("Arbitrage executor contract not loaded")
+        
+        # Execute transaction
+        tx_hash = self.arbitrage_executor_contract.functions.emergencyWithdraw(
+            Web3.to_checksum_address(token_address)
+        ).transact({
+            'from': self.engine.account.address
+        })
+        
+        # Wait for transaction receipt
+        tx_receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash)
+        
+        return {
+            'tx_hash': tx_hash.hex(),
+            'gas_used': tx_receipt.gasUsed,
+            'status': tx_receipt.status
+        }
+    
+    def get_arbitrage_quote(
+        self,
+        token_a: str,
+        token_b: str,
+        amount_in: int,
+        buy_dex: str,
+        sell_dex: str,
+        buy_fee: int = 3000,
+        sell_fee: int = 3000
+    ) -> Dict[str, Any]:
+        """Get arbitrage quote for a given pair of tokens and DEXes
+        
+        Args:
+            token_a: Address of the input token
+            token_b: Address of the output token
+            amount_in: Amount of token_a to trade
+            buy_dex: DEX to buy token_b
+            sell_dex: DEX to sell token_b
+            buy_fee: Fee tier for V3 pools
+            sell_fee: Fee tier for V3 pools
+            
+        Returns:
+            Dict with quote information
+        """
+        if self.arbitrage_executor_contract is None:
+            raise ValueError("Arbitrage executor contract not loaded")
+        
+        # Get router addresses
+        buy_router = self.routers.get(buy_dex)
+        sell_router = self.routers.get(sell_dex)
+        
+        if not buy_router or not sell_router:
+            raise ValueError(f"Invalid DEX specified: {buy_dex} or {sell_dex}")
+        
+        # Call contract function
+        result = self.arbitrage_executor_contract.functions.getArbitrageQuote(
+            Web3.to_checksum_address(token_a),
+            Web3.to_checksum_address(token_b),
+            amount_in,
+            buy_router,
+            sell_router,
+            buy_fee,
+            sell_fee
+        ).call()
+        
+        # Parse result
+        buy_amount, sell_amount, profit = result
+        
+        return {
+            'buy_amount': buy_amount,
+            'sell_amount': sell_amount,
+            'profit': profit,
+            'is_profitable': profit > 0
+        }
+    
+    def get_triangular_arbitrage_quote(
+        self,
+        path: List[str],
+        routers: List[str],
+        fees: List[int],
+        amount_in: int
+    ) -> Dict[str, Any]:
+        """Get triangular arbitrage quote for a given path of tokens and DEXes
+        
+        Args:
+            path: List of token addresses in the triangular path
+            routers: List of router names for each hop
+            fees: List of fee tiers for each hop (for V3 pools)
+            amount_in: Amount of the first token to trade
+            
+        Returns:
+            Dict with quote information
+        """
+        if self.arbitrage_executor_contract is None:
+            raise ValueError("Arbitrage executor contract not loaded")
+        
+        # Convert router names to addresses
+        router_addresses = [self.routers.get(router) for router in routers]
+        if None in router_addresses:
+            raise ValueError(f"Invalid router in: {routers}")
+        
+        # Convert token addresses to checksum format
+        path_addresses = [Web3.to_checksum_address(token) for token in path]
+        
+        # Call contract function
+        result = self.arbitrage_executor_contract.functions.getTriangularArbitrageQuote(
+            path_addresses,
+            router_addresses,
+            fees,
+            amount_in
+        ).call()
+        
+        # Parse result
+        final_amount, profit = result
+        
+        return {
+            'final_amount': final_amount,
+            'profit': profit,
+            'is_profitable': profit > 0
+        }
+    
+    def get_backrun_arbitrage_quote(
+        self,
+        path: List[str],
+        routers: List[str],
+        fees: List[int],
+        amount_in: int
+    ) -> Dict[str, Any]:
+        """Get backrun arbitrage quote for a given path of tokens and DEXes
+        
+        Args:
+            path: List of token addresses in the path
+            routers: List of router names for each hop
+            fees: List of fee tiers for each hop (for V3 pools)
+            amount_in: Amount of the first token to trade
+            
+        Returns:
+            Dict with quote information
+        """
+        if self.arbitrage_executor_contract is None:
+            raise ValueError("Arbitrage executor contract not loaded")
+        
+        # Convert router names to addresses
+        router_addresses = [self.routers.get(router) for router in routers]
+        if None in router_addresses:
+            raise ValueError(f"Invalid router in: {routers}")
+        
+        # Convert token addresses to checksum format
+        path_addresses = [Web3.to_checksum_address(token) for token in path]
+        
+        # Call contract function
+        result = self.arbitrage_executor_contract.functions.getBackrunArbitrageQuote(
+            path_addresses,
+            router_addresses,
+            fees,
+            amount_in
+        ).call()
+        
+        # Parse result
+        final_amount, profit = result
+        
+        return {
+            'final_amount': final_amount,
+            'profit': profit,
+            'is_profitable': profit > 0
+        }
+    
+    def _parse_arbitrage_events(self, tx_receipt) -> Dict[str, Any]:
+        """Parse arbitrage events from transaction receipt
+        
+        Args:
+            tx_receipt: Transaction receipt
+            
+        Returns:
+            Dict with profit information
+        """
+        # Initialize result
+        result = {
+            'profit': 0,
+            'token_in': None,
+            'token_out': None,
+            'amount_in': 0,
+            'buy_dex': None,
+            'sell_dex': None
+        }
+        
+        # Check if contract is loaded
+        if self.arbitrage_executor_contract is None:
+            return result
+        
+        # Parse ArbitrageExecuted events
+        arbitrage_event = self.arbitrage_executor_contract.events.ArbitrageExecuted()
+        arbitrage_logs = arbitrage_event.process_receipt(tx_receipt)
+        
+        if arbitrage_logs:
+            log = arbitrage_logs[0]
+            result['token_in'] = log['args']['tokenIn']
+            result['token_out'] = log['args']['tokenOut']
+            result['amount_in'] = log['args']['amountIn']
+            result['profit'] = log['args']['profit']
+            result['buy_dex'] = log['args']['buyDex']
+            result['sell_dex'] = log['args']['sellDex']
+        
+        # Parse FlashLoanExecuted events
+        flash_loan_event = self.arbitrage_executor_contract.events.FlashLoanExecuted()
+        flash_loan_logs = flash_loan_event.process_receipt(tx_receipt)
+        
+        if flash_loan_logs:
+            log = flash_loan_logs[0]
+            # Update profit if flash loan was used
+            result['flash_loan_asset'] = log['args']['asset']
+            result['flash_loan_amount'] = log['args']['amount']
+            result['profit'] = log['args']['profit']
+        
+        return result

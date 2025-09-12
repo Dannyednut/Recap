@@ -7,15 +7,17 @@ import logging
 from decimal import Decimal
 from typing import Dict, Any, Optional, List
 from web3 import AsyncWeb3
+from web3.contract import AsyncContract
 from eth_account import Account
+from eth_account.signers.local import LocalAccount
 import os
 
-from .contracts.deploy import ContractDeployer, ArbitrageContractInterface
+from .flashbots_relay import FlashbotsIntegration
 from .config import EthereumConfig
 
 logger = logging.getLogger(__name__)
 
-class EthereumContractExecutor:
+class ContractExecutor:
     """Execute arbitrage opportunities using smart contracts"""
     
     # Router addresses
@@ -31,16 +33,26 @@ class EthereumContractExecutor:
         'balancer': '0xBA12222222228d8Ba445958a75a0704d566BF2C8'
     }
     
-    def __init__(self, w3: AsyncWeb3, config: EthereumConfig):
-        self.w3 = w3
+    def __init__(self, engine, config):
+        """Initialize contract executor with engine and config"""
+        self.engine = engine
         self.config = config
-        self.account = Account.from_key(config.PRIVATE_KEY)
+        
+        # Account setup
+        self.account: LocalAccount = Account.from_key(config.PRIVATE_KEY)
         self.wallet_address = self.account.address
         
         # Contract management
-        self.deployer = ContractDeployer(w3, config.PRIVATE_KEY)
+        self.deployer = ContractDeployer(engine.w3, config.PRIVATE_KEY)
         self.arbitrage_contract = None
         self.contract_address = None
+        
+        # Flashbots integration
+        self.flashbots = FlashbotsIntegration(
+            engine.w3, 
+            config.PRIVATE_KEY,
+            config.FLASHBOTS_RELAY_URL if hasattr(config, 'FLASHBOTS_RELAY_URL') else None
+        )
         
         # Deployment info file
         self.deployment_file = os.path.join(
@@ -48,218 +60,350 @@ class EthereumContractExecutor:
         )
     
     async def initialize(self):
-        """Initialize contract executor"""
-        try:
-            logger.info("Initializing contract executor...")
-            
-            # Load existing deployment info
-            self.deployer.load_deployment_info(self.deployment_file)
-            
-            # Check if contract is already deployed
-            if 'ArbitrageExecutor' in self.deployer.deployed_contracts:
-                contract_info = self.deployer.deployed_contracts['ArbitrageExecutor']
-                self.contract_address = contract_info['address']
-                
-                # Verify contract exists on chain
-                code = await self.w3.eth.get_code(self.contract_address)
-                if code and code != b'':
-                    self.arbitrage_contract = ArbitrageContractInterface(
-                        self.w3,
-                        self.contract_address,
-                        contract_info['abi'],
-                        self.config.PRIVATE_KEY
-                    )
-                    logger.info(f"Using existing contract at {self.contract_address}")
-                    return
-                else:
-                    logger.warning("Contract address has no code, redeploying...")
-            
-            # Try to deploy new contract
-            try:
-                await self._deploy_contracts()
-            except Exception as deploy_error:
-                logger.warning(f"Contract deployment failed: {deploy_error}")
-                logger.info("Contract executor will run in monitoring-only mode (no execution)")
-                # Continue without contracts for price monitoring
-            
-        except Exception as e:
-            logger.warning(f"Contract executor initialization failed: {e}")
-            logger.info("Continuing without contract deployment - price monitoring will still work")
+        """Initialize the contract executor"""
+        logger.info("Initializing Ethereum contract executor...")
+        
+        # Load contract ABIs
+        self.uniswap_v2_router_abi = await self.engine.load_abi("UniswapV2Router")
+        self.uniswap_v3_router_abi = await self.engine.load_abi("UniswapV3Router")
+        self.sushiswap_router_abi = await self.engine.load_abi("SushiSwapRouter")
+        self.arbitrage_executor_abi = await self.engine.load_abi("ArbitrageExecutor")
+        
+        # Initialize router contracts
+        self.uniswap_v2_router = self.engine.w3.eth.contract(
+            address=self.engine.w3.to_checksum_address(self.router_addresses["uniswap_v2"]),
+            abi=self.uniswap_v2_router_abi
+        )
+        
+        self.uniswap_v3_router = self.engine.w3.eth.contract(
+            address=self.engine.w3.to_checksum_address(self.router_addresses["uniswap_v3"]),
+            abi=self.uniswap_v3_router_abi
+        )
+        
+        self.sushiswap_router = self.engine.w3.eth.contract(
+            address=self.engine.w3.to_checksum_address(self.router_addresses["sushiswap"]),
+            abi=self.sushiswap_router_abi
+        )
+        
+        # Check if arbitrage executor is deployed
+        await self._load_or_deploy_arbitrage_executor()
     
-    async def _deploy_contracts(self):
-        """Deploy arbitrage contracts"""
+    async def _load_or_deploy_arbitrage_executor(self):
+        """Load existing arbitrage executor or deploy a new one"""
         try:
-            logger.info("Deploying arbitrage contracts...")
+            # Try to load from deployment file
+            if os.path.exists(self.deployment_file_path):
+                with open(self.deployment_file_path, 'r') as f:
+                    deployment_data = json.load(f)
+                    
+                if "arbitrage_executor" in deployment_data:
+                    address = deployment_data["arbitrage_executor"]
+                    logger.info(f"Loading ArbitrageExecutor from {address}")
+                    
+                    self.arbitrage_executor = self.engine.w3.eth.contract(
+                        address=self.engine.w3.to_checksum_address(address),
+                        abi=self.arbitrage_executor_abi
+                    )
+                    return
             
-            # Deploy ArbitrageExecutor
-            self.contract_address = await self.deployer.deploy_arbitrage_executor()
-            
-            # Create interface
-            contract_info = self.deployer.deployed_contracts['ArbitrageExecutor']
-            self.arbitrage_contract = ArbitrageContractInterface(
-                self.w3,
-                self.contract_address,
-                contract_info['abi'],
-                self.config.PRIVATE_KEY
-            )
-            
-            # Save deployment info
-            self.deployer.save_deployment_info(self.deployment_file)
-            
-            logger.info("Contracts deployed successfully")
+            # If not found, deploy a new one
+            logger.info("Deploying new ArbitrageExecutor contract...")
+            await self._deploy_arbitrage_executor()
             
         except Exception as e:
-            logger.error(f"Error deploying contracts: {e}")
+            logger.error(f"Error loading/deploying arbitrage executor: {e}")
             raise
     
-    async def execute_cross_arbitrage(
-        self,
-        token_a: str,
-        token_b: str,
-        amount_in: int,
-        buy_dex: str,
-        sell_dex: str,
-        buy_fee: int = 3000,  # 0.3% for V3
-        sell_fee: int = 3000,
-        use_flash_loan: bool = True,
-        flash_provider: str = 'balancer'
-    ) -> Optional[str]:
-        """Execute cross-DEX arbitrage"""
+    async def _deploy_arbitrage_executor(self):
+        """Deploy a new arbitrage executor contract"""
         try:
-            if not self.arbitrage_contract:
-                raise Exception("Contract not initialized")
+            # Get contract bytecode
+            bytecode = await self.engine.load_bytecode("ArbitrageExecutor")
             
-            # Prepare arbitrage parameters
-            params = {
-                'tokenA': token_a,
-                'tokenB': token_b,
-                'amountIn': amount_in,
-                'buyRouter': self.ROUTERS[buy_dex],
-                'sellRouter': self.ROUTERS[sell_dex],
-                'buyFee': buy_fee,
-                'sellFee': sell_fee,
-                'useFlashLoan': use_flash_loan,
-                'flashLoanProvider': self.FLASH_LOAN_PROVIDERS.get(flash_provider, self.FLASH_LOAN_PROVIDERS['balancer']),
-                'minProfit': 0  # Will be calculated
-            }
+            # Create contract deployment transaction
+            contract = self.engine.w3.eth.contract(abi=self.arbitrage_executor_abi, bytecode=bytecode)
             
-            # Get quote first to verify profitability
-            expected_profit = await self.arbitrage_contract.get_arbitrage_quote(params)
+            # Estimate gas for deployment
+            constructor_args = [
+                self.router_addresses["uniswap_v2"],
+                self.router_addresses["uniswap_v3"],
+                self.router_addresses["sushiswap"],
+                self.flash_loan_providers["aave"],
+                self.flash_loan_providers["balancer"]
+            ]
             
-            if expected_profit <= 0:
-                logger.warning("Arbitrage not profitable according to quote")
-                return None
+            gas_estimate = await contract.constructor(*constructor_args).estimate_gas()
             
-            logger.info(f"Expected profit: {expected_profit} wei")
+            # Build transaction
+            tx = await contract.constructor(*constructor_args).build_transaction({
+                'from': self.account.address,
+                'gas': int(gas_estimate * 1.2),  # Add 20% buffer
+                'nonce': await self.engine.w3.eth.get_transaction_count(self.account.address)
+            })
             
-            # Execute arbitrage
-            tx_hash = await self.arbitrage_contract.execute_arbitrage(params)
+            # Sign and send transaction
+            signed_tx = self.account.sign_transaction(tx)
+            tx_hash = await self.engine.w3.eth.send_raw_transaction(signed_tx.rawTransaction)
             
-            logger.info(f"Arbitrage executed, tx: {tx_hash}")
+            # Wait for transaction receipt
+            receipt = await self.engine.w3.eth.wait_for_transaction_receipt(tx_hash)
+            
+            if receipt.status != 1:
+                raise Exception("Contract deployment failed")
+            
+            # Get contract address
+            contract_address = receipt.contractAddress
+            
+            # Save deployment info
+            deployment_data = {}
+            if os.path.exists(self.deployment_file_path):
+                with open(self.deployment_file_path, 'r') as f:
+                    deployment_data = json.load(f)
+            
+            deployment_data["arbitrage_executor"] = contract_address
+            
+            with open(self.deployment_file_path, 'w') as f:
+                json.dump(deployment_data, f, indent=2)
+            
+            # Initialize contract instance
+            self.arbitrage_executor = self.engine.w3.eth.contract(
+                address=contract_address,
+                abi=self.arbitrage_executor_abi
+            )
+            
+            logger.info(f"ArbitrageExecutor deployed at {contract_address}")
+            
+        except Exception as e:
+            logger.error(f"Error deploying arbitrage executor: {e}")
+            raise
+    
+    async def execute_arbitrage(self, params):
+        """Execute cross-exchange arbitrage via smart contract"""
+        try:
+            logger.info(f"Executing cross-exchange arbitrage with {params['amountIn']} of token {params['tokenA']}")
+            
+            # Build transaction
+            if params.get("useFlashLoan", False):
+                # Execute with flash loan
+                tx = await self.arbitrage_executor.functions.executeFlashLoanArbitrage(
+                    params["tokenA"],
+                    params["tokenB"],
+                    params["amountIn"],
+                    params["buyRouter"],
+                    params["sellRouter"],
+                    params["buyFee"],
+                    params["sellFee"],
+                    params["flashLoanProvider"],
+                    params["minProfit"]
+                ).build_transaction({
+                    'from': self.account.address,
+                    'gas': 500000,
+                    'nonce': await self.engine.w3.eth.get_transaction_count(self.account.address)
+                })
+            else:
+                # Execute direct arbitrage
+                tx = await self.arbitrage_executor.functions.executeDirectArbitrage(
+                    params["tokenA"],
+                    params["tokenB"],
+                    params["amountIn"],
+                    params["buyRouter"],
+                    params["sellRouter"],
+                    params["buyFee"],
+                    params["sellFee"],
+                    params["minProfit"]
+                ).build_transaction({
+                    'from': self.account.address,
+                    'gas': 400000,
+                    'nonce': await self.engine.w3.eth.get_transaction_count(self.account.address)
+                })
+            
+            # Sign and send transaction
+            signed_tx = self.account.sign_transaction(tx)
+            tx_hash = await self.engine.w3.eth.send_raw_transaction(signed_tx.rawTransaction)
+            
+            logger.info(f"Arbitrage transaction sent: {tx_hash.hex()}")
             return tx_hash
             
         except Exception as e:
-            logger.error(f"Error executing cross arbitrage: {e}")
-            return None
+            logger.error(f"Error executing arbitrage: {e}")
+            raise
     
-    async def get_arbitrage_quote(
-        self,
-        token_a: str,
-        token_b: str,
-        amount_in: int,
-        buy_dex: str,
-        sell_dex: str,
-        buy_fee: int = 3000,
-        sell_fee: int = 3000
-    ) -> int:
-        """Get arbitrage profit quote"""
+    async def execute_triangular_arbitrage(self, params):
+        """Execute triangular arbitrage via smart contract"""
         try:
-            if not self.arbitrage_contract:
-                return 0
+            logger.info(f"Executing triangular arbitrage with {params['amountIn']} of token {params['path'][0]}")
             
-            params = {
-                'tokenA': token_a,
-                'tokenB': token_b,
-                'amountIn': amount_in,
-                'buyRouter': self.ROUTERS[buy_dex],
-                'sellRouter': self.ROUTERS[sell_dex],
-                'buyFee': buy_fee,
-                'sellFee': sell_fee
-            }
+            # Build transaction
+            if params.get("flashLoanProvider", 0) > 0:
+                # Execute with flash loan
+                tx = await self.arbitrage_executor.functions.executeTriangularArbitrage(
+                    params["path"],
+                    params["routers"],
+                    params["fees"],
+                    params["amountIn"],
+                    params["minProfitAmount"],
+                    params["flashLoanProvider"]
+                ).build_transaction({
+                    'from': self.account.address,
+                    'gas': 600000,
+                    'nonce': await self.engine.w3.eth.get_transaction_count(self.account.address)
+                })
+            else:
+                # Execute direct triangular arbitrage
+                tx = await self.arbitrage_executor.functions.executeDirectTriangularArbitrage(
+                    params["path"],
+                    params["routers"],
+                    params["fees"],
+                    params["amountIn"],
+                    params["minProfitAmount"]
+                ).build_transaction({
+                    'from': self.account.address,
+                    'gas': 500000,
+                    'nonce': await self.engine.w3.eth.get_transaction_count(self.account.address)
+                })
             
-            return await self.arbitrage_contract.get_arbitrage_quote(params)
+            # Sign and send transaction
+            signed_tx = self.account.sign_transaction(tx)
+            tx_hash = await self.engine.w3.eth.send_raw_transaction(signed_tx.rawTransaction)
+            
+            logger.info(f"Triangular arbitrage transaction sent: {tx_hash.hex()}")
+            return tx_hash
             
         except Exception as e:
-            logger.error(f"Error getting quote: {e}")
+            logger.error(f"Error executing triangular arbitrage: {e}")
+            raise
+    
+    async def execute_backrun_arbitrage(self, params):
+        """Execute backrun arbitrage via smart contract"""
+        try:
+            logger.info(f"Executing backrun arbitrage targeting tx {params['targetTxHash']}")
+            
+            # Build transaction
+            if params.get("flashLoanProvider", 0) > 0:
+                # Execute with flash loan
+                tx = await self.arbitrage_executor.functions.executeBackrunArbitrage(
+                    params["targetTxHash"],
+                    params["path"],
+                    params["routers"],
+                    params["fees"],
+                    params["amountIn"],
+                    params["minProfitAmount"],
+                    params["flashLoanProvider"],
+                    params["maxGasPrice"]
+                ).build_transaction({
+                    'from': self.account.address,
+                    'gas': 700000,
+                    'nonce': await self.engine.w3.eth.get_transaction_count(self.account.address),
+                    'maxFeePerGas': params["maxGasPrice"]
+                })
+            else:
+                # Execute direct backrun arbitrage
+                tx = await self.arbitrage_executor.functions.executeDirectBackrunArbitrage(
+                    params["targetTxHash"],
+                    params["path"],
+                    params["routers"],
+                    params["fees"],
+                    params["amountIn"],
+                    params["minProfitAmount"],
+                    params["maxGasPrice"]
+                ).build_transaction({
+                    'from': self.account.address,
+                    'gas': 600000,
+                    'nonce': await self.engine.w3.eth.get_transaction_count(self.account.address),
+                    'maxFeePerGas': params["maxGasPrice"]
+                })
+            
+            # Check if Flashbots should be used for backrun
+            if params.get("useFlashbots", True) and params.get("targetTxHash"):
+                # Submit via Flashbots bundle for MEV protection
+                bundle_hash = await self.flashbots.submit_backrun_arbitrage(
+                    params["targetTxHash"],
+                    params,
+                    self
+                )
+                
+                if bundle_hash:
+                    logger.info(f"Backrun bundle submitted via Flashbots: {bundle_hash}")
+                    return bundle_hash
+                else:
+                    logger.warning("Flashbots submission failed, falling back to mempool")
+            
+            # Fallback to standard mempool submission
+            signed_tx = self.account.sign_transaction(tx)
+            tx_hash = await self.engine.w3.eth.send_raw_transaction(signed_tx.rawTransaction)
+            
+            logger.info(f"Backrun arbitrage transaction sent to mempool: {tx_hash.hex()}")
+            return tx_hash
+            
+        except Exception as e:
+            logger.error(f"Error executing backrun arbitrage: {e}")
+            raise
+    
+    async def get_profit_from_receipt(self, receipt):
+        """Extract profit from transaction receipt by parsing events"""
+        try:
+            # Get ArbitrageExecuted event
+            arbitrage_event = self.arbitrage_executor.events.ArbitrageExecuted().process_receipt(receipt)
+            
+            if arbitrage_event:
+                return arbitrage_event[0].args.profit
+            
+            # Try TriangularArbitrageExecuted event
+            triangular_event = self.arbitrage_executor.events.TriangularArbitrageExecuted().process_receipt(receipt)
+            
+            if triangular_event:
+                return triangular_event[0].args.profit
+            
+            # Try BackrunArbitrageExecuted event
+            backrun_event = self.arbitrage_executor.events.BackrunArbitrageExecuted().process_receipt(receipt)
+            
+            if backrun_event:
+                return backrun_event[0].args.profit
+            
+            # No profit event found
+            return 0
+            
+        except Exception as e:
+            logger.error(f"Error extracting profit from receipt: {e}")
             return 0
     
-    async def fund_contract(self, token_address: str, amount: int):
-        """Fund the arbitrage contract with tokens"""
+    async def get_arbitrage_quote(self, params):
+        """Get quote for arbitrage opportunity"""
         try:
-            # For ETH
-            if token_address.lower() == "0x0" or token_address.upper() == "ETH":
-                tx = {
-                    'to': self.contract_address,
-                    'value': amount,
-                    'gas': 21000,
-                    'gasPrice': await self.w3.eth.gas_price,
-                    'nonce': await self.w3.eth.get_transaction_count(self.wallet_address),
+            if "tokenB" in params:  # Cross-exchange arbitrage
+                result = await self.arbitrage_executor.functions.getArbitrageQuote(
+                    params["tokenA"],
+                    params["tokenB"],
+                    params["amountIn"],
+                    params["buyRouter"],
+                    params["sellRouter"],
+                    params["buyFee"],
+                    params["sellFee"]
+                ).call()
+                
+                return {
+                    "expectedProfit": result[0],
+                    "tokenBAmount": result[1],
+                    "tokenAAmount": result[2]
                 }
+            elif "path" in params:  # Triangular arbitrage
+                result = await self.arbitrage_executor.functions.getTriangularArbitrageQuote(
+                    params["path"],
+                    params["routers"],
+                    params["fees"],
+                    params["amountIn"]
+                ).call()
                 
-                signed_txn = self.account.sign_transaction(tx)
-                tx_hash = await self.w3.eth.send_raw_transaction(signed_txn.rawTransaction)
-                
-                logger.info(f"Funded contract with ETH, tx: {tx_hash.hex()}")
-                return tx_hash.hex()
-            
-            # For ERC20 tokens
+                return {
+                    "expectedProfit": result[0],
+                    "intermediateAmounts": result[1]
+                }
             else:
-                # ERC20 transfer would go here
-                # This is a simplified implementation
-                logger.info(f"ERC20 funding not implemented for {token_address}")
-                return None
+                raise ValueError("Invalid quote parameters")
                 
         except Exception as e:
-            logger.error(f"Error funding contract: {e}")
-            return None
-    
-    async def withdraw_from_contract(self, token_address: str, amount: int):
-        """Emergency withdraw from contract"""
-        try:
-            if not self.arbitrage_contract:
-                raise Exception("Contract not initialized")
-            
-            tx_hash = await self.arbitrage_contract.emergency_withdraw(token_address, amount)
-            logger.info(f"Emergency withdraw tx: {tx_hash}")
-            return tx_hash
-            
-        except Exception as e:
-            logger.error(f"Error withdrawing from contract: {e}")
-            return None
-    
-    def get_contract_address(self) -> Optional[str]:
-        """Get deployed contract address"""
-        return self.contract_address
-    
-    def is_initialized(self) -> bool:
-        """Check if executor is initialized"""
-        return self.arbitrage_contract is not None
-    
-    async def get_contract_balance(self, token_address: str = "0x0") -> int:
-        """Get contract token balance"""
-        try:
-            if not self.contract_address:
-                return 0
-            
-            if token_address.lower() == "0x0" or token_address.upper() == "ETH":
-                # ETH balance
-                balance = await self.w3.eth.get_balance(self.contract_address)
-                return balance
-            else:
-                # ERC20 balance (simplified)
-                # Would need to call balanceOf on the token contract
-                return 0
-                
-        except Exception as e:
-            logger.error(f"Error getting contract balance: {e}")
-            return 0
+            logger.error(f"Error getting arbitrage quote: {e}")
+            return {
+                "expectedProfit": 0,
+                "error": str(e)
+            }

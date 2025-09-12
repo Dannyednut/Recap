@@ -14,7 +14,7 @@ from .config import EthereumConfig
 
 logger = logging.getLogger(__name__)
 
-class EthereumFlashLoanEngine:
+class FlashLoanEngine:
     """Flash loan engine for Ethereum (Aave, dYdX, Balancer)"""
     
     def __init__(self, engine: EthereumEngine, config: EthereumConfig):
@@ -32,117 +32,202 @@ class EthereumFlashLoanEngine:
         }
         
     async def initialize(self):
-        """Initialize flash loan contracts"""
-        logger.info("Initializing Ethereum flash loan engine...")
-        # This would load contract ABIs and interfaces
-        pass
-    
-    async def get_available_liquidity(self, token_address: str, provider: str = "aave") -> Decimal:
-        """Get available liquidity for flash loans"""
-        try:
-            if provider not in self.providers:
-                raise ValueError(f"Unknown provider: {provider}")
-            
-            # This would query the actual protocol for available liquidity
-            # For now, return mock values
-            mock_liquidity = {
-                self.config.TOKENS["WETH"]: Decimal("10000"),    # 10K ETH
-                self.config.TOKENS["USDC"]: Decimal("50000000"), # 50M USDC
-                self.config.TOKENS["DAI"]: Decimal("30000000"),  # 30M DAI
-                self.config.TOKENS["USDT"]: Decimal("40000000")  # 40M USDT
-            }
-            
-            return mock_liquidity.get(token_address, Decimal("0"))
-            
-        except Exception as e:
-            logger.error(f"Error getting available liquidity: {e}")
-            return Decimal("0")
-    
-    async def calculate_flash_loan_fee(self, amount: Decimal, token: str, provider: str = "aave") -> Decimal:
-        """Calculate flash loan fee"""
-        try:
-            provider_info = self.providers.get(provider)
-            if not provider_info:
-                raise ValueError(f"Unknown provider: {provider}")
-            
-            fee = amount * provider_info["fee_percentage"]
-            return fee
-            
-        except Exception as e:
-            logger.error(f"Error calculating flash loan fee: {e}")
-            return Decimal("0")
-    
-    async def execute_flash_loan(self, params: FlashLoanParams) -> ExecutionResult:
-        """Execute flash loan with callback"""
-        try:
-            logger.info(f"Executing flash loan: {params.amount} {params.asset} via {params.provider}")
-            
-            # Check liquidity
-            available = await self.get_available_liquidity(params.asset, params.provider)
-            if available < params.amount:
-                raise ValueError("Insufficient liquidity for flash loan")
-            
-            # Calculate fee
-            fee = await self.calculate_flash_loan_fee(params.amount, params.asset, params.provider)
-            
-            # Build flash loan transaction
-            tx_data = await self._build_flash_loan_transaction(params, fee)
-            
-            # Execute transaction
-            tx_hash = await self.engine.execute_transaction(tx_data)
-            
-            # Wait for confirmation
-            result = await self.engine.wait_for_transaction(tx_hash)
-            
-            logger.info(f"Flash loan executed successfully: {tx_hash}")
-            return result
-            
-        except Exception as e:
-            logger.error(f"Error executing flash loan: {e}")
-            return ExecutionResult(
-                tx_hash="",
-                status="failed",
-                gas_used=0,
-                gas_price=0,
-                error_message=str(e)
+        """Initialize the flash loan engine"""
+        logger.info("Initializing flash loan engine...")
+        
+        # Load contract ABIs
+        self.aave_lending_pool_abi = await self.engine.load_abi("AaveLendingPool")
+        self.balancer_vault_abi = await self.engine.load_abi("BalancerVault")
+        self.dydx_solo_margin_abi = await self.engine.load_abi("DydxSoloMargin")
+        
+        # Initialize contract interfaces
+        self.aave_lending_pool = self.engine.w3.eth.contract(
+            address=self.engine.w3.to_checksum_address(self.providers["aave"]["address"]),
+            abi=self.aave_lending_pool_abi
+        )
+        
+        self.balancer_vault = self.engine.w3.eth.contract(
+            address=self.engine.w3.to_checksum_address(self.providers["balancer"]["address"]),
+            abi=self.balancer_vault_abi
+        )
+        
+        # Initialize dYdX interface if available
+        if self.providers["dydx"]["address"]:
+            self.dydx_solo_margin = self.engine.w3.eth.contract(
+                address=self.engine.w3.to_checksum_address(self.providers["dydx"]["address"]),
+                abi=self.dydx_solo_margin_abi
             )
-    
-    async def _build_flash_loan_transaction(self, params: FlashLoanParams, fee: Decimal) -> Dict[str, Any]:
-        """Build flash loan transaction data"""
+
+    async def get_available_liquidity(self, token_address):
+        """Get available liquidity for a token across all providers"""
+        liquidity = {}
+        
+        # Get token details
+        token_contract = self.engine.get_token_contract(token_address)
+        token_symbol = await self.engine.call_contract_function(token_contract, "symbol")
+        token_decimals = await self.engine.call_contract_function(token_contract, "decimals")
+        
+        # Check Aave liquidity
         try:
-            if params.provider == "aave":
-                return await self._build_aave_flash_loan(params, fee)
-            elif params.provider == "dydx":
-                return await self._build_dydx_flash_loan(params, fee)
-            else:
-                raise ValueError(f"Unsupported provider: {params.provider}")
-                
+            aave_liquidity = await self.engine.call_contract_function(
+                self.aave_lending_pool,
+                "getReserveData",
+                token_address
+            )
+            liquidity["aave"] = self.engine.w3.from_wei(aave_liquidity[0], 'ether')
         except Exception as e:
-            logger.error(f"Error building flash loan transaction: {e}")
-            raise
-    
-    async def _build_aave_flash_loan(self, params: FlashLoanParams, fee: Decimal) -> Dict[str, Any]:
-        """Build Aave flash loan transaction"""
-        # This would encode the actual Aave flash loan function call
-        # For now, return a simplified transaction structure
+            logger.error(f"Error getting Aave liquidity for {token_symbol}: {e}")
+            liquidity["aave"] = 0
         
-        return {
-            "to": self.providers["aave"]["address"],
-            "value": 0,
-            "gas": 500000,
-            "data": "0x..." # Encoded function call with params
+        # Check Balancer liquidity
+        try:
+            balancer_pool_id = self.config.BALANCER_POOLS.get(token_symbol)
+            if balancer_pool_id:
+                balancer_liquidity = await self.engine.call_contract_function(
+                    self.balancer_vault,
+                    "getPoolTokenInfo",
+                    balancer_pool_id,
+                    token_address
+                )
+                liquidity["balancer"] = self.engine.w3.from_wei(balancer_liquidity[0], 'ether')
+            else:
+                liquidity["balancer"] = 0
+        except Exception as e:
+            logger.error(f"Error getting Balancer liquidity for {token_symbol}: {e}")
+            liquidity["balancer"] = 0
+        
+        return liquidity
+    
+    async def prepare_flash_loan(self, strategy_type, params):
+        """Prepare flash loan parameters based on strategy type"""
+        if strategy_type == "cross":
+            return await self._prepare_cross_flash_loan(params)
+        elif strategy_type == "triangular":
+            return await self._prepare_triangular_flash_loan(params)
+        elif strategy_type == "mempool":
+            return await self._prepare_mempool_flash_loan(params)
+        else:
+            raise ValueError(f"Unknown strategy type: {strategy_type}")
+    
+    async def _prepare_cross_flash_loan(self, params):
+        """Prepare flash loan for cross-exchange arbitrage"""
+        token_address = params["tokenA"]
+        amount = params["amountIn"]
+        
+        # Get best provider based on liquidity and fees
+        provider = await self._get_best_provider(token_address, amount)
+        
+        # Prepare flash loan data
+        flash_data = {
+            "provider": provider,
+            "tokens": [token_address],
+            "amounts": [amount],
+            "modes": [0],  # 0 = no debt, just flash loan
+            "params": self.engine.w3.encode_abi(
+                ["address", "address", "uint256", "address", "address", "uint256", "uint256", "uint256"],
+                [
+                    params["tokenA"],
+                    params["tokenB"],
+                    params["amountIn"],
+                    params["buyRouter"],
+                    params["sellRouter"],
+                    params["buyFee"],
+                    params["sellFee"],
+                    params["minProfit"]
+                ]
+            )
         }
+        
+        return flash_data
     
-    async def _build_dydx_flash_loan(self, params: FlashLoanParams, fee: Decimal) -> Dict[str, Any]:
-        """Build dYdX flash loan transaction"""
-        # This would encode the actual dYdX solo margin operation
-        # For now, return a simplified transaction structure
+    async def _prepare_triangular_flash_loan(self, params):
+        """Prepare flash loan for triangular arbitrage"""
+        token_address = params["path"][0]
+        amount = params["amountIn"]
+        
+        # Get best provider based on liquidity and fees
+        provider = await self._get_best_provider(token_address, amount)
+        
+        # Prepare flash loan data
+        flash_data = {
+            "provider": provider,
+            "tokens": [token_address],
+            "amounts": [amount],
+            "modes": [0],  # 0 = no debt, just flash loan
+            "params": self.engine.w3.encode_abi(
+                ["address[]", "address[]", "uint256[]", "uint256", "uint256"],
+                [
+                    params["path"],
+                    params["routers"],
+                    params["fees"],
+                    params["amountIn"],
+                    params["minProfitAmount"]
+                ]
+            )
+        }
+        
+        return flash_data
+    
+    async def _prepare_mempool_flash_loan(self, params):
+        """Prepare flash loan for mempool backrun arbitrage"""
+        token_address = params["path"][0]
+        amount = params["amountIn"]
+        
+        # Get best provider based on liquidity and fees
+        provider = await self._get_best_provider(token_address, amount)
+        
+        # Prepare flash loan data
+        flash_data = {
+            "provider": provider,
+            "tokens": [token_address],
+            "amounts": [amount],
+            "modes": [0],  # 0 = no debt, just flash loan
+            "params": self.engine.w3.encode_abi(
+                ["bytes32", "address[]", "address[]", "uint256[]", "uint256", "uint256", "uint256"],
+                [
+                    params["targetTxHash"],
+                    params["path"],
+                    params["routers"],
+                    params["fees"],
+                    params["amountIn"],
+                    params["minProfitAmount"],
+                    params["maxGasPrice"]
+                ]
+            )
+        }
+        
+        return flash_data
+    
+    async def _get_best_provider(self, token_address, amount):
+        """Get the best flash loan provider based on liquidity and fees"""
+        liquidity = await self.get_available_liquidity(token_address)
+        
+        # Check if any provider has enough liquidity
+        valid_providers = {}
+        for provider, available in liquidity.items():
+            if available >= amount:
+                valid_providers[provider] = self.providers[provider]["fee"]
+        
+        if not valid_providers:
+            raise ValueError(f"No provider has enough liquidity for token {token_address}")
+        
+        # Return provider with lowest fee
+        best_provider = min(valid_providers.items(), key=lambda x: x[1])[0]
+        return best_provider
+    
+    async def estimate_flash_loan_cost(self, token_address, amount, provider=None):
+        """Estimate the cost of a flash loan"""
+        if not provider:
+            provider = await self._get_best_provider(token_address, amount)
+            
+        fee_percentage = self.providers[provider]["fee"]
+        fee_amount = amount * fee_percentage / 100
         
         return {
-            "to": self.providers["dydx"]["address"],
-            "value": 0,
-            "gas": 400000,
-            "data": "0x..." # Encoded operation with params
+            "provider": provider,
+            "fee_percentage": fee_percentage,
+            "fee_amount": fee_amount,
+            "total_repayment": amount + fee_amount
         }
     
     async def get_best_provider(self, token: str, amount: Decimal) -> str:

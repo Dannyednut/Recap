@@ -27,7 +27,7 @@ class PolygonEngine(BaseEngine):
         self.account: Optional[Account] = None
         self.wallet_address: Optional[str] = None
         
-    async def initialize(self) -> None:
+    async def initialize(self) -> bool:
         """Initialize Web3 connection and wallet"""
         try:
             # Initialize Web3 connection
@@ -49,10 +49,11 @@ class PolygonEngine(BaseEngine):
                 logger.warning(f"Polygon Chain ID mismatch: expected {self.config.CHAIN_ID}, got {chain_id}")
             
             logger.info(f"Polygon engine initialized on chain {chain_id}")
+            return True
             
         except Exception as e:
             logger.error(f"Failed to initialize Polygon engine: {e}")
-            raise
+            return False
     
     async def get_balance(self, token_address: str, wallet_address: str = None) -> Decimal:
         """Get token balance for wallet"""
@@ -176,6 +177,103 @@ class PolygonEngine(BaseEngine):
         except Exception as e:
             logger.error(f"Error executing Polygon transaction: {e}")
             raise
+    
+    async def call_contract(
+        self,
+        contract_address: str,
+        function_name: str,
+        params: list
+    ) -> Any:
+        """Call contract function"""
+        try:
+            if function_name == "getPair":
+                factory_abi = [
+                    {
+                        "constant": True,
+                        "inputs": [
+                            {"name": "tokenA", "type": "address"},
+                            {"name": "tokenB", "type": "address"}
+                        ],
+                        "name": "getPair",
+                        "outputs": [{"name": "pair", "type": "address"}],
+                        "type": "function"
+                    }
+                ]
+                contract = self.w3.eth.contract(address=contract_address, abi=factory_abi)
+                return await contract.functions.getPair(params[0], params[1]).call()
+            
+            elif function_name == "getReserves":
+                pair_abi = [
+                    {
+                        "constant": True,
+                        "inputs": [],
+                        "name": "getReserves",
+                        "outputs": [
+                            {"name": "_reserve0", "type": "uint112"},
+                            {"name": "_reserve1", "type": "uint112"},
+                            {"name": "_blockTimestampLast", "type": "uint32"}
+                        ],
+                        "type": "function"
+                    }
+                ]
+                contract = self.w3.eth.contract(address=contract_address, abi=pair_abi)
+                return await contract.functions.getReserves().call()
+            
+            elif function_name == "token0":
+                pair_abi = [
+                    {
+                        "constant": True,
+                        "inputs": [],
+                        "name": "token0",
+                        "outputs": [{"name": "", "type": "address"}],
+                        "type": "function"
+                    }
+                ]
+                contract = self.w3.eth.contract(address=contract_address, abi=pair_abi)
+                return await contract.functions.token0().call()
+            
+            else:
+                raise ValueError(f"Unsupported function: {function_name}")
+                
+        except Exception as e:
+            logger.error(f"Error calling contract function {function_name}: {e}")
+            raise
+    
+    async def build_transaction(
+        self,
+        contract_address: str,
+        function_name: str,
+        params: list
+    ) -> Dict[str, Any]:
+        """Build transaction data for contract call"""
+        try:
+            return {
+                "to": contract_address,
+                "data": "0x",
+                "value": 0
+            }
+        except Exception as e:
+            logger.error(f"Error building transaction: {e}")
+            raise
+    
+    async def wait_for_transaction(self, tx_hash: str) -> Dict[str, Any]:
+        """Wait for transaction confirmation"""
+        try:
+            receipt = await self.w3.eth.wait_for_transaction_receipt(tx_hash, timeout=120)
+            
+            return {
+                "success": receipt.status == 1,
+                "gas_used": receipt.gasUsed,
+                "block_number": receipt.blockNumber,
+                "transaction_hash": tx_hash
+            }
+            
+        except Exception as e:
+            logger.error(f"Error waiting for Polygon transaction: {e}")
+            return {
+                "success": False,
+                "error": str(e)
+            }
     
     async def wait_for_transaction_receipt(self, tx_hash: str, timeout: int = 60) -> Dict[str, Any]:
         """Wait for transaction confirmation"""

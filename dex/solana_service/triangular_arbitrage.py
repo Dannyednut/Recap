@@ -189,34 +189,13 @@ class SolanaTriangularArbitrageEngine(BaseArbitrageEngine):
             return None
     
     async def _get_exchange_rate(self, token_in: str, token_out: str) -> Optional[Decimal]:
-        """Get exchange rate between two tokens"""
+        """Get real exchange rate between two tokens using Jupiter"""
         try:
-            # Use Jupiter aggregator for best rates
-            if token_in == self.config.TOKENS["SOL"]:
-                if token_out == self.config.TOKENS["USDC"]:
-                    return Decimal("180.25")  # SOL/USDC rate
-                elif token_out == self.config.TOKENS["RAY"]:
-                    return Decimal("120.0")   # SOL/RAY rate
-                elif token_out == self.config.TOKENS["ORCA"]:
-                    return Decimal("45.0")    # SOL/ORCA rate
-                elif token_out == self.config.TOKENS["SRM"]:
-                    return Decimal("300.0")   # SOL/SRM rate
-            elif token_out == self.config.TOKENS["SOL"]:
-                # Inverse rates
-                rate = await self._get_exchange_rate(token_out, token_in)
-                return Decimal("1") / rate if rate else None
-            elif self._is_stablecoin_pair(token_in, token_out):
-                return Decimal("1.002")  # Slight premium for stablecoin swaps
-            elif token_in == self.config.TOKENS["RAY"] and token_out == self.config.TOKENS["USDC"]:
-                return Decimal("1.48")  # RAY/USDC
-            elif token_in == self.config.TOKENS["ORCA"] and token_out == self.config.TOKENS["USDC"]:
-                return Decimal("3.95")  # ORCA/USDC
-            
-            # Default fallback rate
-            return Decimal("1.0")
-            
+            # Use real Jupiter API integration
+            price = await self.engine.get_token_price_jupiter(token_in, token_out)
+            return price
         except Exception as e:
-            logger.debug(f"Error getting exchange rate {token_in}/{token_out}: {e}")
+            logger.debug(f"Error getting exchange rate: {e}")
             return None
     
     def _is_stablecoin_pair(self, token_in: str, token_out: str) -> bool:
@@ -228,44 +207,115 @@ class SolanaTriangularArbitrageEngine(BaseArbitrageEngine):
         return token_in in stablecoins and token_out in stablecoins
     
     async def _get_token_price_usd(self, token: str) -> Decimal:
-        """Get token price in USD"""
+        """Get real token price in USD using Jupiter"""
         try:
-            # Mock USD prices for Solana tokens
-            if token == self.config.TOKENS["SOL"]:
-                return Decimal("180.00")
-            elif token == self.config.TOKENS["USDC"]:
+            # For stablecoins, return 1.0
+            if token in [self.config.TOKENS["USDC"], self.config.TOKENS["USDT"]]:
                 return Decimal("1.00")
-            elif token == self.config.TOKENS["USDT"]:
-                return Decimal("1.00")
-            elif token == self.config.TOKENS["RAY"]:
-                return Decimal("1.50")
-            elif token == self.config.TOKENS["ORCA"]:
-                return Decimal("4.00")
-            elif token == self.config.TOKENS["SRM"]:
-                return Decimal("0.60")
-            else:
-                return Decimal("1.00")  # Fallback
-                
-        except Exception:
+            
+            # Get price against USDC using Jupiter
+            usdc_token = self.config.TOKENS["USDC"]
+            if token != usdc_token:
+                price = await self.engine.get_token_price_jupiter(token, usdc_token)
+                if price:
+                    return price
+            
+            # Fallback prices for common tokens
+            fallback_prices = {
+                self.config.TOKENS["SOL"]: Decimal("180.00"),
+                self.config.TOKENS["RAY"]: Decimal("1.50"),
+                self.config.TOKENS["ORCA"]: Decimal("4.00"),
+                self.config.TOKENS["SRM"]: Decimal("0.60"),
+                self.config.TOKENS["BTC"]: Decimal("65000.00"),
+                self.config.TOKENS["ETH"]: Decimal("3200.00"),
+                self.config.TOKENS["BONK"]: Decimal("0.000025")
+            }
+            return fallback_prices.get(token, Decimal("1.00"))
+            
+        except Exception as e:
+            logger.debug(f"Error getting USD price for {token}: {e}")
             return Decimal("1.00")
     
-    async def _estimate_triangular_transaction_cost(self) -> Decimal:
-        """Estimate transaction cost for triangular arbitrage"""
+    async def _get_sol_price_usd(self) -> Decimal:
+        """Get SOL price in USD"""
         try:
-            # Solana transaction cost for 3 swaps (could be batched)
+            sol_token = self.config.TOKENS["SOL"]
+            usdc_token = self.config.TOKENS["USDC"]
+            price = await self.engine.get_token_price_jupiter(sol_token, usdc_token)
+            return price if price else Decimal("180.00")
+        except Exception:
+            return Decimal("180.00")  # Fallback
+    
+    async def _estimate_transaction_cost(self) -> Decimal:
+        """Estimate real transaction cost in USD"""
+        try:
+            # Solana transaction costs are very low
             base_fee_lamports = 5000  # Base transaction fee
-            compute_fee_lamports = self.config.PRIORITY_FEE_LAMPORTS * 3  # 3 swaps
+            compute_fee_lamports = self.config.PRIORITY_FEE_LAMPORTS
             
             total_fee_lamports = base_fee_lamports + compute_fee_lamports
             total_fee_sol = Decimal(total_fee_lamports) / Decimal(self.config.LAMPORTS_PER_SOL)
             
-            sol_price_usd = Decimal("180.00")
+            # Get SOL price in USD
+            sol_price_usd = await self._get_sol_price_usd()
             transaction_cost_usd = total_fee_sol * sol_price_usd
             
             return transaction_cost_usd
             
         except Exception:
-            return Decimal("0.02")  # Very low fallback
+            return Decimal("0.01")  # Very low fallback
+    
+    async def _execute_swap(
+        self, 
+        token_in: str, 
+        token_out: str, 
+        amount_in: Decimal
+    ) -> Dict[str, Any]:
+        """Execute real token swap using Jupiter"""
+        try:
+            logger.info(f"Executing swap: {amount_in} {token_in} -> {token_out}")
+            
+            # Convert to lamports/smallest unit
+            token_in_decimals = await self.engine._get_token_decimals(token_in)
+            amount_in_raw = int(amount_in * Decimal(10 ** token_in_decimals))
+            
+            # Execute swap using Jupiter
+            result = await self.engine.execute_jupiter_swap(
+                input_mint=token_in,
+                output_mint=token_out,
+                amount=amount_in_raw,
+                slippage_bps=50  # 0.5% slippage
+            )
+            
+            if result["success"]:
+                # Convert output amount back to decimal
+                token_out_decimals = await self.engine._get_token_decimals(token_out)
+                amount_out = Decimal(result["output_amount"]) / Decimal(10 ** token_out_decimals)
+                
+                # Estimate transaction cost
+                transaction_cost = await self._estimate_transaction_cost()
+                
+                return {
+                    "success": True,
+                    "amount_out": amount_out,
+                    "tx_signature": result["tx_signature"],
+                    "transaction_cost": transaction_cost,
+                    "price_impact": result["price_impact"]
+                }
+            else:
+                return {
+                    "success": False,
+                    "error": result.get("error", "Unknown error"),
+                    "transaction_cost": Decimal("0")
+                }
+            
+        except Exception as e:
+            logger.error(f"Error executing swap: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+                "transaction_cost": Decimal("0")
+            }
     
     async def _estimate_path_liquidity(self, path: List[str]) -> Decimal:
         """Estimate liquidity for triangular path"""
@@ -286,27 +336,52 @@ class SolanaTriangularArbitrageEngine(BaseArbitrageEngine):
         try:
             logger.info(f"Executing triangular swaps: {token_a} -> {token_b} -> {token_c} -> {token_a}")
             
-            # Mock execution using Jupiter aggregator
-            # This could be done as a single batched transaction on Solana
+            # Execute the three swaps in sequence
+            swap_results = []
+            amount_after_first = start_amount
+            amount_after_second = start_amount
             
-            # Simulate the three swaps
-            amount_after_first = start_amount * Decimal("0.9975")   # After fees
-            amount_after_second = amount_after_first * Decimal("0.9975")
-            final_amount = amount_after_second * Decimal("1.008")  # Profitable final swap
+            # First swap
+            swap_result = await self._execute_swap(token_a, token_b, amount_after_first)
+            swap_results.append(swap_result)
+            if swap_result["success"]:
+                amount_after_first = swap_result["amount_out"]
             
-            return {
-                "success": True,
-                "final_amount": final_amount,
-                "token_price": await self._get_token_price_usd(token_a),
-                "total_transaction_cost": Decimal("0.015"),  # Very low on Solana
-                "tx_signatures": [
-                    f"{'sol_tri_1' * 8}{'1' * 24}",
-                    f"{'sol_tri_2' * 8}{'2' * 24}",
-                    f"{'sol_tri_3' * 8}{'3' * 24}"
-                ]
-            }
+            # Second swap
+            swap_result = await self._execute_swap(token_b, token_c, amount_after_first)
+            swap_results.append(swap_result)
+            if swap_result["success"]:
+                amount_after_second = swap_result["amount_out"]
+            
+            # Third swap
+            swap_result = await self._execute_swap(token_c, token_a, amount_after_second)
+            swap_results.append(swap_result)
+            
+            # Calculate final amount and transaction cost
+            final_amount = amount_after_second
+            if swap_result["success"]:
+                final_amount = swap_result["amount_out"]
+            
+            total_transaction_cost = sum([swap_result["transaction_cost"] for swap_result in swap_results])
+            
+            # Return the result
+            if all([swap_result["success"] for swap_result in swap_results]):
+                return {
+                    "success": True,
+                    "final_amount": final_amount,
+                    "token_price": await self._get_token_price_usd(token_a),
+                    "total_transaction_cost": total_transaction_cost,
+                    "tx_signatures": [swap_result["tx_signature"] for swap_result in swap_results]
+                }
+            else:
+                return {
+                    "success": False,
+                    "error": "Swap failed",
+                    "total_transaction_cost": total_transaction_cost
+                }
             
         except Exception as e:
+            logger.error(f"Error executing triangular swaps: {e}")
             return {
                 "success": False,
                 "error": str(e),

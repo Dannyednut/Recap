@@ -5,6 +5,7 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQu
 from cex.models import Opportunity, TradeResult
 from cex.config import Config
 from cex.engine import logger
+from shared_telegram_manager import telegram_manager
 
 # Simple whitelist check
 def is_whitelisted_chat(chat_id):
@@ -17,26 +18,48 @@ def is_whitelisted_chat(chat_id):
 
 class TelegramNotifier:
     def __init__(self, chat_id, execution_endpoint: str = None):
+        # Use the shared telegram manager instead of creating a new bot
+        self.telegram_manager = telegram_manager
         self.chat_id = int(chat_id) if chat_id else None
-        token = getattr(Config, "TELEGRAM_BOT_TOKEN", None)
-        if not token:
-            raise RuntimeError("Telegram bot token not configured.")
-        self.bot = Bot(token=token)
-        self.dp = Dispatcher()
         self.execution_endpoint = execution_endpoint or Config.EXECUTE_URL
 
-        # Register handlers
-        # Accept callback queries that begin with EXECUTE_
-        self.dp.callback_query.register(self.handle_execute_button, lambda c: str(c.data).startswith("EXECUTE_"))
+        # Register handlers with the shared dispatcher
+        if self.telegram_manager.dispatcher:
+            # Accept callback queries that begin with EXECUTE_
+            self.telegram_manager.dispatcher.callback_query.register(
+                self.handle_execute_button, 
+                lambda c: str(c.data).startswith("EXECUTE_")
+            )
 
     async def send_opportunity_alert(self, opportunity: Opportunity, Id: str = None):
         """
         Send an opportunity alert message with inline buttons to execute trade.
         """
-        message_text = self._format_opportunity_message(opportunity)
-        keyboard = self._build_action_buttons(opportunity, Id)
+        if not self.telegram_manager.is_available():
+            return
+            
         try:
-            await self.bot.send_message(chat_id=self.chat_id, text=message_text, parse_mode="HTML", reply_markup=keyboard)
+            # Convert opportunity to dict format for the manager
+            opportunity_data = {
+                'trading_pair': getattr(opportunity, 'trading_pair', None),
+                'buy_exchange': getattr(opportunity, 'buy_exchange', None),
+                'sell_exchange': getattr(opportunity, 'sell_exchange', None),
+                'buy_price': getattr(opportunity, 'buy_price', 0),
+                'sell_price': getattr(opportunity, 'sell_price', 0),
+                'profit_percentage': getattr(opportunity, 'profit_percentage', 0),
+                'profit_usd': getattr(opportunity, 'profit_usd', 0),
+                'volume': getattr(opportunity, 'volume', 0),
+                'detected_at': getattr(opportunity, 'detected_at', ''),
+                'exchange': getattr(opportunity, 'exchange', None),
+                'trading_path': getattr(opportunity, 'trading_path', None),
+                'initial_amount': getattr(opportunity, 'initial_amount', 0),
+                'final_amount': getattr(opportunity, 'final_amount', 0)
+            }
+            
+            success = await self.telegram_manager.send_cex_opportunity_alert(opportunity_data, Id)
+            if not success:
+                logger.error("Failed to send CEX opportunity alert via shared manager")
+                
         except Exception as e:
             logger.error(f"Failed to send Telegram alert: {e}")
 
@@ -113,20 +136,25 @@ class TelegramNotifier:
         await callback_query.message.edit_text(text, parse_mode="HTML")
 
     async def send_trade_result(self, chat_id: int, trade_result: TradeResult):
-        status = trade_result.status.capitalize()
-        profit = f"${trade_result.profit_usd:.2f}" if trade_result.profit_usd is not None else "N/A"
-        message = (
-            f"📊 <b>Trade Result</b>\n"
-            f"Status: {status}\n"
-            f"Message: {trade_result.message}\n"
-            f"Trade ID: {trade_result.trade_id or 'N/A'}\n"
-            f"Profit: {profit}"
-        )
-        target = chat_id or self.chat_id
+        if not self.telegram_manager.is_available():
+            return
+            
         try:
-            await self.bot.send_message(chat_id=target, text=message, parse_mode="HTML")
+            # Convert trade result to dict format for the manager
+            trade_result_data = {
+                'status': getattr(trade_result, 'status', 'unknown'),
+                'message': getattr(trade_result, 'message', ''),
+                'trade_id': getattr(trade_result, 'trade_id', None),
+                'profit_usd': getattr(trade_result, 'profit_usd', None)
+            }
+            
+            success = await self.telegram_manager.send_cex_trade_result(trade_result_data)
+            if not success:
+                logger.error("Failed to send CEX trade result via shared manager")
+                
         except Exception as e:
             logger.error(f"Failed to send trade result to Telegram: {e}")
 
     async def start_polling(self):
-        await self.dp.start_polling(self.bot, skip_updates=True)
+        if self.telegram_manager.dispatcher:
+            await self.telegram_manager.dispatcher.start_polling(self.telegram_manager.bot, skip_updates=True)

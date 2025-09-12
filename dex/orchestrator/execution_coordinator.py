@@ -10,8 +10,8 @@ import json
 # Shared imports
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'shared'))
-from models.arbitrage_models import ArbitrageOpportunity, ExecutionResult
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from shared.models.arbitrage_models import ArbitrageOpportunity, ExecutionResult
 
 logger = logging.getLogger(__name__)
 

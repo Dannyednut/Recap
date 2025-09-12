@@ -6,7 +6,7 @@ class BaseEngine(ABC):
     """Base interface for all chain engines"""
     
     @abstractmethod
-    async def initialize(self) -> None:
+    async def initialize(self) -> bool:
         """Initialize Web3 connection and contracts"""
         pass
     
