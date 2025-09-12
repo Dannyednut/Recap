@@ -292,3 +292,881 @@
 2025-09-11 22:21:07,740 - WARNING - Failed to fetch balance for bybit (attempt 1): bybit requires "apiKey" credential
 2025-09-11 22:21:10,885 - WARNING - Failed to fetch balance for bybit (attempt 2): bybit requires "apiKey" credential
 2025-09-11 22:21:15,978 - WARNING - Failed to fetch balance for bybit (attempt 3): bybit requires "apiKey" credential
+2025-09-11 22:07:29,409 - INFO - Initializing exchanges...
+2025-09-11 22:07:29,410 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:07:29,411 - WARNING - No exchange configurations available to initialize.
+2025-09-11 22:07:29,412 - INFO - Starting all arbitrage scanners...
+2025-09-11 22:07:29,413 - INFO - Starting cross-exchange price streams...
+2025-09-11 22:07:29,415 - INFO - Starting Triangular Arbitrage Engine...
+2025-09-11 22:07:29,417 - ERROR - No exchanges configured for triangular arbitrage
+2025-09-11 22:07:29,418 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:07:29,420 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:07:29,424 - INFO - Running on http://0.0.0.0:5000 (CTRL + C to quit)
+2025-09-11 22:07:34,421 - INFO - Updating account balances...
+2025-09-11 22:07:34,421 - INFO - Account balances updated successfully.
+2025-09-11 22:07:59,422 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:07:59,422 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:08:29,425 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:08:29,425 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:08:59,429 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:08:59,429 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:09:29,432 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:09:29,432 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:09:59,435 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:09:59,436 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:10:29,438 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:10:29,438 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:10:59,441 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:10:59,441 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:11:29,443 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:11:29,443 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:11:59,445 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:11:59,445 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:12:29,447 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:12:29,447 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:12:34,423 - INFO - Updating account balances...
+2025-09-11 22:12:34,423 - INFO - Account balances updated successfully.
+2025-09-11 22:12:59,449 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:12:59,449 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:13:29,451 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:13:29,451 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:13:59,454 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:13:59,454 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:14:29,456 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:14:29,457 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:14:59,459 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:14:59,459 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:15:29,461 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:15:29,461 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:15:59,463 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:15:59,463 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:16:29,465 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:16:29,465 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:16:59,467 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:16:59,467 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:17:29,469 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:17:29,469 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:17:34,426 - INFO - Updating account balances...
+2025-09-11 22:17:34,426 - INFO - Account balances updated successfully.
+2025-09-11 22:17:59,471 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:17:59,471 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:18:29,473 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:18:29,473 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:18:59,475 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:18:59,475 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:19:29,477 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:19:29,477 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:19:59,479 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:19:59,479 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:20:29,481 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:20:29,481 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:20:59,483 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:20:59,483 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:21:29,485 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:21:29,485 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:21:59,487 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:21:59,487 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:22:29,489 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:22:29,489 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:22:34,427 - INFO - Updating account balances...
+2025-09-11 22:22:34,427 - INFO - Account balances updated successfully.
+2025-09-11 22:22:59,491 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:22:59,491 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:23:29,493 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:23:29,493 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:23:59,499 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:23:59,499 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:24:29,501 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:24:29,501 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:24:59,503 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:24:59,503 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:25:29,505 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:25:29,505 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:25:59,507 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:25:59,507 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:26:29,509 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:26:29,510 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:26:59,512 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:26:59,512 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:27:29,514 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:27:29,514 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:27:34,430 - INFO - Updating account balances...
+2025-09-11 22:27:34,430 - INFO - Account balances updated successfully.
+2025-09-11 22:27:59,516 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:27:59,516 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:28:29,518 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:28:29,518 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:28:59,521 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:28:59,521 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:29:29,523 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:29:29,523 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:29:59,525 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:29:59,525 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:30:29,527 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:30:29,527 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:30:59,529 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:30:59,529 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:31:29,532 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:31:29,532 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:31:59,533 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:31:59,533 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:32:29,534 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:32:29,535 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:32:34,433 - INFO - Updating account balances...
+2025-09-11 22:32:34,433 - INFO - Account balances updated successfully.
+2025-09-11 22:32:59,537 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:32:59,537 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:33:29,539 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:33:29,539 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:33:59,541 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:33:59,541 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:34:29,542 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:34:29,542 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:34:59,543 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:34:59,543 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:35:29,544 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:35:29,544 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:35:59,545 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:35:59,546 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:36:29,546 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:36:29,547 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:36:59,547 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:36:59,547 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:37:29,548 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:37:29,549 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:37:34,435 - INFO - Updating account balances...
+2025-09-11 22:37:34,435 - INFO - Account balances updated successfully.
+2025-09-11 22:37:59,550 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:37:59,551 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:38:29,553 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:38:29,554 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:38:59,555 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:38:59,556 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:39:29,557 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:39:29,557 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:39:59,558 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:39:59,558 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:40:29,560 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:40:29,560 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:40:59,561 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:40:59,561 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:41:29,562 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:41:29,562 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:41:59,563 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:41:59,563 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:42:29,564 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:42:29,564 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:42:34,437 - INFO - Updating account balances...
+2025-09-11 22:42:34,437 - INFO - Account balances updated successfully.
+2025-09-11 22:42:59,564 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:42:59,565 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:43:29,568 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:43:29,568 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:43:59,571 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:43:59,571 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:44:29,574 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:44:29,574 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:44:59,577 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:44:59,577 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:45:29,581 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:45:29,581 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:45:59,585 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:45:59,585 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:46:29,588 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:46:29,588 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:46:59,590 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:46:59,590 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:47:29,593 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:47:29,593 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:47:34,438 - INFO - Updating account balances...
+2025-09-11 22:47:34,438 - INFO - Account balances updated successfully.
+2025-09-11 22:47:59,597 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:47:59,597 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:48:29,599 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:48:29,599 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:48:59,601 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:48:59,602 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:49:29,605 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:49:29,605 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:49:53,962 - INFO - Initializing exchanges...
+2025-09-11 22:49:53,963 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:49:53,963 - WARNING - No exchange configurations available to initialize.
+2025-09-11 22:49:53,963 - INFO - Starting all arbitrage scanners...
+2025-09-11 22:49:53,963 - INFO - Starting cross-exchange price streams...
+2025-09-11 22:49:53,963 - INFO - Starting Triangular Arbitrage Engine...
+2025-09-11 22:49:53,964 - ERROR - No exchanges configured for triangular arbitrage
+2025-09-11 22:49:53,964 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:49:53,964 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:49:53,970 - INFO - Running on http://0.0.0.0:5000 (CTRL + C to quit)
+2025-09-11 22:49:58,965 - INFO - Updating account balances...
+2025-09-11 22:49:58,965 - INFO - Account balances updated successfully.
+2025-09-11 22:50:23,967 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:50:23,967 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:50:53,970 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:50:53,970 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:51:23,973 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:51:23,976 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:51:53,978 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:51:53,978 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:52:23,981 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:52:23,981 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:52:53,984 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:52:53,984 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:54:27,649 - INFO - Initializing Ethereum DEX service...
+2025-09-11 22:54:27,649 - INFO - Initializing Ethereum arbitrage service...
+2025-09-11 22:54:27,815 - INFO - Wallet initialized: 0x684e8183b9Aff699a862B43F27A17741c6cfEfd5
+2025-09-11 22:54:27,953 - WARNING - Chain ID mismatch: expected 1, got 11155111
+2025-09-11 22:54:27,953 - INFO - Ethereum engine initialized on chain 11155111
+2025-09-11 22:54:27,953 - INFO - Initializing Ethereum cross-arbitrage engine...
+2025-09-11 22:54:27,953 - INFO - Initializing Ethereum triangular arbitrage engine...
+2025-09-11 22:54:27,954 - INFO - Mempool monitoring disabled
+2025-09-11 22:54:27,954 - INFO - Initializing Ethereum flash loan engine...
+2025-09-11 22:54:27,954 - INFO - Initializing Uniswap V2 adapter...
+2025-09-11 22:54:27,955 - INFO - Initializing Uniswap V3 adapter...
+2025-09-11 22:54:27,957 - INFO - Ethereum arbitrage service initialized successfully
+2025-09-11 22:54:27,957 - INFO - Ethereum DEX service initialized successfully
+2025-09-11 22:54:27,958 - INFO - Initializing exchanges...
+2025-09-11 22:54:27,958 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:54:27,958 - WARNING - No exchange configurations available to initialize.
+2025-09-11 22:54:27,958 - INFO - Starting all arbitrage scanners...
+2025-09-11 22:54:27,958 - INFO - Starting cross-exchange price streams...
+2025-09-11 22:54:27,959 - INFO - Starting Triangular Arbitrage Engine...
+2025-09-11 22:54:27,959 - ERROR - No exchanges configured for triangular arbitrage
+2025-09-11 22:54:27,959 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:54:27,959 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:54:27,961 - INFO - Running on http://0.0.0.0:5000 (CTRL + C to quit)
+2025-09-11 22:54:32,960 - INFO - Updating account balances...
+2025-09-11 22:54:32,960 - INFO - Account balances updated successfully.
+2025-09-11 22:54:57,961 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:54:57,964 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:55:28,000 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:55:28,000 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:55:58,001 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:55:58,001 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:56:28,002 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:56:28,002 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:56:58,004 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:56:58,007 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:57:28,009 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:57:28,009 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:57:38,362 - INFO - Initializing Ethereum DEX service...
+2025-09-11 22:57:38,363 - INFO - Initializing Ethereum arbitrage service...
+2025-09-11 22:57:38,527 - INFO - Wallet initialized: 0x684e8183b9Aff699a862B43F27A17741c6cfEfd5
+2025-09-11 22:57:38,668 - INFO - Ethereum engine initialized on chain 11155111
+2025-09-11 22:57:38,668 - INFO - Initializing Ethereum cross-arbitrage engine...
+2025-09-11 22:57:38,669 - INFO - Initializing Ethereum triangular arbitrage engine...
+2025-09-11 22:57:38,669 - INFO - Mempool monitoring disabled
+2025-09-11 22:57:38,669 - INFO - Initializing Ethereum flash loan engine...
+2025-09-11 22:57:38,669 - INFO - Initializing Uniswap V2 adapter...
+2025-09-11 22:57:38,671 - INFO - Initializing Uniswap V3 adapter...
+2025-09-11 22:57:38,673 - INFO - Ethereum arbitrage service initialized successfully
+2025-09-11 22:57:38,673 - INFO - Ethereum DEX service initialized successfully
+2025-09-11 22:57:38,673 - INFO - Started Ethereum DEX service
+2025-09-11 22:57:38,673 - INFO - Initializing exchanges...
+2025-09-11 22:57:38,673 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:57:38,673 - WARNING - No exchange configurations available to initialize.
+2025-09-11 22:57:38,673 - INFO - Starting all arbitrage scanners...
+2025-09-11 22:57:38,673 - INFO - Starting Ethereum arbitrage service...
+2025-09-11 22:57:38,674 - INFO - Starting cross-exchange price streams...
+2025-09-11 22:57:38,674 - INFO - Starting Triangular Arbitrage Engine...
+2025-09-11 22:57:38,674 - ERROR - No exchanges configured for triangular arbitrage
+2025-09-11 22:57:38,674 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:57:38,675 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:57:38,682 - INFO - Running on http://0.0.0.0:5000 (CTRL + C to quit)
+2025-09-11 22:57:43,676 - INFO - Updating account balances...
+2025-09-11 22:57:43,676 - INFO - Account balances updated successfully.
+2025-09-11 22:58:08,675 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:58:08,675 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:58:38,676 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:58:38,677 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:59:08,677 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:59:08,678 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:59:38,679 - WARNING - No BASE44_API_URL configured.
+2025-09-11 22:59:38,679 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:00:08,680 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:00:08,681 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:00:38,682 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:00:38,682 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:01:08,683 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:01:08,683 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:01:38,684 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:01:38,684 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:02:08,684 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:02:08,685 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:02:38,686 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:02:38,686 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:02:43,679 - INFO - Updating account balances...
+2025-09-11 23:02:43,679 - INFO - Account balances updated successfully.
+2025-09-11 23:03:08,687 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:03:08,687 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:03:38,689 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:03:38,689 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:04:08,690 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:04:08,692 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:04:38,695 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:04:38,695 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:05:08,697 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:05:08,697 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:05:38,699 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:05:38,699 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:06:08,700 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:06:08,701 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:06:38,702 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:06:38,702 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:07:08,704 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:07:08,704 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:07:38,706 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:07:38,706 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:07:43,680 - INFO - Updating account balances...
+2025-09-11 23:07:43,680 - INFO - Account balances updated successfully.
+2025-09-11 23:08:08,708 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:08:08,709 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:08:38,710 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:08:38,711 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:09:08,712 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:09:08,712 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:09:38,713 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:09:38,714 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:10:08,715 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:10:08,715 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:10:38,717 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:10:38,718 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:11:08,720 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:11:08,720 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:11:38,722 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:11:38,723 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:12:08,724 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:12:08,725 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:12:38,725 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:12:38,725 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:12:43,681 - INFO - Updating account balances...
+2025-09-11 23:12:43,682 - INFO - Account balances updated successfully.
+2025-09-11 23:13:08,727 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:13:08,728 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:13:38,728 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:13:38,728 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:14:08,729 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:14:08,729 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:14:38,730 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:14:38,730 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:15:08,731 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:15:08,731 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:15:38,733 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:15:38,733 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:16:08,736 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:16:08,736 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:30:37,344 - INFO - Initializing Ethereum DEX service...
+2025-09-11 23:30:37,345 - INFO - Initializing Ethereum arbitrage service...
+2025-09-11 23:30:37,536 - INFO - Wallet initialized: 0x684e8183b9Aff699a862B43F27A17741c6cfEfd5
+2025-09-11 23:30:37,678 - INFO - Ethereum engine initialized on chain 11155111
+2025-09-11 23:30:37,678 - INFO - Initializing Ethereum cross-arbitrage engine...
+2025-09-11 23:30:37,679 - INFO - Initializing Ethereum triangular arbitrage engine...
+2025-09-11 23:30:37,679 - INFO - Mempool monitoring disabled
+2025-09-11 23:30:37,679 - INFO - Initializing Ethereum flash loan engine...
+2025-09-11 23:30:37,679 - INFO - Initializing Uniswap V2 adapter...
+2025-09-11 23:30:37,680 - INFO - Initializing Uniswap V3 adapter...
+2025-09-11 23:30:37,684 - INFO - Ethereum arbitrage service initialized successfully
+2025-09-11 23:30:37,685 - INFO - Ethereum DEX service initialized successfully
+2025-09-11 23:30:37,685 - INFO - Started Ethereum DEX service
+2025-09-11 23:30:37,685 - INFO - Initializing exchanges...
+2025-09-11 23:30:37,685 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:30:37,685 - WARNING - No exchange configurations available to initialize.
+2025-09-11 23:30:37,685 - INFO - Starting all arbitrage scanners...
+2025-09-11 23:30:37,686 - INFO - Starting Ethereum arbitrage service...
+2025-09-11 23:30:37,686 - INFO - Starting cross-exchange price streams...
+2025-09-11 23:30:37,686 - INFO - Starting Triangular Arbitrage Engine...
+2025-09-11 23:30:37,687 - ERROR - No exchanges configured for triangular arbitrage
+2025-09-11 23:30:37,687 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:30:37,687 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:30:37,688 - INFO - Running on http://0.0.0.0:5000 (CTRL + C to quit)
+2025-09-11 23:30:42,688 - INFO - Updating account balances...
+2025-09-11 23:30:42,688 - INFO - Account balances updated successfully.
+2025-09-11 23:31:07,688 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:31:07,688 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:31:37,689 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:31:37,689 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:32:07,691 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:32:07,691 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:32:37,692 - WARNING - No BASE44_API_URL configured.
+2025-09-11 23:32:37,692 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:01:04,912 - INFO - Initializing Ethereum DEX service...
+2025-09-12 00:01:04,946 - INFO - Initializing Ethereum arbitrage service...
+2025-09-12 00:01:05,129 - INFO - Wallet initialized: 0x684e8183b9Aff699a862B43F27A17741c6cfEfd5
+2025-09-12 00:01:05,260 - INFO - Ethereum engine initialized on chain 11155111
+2025-09-12 00:01:05,261 - INFO - Initializing Ethereum cross-arbitrage engine...
+2025-09-12 00:01:05,263 - INFO - Cross-arbitrage adapters initialized successfully
+2025-09-12 00:01:05,263 - INFO - Initializing Ethereum triangular arbitrage engine...
+2025-09-12 00:01:05,263 - INFO - Mempool monitoring disabled
+2025-09-12 00:01:05,263 - INFO - Initializing Ethereum flash loan engine...
+2025-09-12 00:01:05,263 - INFO - Initializing contract executor...
+2025-09-12 00:01:05,264 - WARNING - Deployment file /home/runner/workspace/dex/ethereum_service/deployed_contracts.json not found
+2025-09-12 00:01:05,264 - INFO - Deploying arbitrage contracts...
+2025-09-12 00:01:05,270 - ERROR - solc compiler not found. Please install Solidity compiler.
+2025-09-12 00:01:05,270 - ERROR - Error deploying ArbitrageExecutor: Solidity compiler not installed
+2025-09-12 00:01:05,270 - ERROR - Error deploying contracts: Solidity compiler not installed
+2025-09-12 00:01:05,270 - ERROR - Error initializing contract executor: Solidity compiler not installed
+2025-09-12 00:01:05,270 - ERROR - Failed to initialize Ethereum service: Solidity compiler not installed
+2025-09-12 00:01:05,270 - WARNING - Ethereum DEX initialization failed (continuing with CEX only): Solidity compiler not installed
+2025-09-12 00:01:05,271 - INFO - Initializing exchanges...
+2025-09-12 00:01:05,271 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:01:05,271 - WARNING - No exchange configurations available to initialize.
+2025-09-12 00:01:05,271 - INFO - Starting all arbitrage scanners...
+2025-09-12 00:01:05,271 - INFO - Starting cross-exchange price streams...
+2025-09-12 00:01:05,271 - INFO - Starting Triangular Arbitrage Engine...
+2025-09-12 00:01:05,272 - ERROR - No exchanges configured for triangular arbitrage
+2025-09-12 00:01:05,272 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:01:05,272 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:01:05,273 - INFO - Running on http://0.0.0.0:5000 (CTRL + C to quit)
+2025-09-12 00:01:10,273 - INFO - Updating account balances...
+2025-09-12 00:01:10,273 - INFO - Account balances updated successfully.
+2025-09-12 00:01:35,273 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:01:35,273 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:02:05,275 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:02:05,276 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:02:35,277 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:02:35,277 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:02:43,920 - INFO - Initializing Ethereum DEX service...
+2025-09-12 00:02:43,950 - INFO - Initializing Ethereum arbitrage service...
+2025-09-12 00:02:44,127 - INFO - Wallet initialized: 0x684e8183b9Aff699a862B43F27A17741c6cfEfd5
+2025-09-12 00:02:44,276 - INFO - Ethereum engine initialized on chain 11155111
+2025-09-12 00:02:44,277 - INFO - Initializing Ethereum cross-arbitrage engine...
+2025-09-12 00:02:44,280 - INFO - Cross-arbitrage adapters initialized successfully
+2025-09-12 00:02:44,283 - INFO - Initializing Ethereum triangular arbitrage engine...
+2025-09-12 00:02:44,284 - INFO - Mempool monitoring disabled
+2025-09-12 00:02:44,285 - INFO - Initializing Ethereum flash loan engine...
+2025-09-12 00:02:44,285 - INFO - Initializing contract executor...
+2025-09-12 00:02:44,285 - WARNING - Deployment file /home/runner/workspace/dex/ethereum_service/deployed_contracts.json not found
+2025-09-12 00:02:44,285 - INFO - Deploying arbitrage contracts...
+2025-09-12 00:02:45,343 - ERROR - Compilation failed: Error: Source "@openzeppelin/contracts/security/ReentrancyGuard.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:4:1:
+  |
+4 | import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error: Source "@openzeppelin/contracts/access/Ownable.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:5:1:
+  |
+5 | import "@openzeppelin/contracts/access/Ownable.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error: Source "@openzeppelin/contracts/token/ERC20/IERC20.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:6:1:
+  |
+6 | import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error: Source "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:7:1:
+  |
+7 | import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+2025-09-12 00:02:45,344 - ERROR - Error compiling contract: Contract compilation failed: Error: Source "@openzeppelin/contracts/security/ReentrancyGuard.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:4:1:
+  |
+4 | import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error: Source "@openzeppelin/contracts/access/Ownable.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:5:1:
+  |
+5 | import "@openzeppelin/contracts/access/Ownable.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error: Source "@openzeppelin/contracts/token/ERC20/IERC20.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:6:1:
+  |
+6 | import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error: Source "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:7:1:
+  |
+7 | import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+2025-09-12 00:02:45,344 - ERROR - Error deploying ArbitrageExecutor: Contract compilation failed: Error: Source "@openzeppelin/contracts/security/ReentrancyGuard.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:4:1:
+  |
+4 | import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error: Source "@openzeppelin/contracts/access/Ownable.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:5:1:
+  |
+5 | import "@openzeppelin/contracts/access/Ownable.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error: Source "@openzeppelin/contracts/token/ERC20/IERC20.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:6:1:
+  |
+6 | import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error: Source "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:7:1:
+  |
+7 | import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+2025-09-12 00:02:45,344 - ERROR - Error deploying contracts: Contract compilation failed: Error: Source "@openzeppelin/contracts/security/ReentrancyGuard.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:4:1:
+  |
+4 | import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error: Source "@openzeppelin/contracts/access/Ownable.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:5:1:
+  |
+5 | import "@openzeppelin/contracts/access/Ownable.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error: Source "@openzeppelin/contracts/token/ERC20/IERC20.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:6:1:
+  |
+6 | import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error: Source "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:7:1:
+  |
+7 | import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+2025-09-12 00:02:45,345 - WARNING - Contract deployment failed: Contract compilation failed: Error: Source "@openzeppelin/contracts/security/ReentrancyGuard.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:4:1:
+  |
+4 | import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error: Source "@openzeppelin/contracts/access/Ownable.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:5:1:
+  |
+5 | import "@openzeppelin/contracts/access/Ownable.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error: Source "@openzeppelin/contracts/token/ERC20/IERC20.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:6:1:
+  |
+6 | import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error: Source "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol" not found: File not found. Searched the following locations: "".
+ --> ArbitrageExecutor.sol:7:1:
+  |
+7 | import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+2025-09-12 00:02:45,345 - INFO - Contract executor will run in monitoring-only mode (no execution)
+2025-09-12 00:02:45,345 - INFO - Ethereum arbitrage service initialized successfully
+2025-09-12 00:02:45,345 - INFO - Ethereum DEX service initialized successfully
+2025-09-12 00:02:45,346 - INFO - Started Ethereum DEX service
+2025-09-12 00:02:45,346 - INFO - Initializing exchanges...
+2025-09-12 00:02:45,347 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:02:45,347 - WARNING - No exchange configurations available to initialize.
+2025-09-12 00:02:45,347 - INFO - Starting all arbitrage scanners...
+2025-09-12 00:02:45,348 - INFO - Starting Ethereum arbitrage service...
+2025-09-12 00:02:45,349 - INFO - Starting cross-exchange price streams...
+2025-09-12 00:02:45,349 - INFO - Starting Triangular Arbitrage Engine...
+2025-09-12 00:02:45,349 - ERROR - No exchanges configured for triangular arbitrage
+2025-09-12 00:02:45,349 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:02:45,349 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:02:45,350 - INFO - Starting cross-DEX price monitoring...
+2025-09-12 00:02:45,357 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:02:45,362 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 500: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:02:45,363 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 3000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:02:45,364 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 10000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:02:45,369 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:02:45,386 - INFO - Running on http://0.0.0.0:5000 (CTRL + C to quit)
+2025-09-12 00:02:45,851 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:02:45,894 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:02:46,061 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 500: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:02:46,609 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 3000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:02:47,400 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 10000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:02:50,350 - INFO - Updating account balances...
+2025-09-12 00:02:50,350 - INFO - Account balances updated successfully.
+2025-09-12 00:03:15,351 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:03:15,352 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:03:15,859 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:03:15,901 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:03:16,309 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:03:16,426 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:03:17,405 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 500: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:03:17,406 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 3000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:03:17,407 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 10000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:03:18,004 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 500: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:03:18,599 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 3000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:03:19,141 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 10000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:03:45,353 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:03:45,353 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:03:46,313 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:03:46,431 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:03:46,737 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:03:46,932 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:03:49,146 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 500: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:03:49,147 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 3000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:03:49,148 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 10000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:03:49,764 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 500: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:03:50,311 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 3000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:03:50,870 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 10000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:04:15,355 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:04:15,355 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:04:16,745 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:04:16,938 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:04:17,194 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:04:17,340 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:04:20,877 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 500: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:04:20,881 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 3000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:04:20,882 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 10000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:04:21,573 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 500: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:04:22,141 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 3000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:04:22,702 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 10000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:04:45,357 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:04:45,358 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:04:47,199 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:04:47,349 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:04:47,574 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:04:47,767 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:04:52,708 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 500: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:04:52,710 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 3000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:04:52,713 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 10000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:04:55,584 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 500: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:04:56,191 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 3000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:04:56,737 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 10000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:05:15,359 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:05:15,360 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:05:17,582 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:05:17,775 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:05:18,163 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:05:18,174 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:05:26,743 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 500: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:05:26,744 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 3000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:05:26,746 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 10000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:05:27,385 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 500: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:05:27,983 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 3000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:05:28,600 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 10000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:05:45,362 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:05:45,362 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:05:48,169 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:05:48,183 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:05:48,541 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:05:48,620 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:05:58,607 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 500: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:05:58,609 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 3000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:05:58,610 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 10000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:05:59,193 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 500: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:05:59,737 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 3000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:06:00,282 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 10000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:06:15,363 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:06:15,364 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:06:18,546 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:06:18,628 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:06:19,001 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:06:19,131 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:06:30,288 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 500: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:06:30,290 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 3000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:06:30,292 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 10000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:06:30,845 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 500: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:06:31,424 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 3000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:06:31,967 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 10000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:06:45,366 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:06:45,366 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:06:49,005 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:06:49,135 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:06:49,443 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:06:49,538 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:07:01,971 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 500: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:07:01,975 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 3000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:07:01,977 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 10000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:07:02,575 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 500: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:07:03,146 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 3000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:07:03,757 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 10000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:07:15,368 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:07:15,368 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:07:19,447 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:07:19,542 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:07:19,909 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:07:19,923 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:07:33,763 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 500: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:07:33,764 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 3000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:07:33,766 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB fee 10000: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:07:34,323 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 500: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:07:34,853 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 3000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:07:35,377 - ERROR - Error getting pool address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7 fee 10000: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+2025-09-12 00:07:45,369 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:07:45,370 - WARNING - No BASE44_API_URL configured.
+2025-09-12 00:07:49,913 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:07:49,928 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB: ('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xA0b86a33E6417aeBaD06072F4b82BC47A1E28fEB')
+2025-09-12 00:07:50,336 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 00:07:50,351 - INFO - Updating account balances...
+2025-09-12 00:07:50,354 - INFO - Account balances updated successfully.
+2025-09-12 00:07:50,377 - ERROR - Error getting pair address for 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/0xdAC17F958D2ee523a2206206994597C13D831ec7: ('execution reverted', 'no data')
+2025-09-12 06:42:26,232 - INFO - Initializing Ethereum DEX service...
+2025-09-12 06:42:26,235 - WARNING - Ethereum DEX initialization failed (continuing with CEX only): The private key must be exactly 32 bytes long, instead of 0 bytes.
+2025-09-12 06:42:26,237 - INFO - Initializing exchanges...
+2025-09-12 06:42:26,306 - INFO - Running on http://0.0.0.0:5001 (CTRL + C to quit)
+2025-09-12 06:42:31,584 - INFO - Successfully initialized bybit
+2025-09-12 06:42:43,832 - ERROR - Failed to initialize kucoin: kucoin GET https://api.kucoin.com/api/v3/currencies
+2025-09-12 06:42:49,009 - ERROR - Failed to initialize bingx: bingx GET https://open-api.bingx.com/openApi/spot/v1/common/symbols?timestamp=1757655764327
+2025-09-12 06:43:02,916 - INFO - Successfully initialized gate
+2025-09-12 06:43:07,913 - INFO - Successfully initialized binance
+2025-09-12 06:43:07,913 - INFO - Starting all arbitrage scanners...
+2025-09-12 06:43:07,913 - INFO - Starting cross-exchange price streams...
+2025-09-12 06:43:07,913 - INFO - Starting Triangular Arbitrage Engine...
+2025-09-12 06:43:07,913 - INFO - Initialized 3 exchanges: ['bybit', 'gate', 'binance']
+2025-09-12 06:43:07,913 - INFO - Starting triangular opportunity scanning...
+2025-09-12 06:43:07,913 - INFO - Start polling
+2025-09-12 06:43:07,913 - INFO - [bybit] Subscribing to FIL/USDT...
+2025-09-12 06:43:07,929 - INFO - [bybit] Subscribing to QTUM/USDT...
+2025-09-12 06:43:07,929 - INFO - [bybit] Subscribing to DOT/USDT...
+2025-09-12 06:43:07,929 - INFO - [bybit] Subscribing to XRP/USDT...
+2025-09-12 06:43:07,932 - INFO - [bybit] Subscribing to ADA/USDT...
+2025-09-12 06:43:07,933 - INFO - [gate] Subscribing to FIL/USDT...
+2025-09-12 06:43:07,934 - INFO - [gate] Subscribing to QTUM/USDT...
+2025-09-12 06:43:07,935 - INFO - [gate] Subscribing to DOT/USDT...
+2025-09-12 06:43:07,936 - INFO - [gate] Subscribing to XRP/USDT...
+2025-09-12 06:43:07,938 - INFO - [gate] Subscribing to ADA/USDT...
+2025-09-12 06:43:07,940 - INFO - [binance] Subscribing to FIL/USDT...
+2025-09-12 06:43:07,942 - INFO - [binance] Subscribing to QTUM/USDT...
+2025-09-12 06:43:07,942 - INFO - [binance] Subscribing to DOT/USDT...
+2025-09-12 06:43:07,942 - INFO - [binance] Subscribing to XRP/USDT...
+2025-09-12 06:43:07,942 - INFO - [binance] Subscribing to ADA/USDT...
+2025-09-12 06:43:07,953 - INFO - [bybit] Initializing triangular scanner...
+2025-09-12 06:43:07,956 - INFO - [bybit] Found 670 active spot markets.
+2025-09-12 06:43:08,481 - INFO - [bybit] Generated 681 total triangular paths.
+2025-09-12 06:43:08,499 - INFO - [bybit] Filtered to 675 priority paths.
+2025-09-12 06:43:08,502 - INFO - [bybit] Generated 675 paths across 261 symbols.
+2025-09-12 06:43:08,506 - INFO - [gate] Initializing triangular scanner...
+2025-09-12 06:43:08,519 - INFO - [gate] Found 2650 active spot markets.
+2025-09-12 06:43:22,857 - INFO - [gate] Generated 567 total triangular paths.
+2025-09-12 06:43:22,871 - INFO - [gate] Filtered to 567 priority paths.
+2025-09-12 06:43:22,875 - INFO - [gate] Generated 567 paths across 271 symbols.
+2025-09-12 06:43:22,877 - INFO - [binance] Initializing triangular scanner...
+2025-09-12 06:43:22,885 - INFO - [binance] Found 1529 active spot markets.
+2025-09-12 06:43:24,142 - INFO - [binance] Generated 7626 total triangular paths.
+2025-09-12 06:43:24,343 - INFO - [binance] Filtered to 7200 priority paths.
+2025-09-12 06:43:24,391 - INFO - [binance] Generated 7200 paths across 1483 symbols.
+2025-09-12 06:43:24,480 - INFO - Updating account balances...
+2025-09-12 06:43:24,510 - ERROR - [HTTP] Timeout when calling https://app.base44.com/api/apps/68a64cab1d8018e91bdafa59/entities/Exchange
+2025-09-12 06:43:24,511 - ERROR - Failed to fetch exchanges from Base44 (status=None)
+2025-09-12 06:43:24,610 - WARNING - Failed to fetch balance for bybit (attempt 1): bybit requires "apiKey" credential
+2025-09-12 06:43:25,962 - INFO - Polling stopped
+2025-09-12 06:43:26,154 - WARNING - [binance] Error in symbol watcher for HYPER/TRY: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,154 - WARNING - [binance] Error in symbol watcher for GALA/BRL: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,154 - WARNING - [binance] Error in symbol watcher for SUI/FDUSD: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,154 - WARNING - [binance] Error in symbol watcher for HFT/BTC: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,154 - WARNING - [binance] Error in symbol watcher for QTUM/USDT: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,154 - WARNING - [binance] Error in symbol watcher for THETA/USDC: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,154 - WARNING - [binance] Error in symbol watcher for DOT/USDT: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,154 - WARNING - [binance] Error in symbol watcher for ADA/BNB: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,154 - WARNING - [binance] Error in symbol watcher for XRP/USDT: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,154 - WARNING - [binance] Error in symbol watcher for KERNEL/BNB: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,167 - WARNING - [binance] Error in symbol watcher for ADA/USDT: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,168 - WARNING - [binance] Error in symbol watcher for CETUS/TRY: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,169 - WARNING - [binance] Error in symbol watcher for JUV/TRY: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,172 - WARNING - [binance] Error in symbol watcher for NEWT/USDT: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,174 - WARNING - [binance] Error in symbol watcher for INJ/USDT: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,175 - WARNING - [binance] Error in symbol watcher for ENS/BTC: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,176 - WARNING - [binance] Error in symbol watcher for COOKIE/USDC: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,177 - WARNING - [binance] Error in symbol watcher for ARB/FDUSD: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,178 - WARNING - [binance] Error in symbol watcher for USDT/TRY: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,178 - WARNING - [binance] Error in symbol watcher for BIO/TRY: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,178 - WARNING - [binance] Error in symbol watcher for KSM/TRY: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,178 - WARNING - [binance] Error in symbol watcher for D/USDT: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,178 - WARNING - [binance] Error in symbol watcher for SHELL/FDUSD: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,186 - WARNING - [binance] Error in symbol watcher for USDC/BRL: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,188 - WARNING - [binance] Error in symbol watcher for FIL/USDT: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:26,432 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,432 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,432 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,432 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,432 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,432 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,446 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,448 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,450 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,453 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,455 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,456 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,457 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,458 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,458 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,461 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,464 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,464 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,465 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,466 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,466 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,467 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,470 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,471 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:26,471 - INFO - [binance] Reconnecting in 30 seconds...
+2025-09-12 06:43:27,721 - WARNING - Failed to fetch balance for bybit (attempt 2): bybit requires "apiKey" credential
+2025-09-12 06:43:32,821 - WARNING - Failed to fetch balance for bybit (attempt 3): bybit requires "apiKey" credential
+2025-09-12 06:43:39,795 - ERROR - Unable to fetch balances for bybit after retries.
+2025-09-12 06:43:39,924 - WARNING - Failed to fetch balance for gate (attempt 1): gate requires "apiKey" credential
+2025-09-12 06:43:42,967 - WARNING - Failed to fetch balance for gate (attempt 2): gate requires "apiKey" credential
+2025-09-12 06:43:48,009 - WARNING - Failed to fetch balance for gate (attempt 3): gate requires "apiKey" credential
+2025-09-12 06:43:55,004 - ERROR - Unable to fetch balances for gate after retries.
+2025-09-12 06:43:55,056 - WARNING - Failed to fetch balance for binance (attempt 1): binance requires "apiKey" credential
+2025-09-12 06:43:56,430 - ERROR - [HTTP] Error when calling https://app.base44.com/api/apps/68a64cab1d8018e91bdafa59/entities/Exchange: Cannot connect to host app.base44.com:443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:56,431 - ERROR - Failed to fetch exchanges from Base44 (status=None)
+2025-09-12 06:43:58,137 - WARNING - [binance] Error in symbol watcher for HYPER/TRY: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,137 - WARNING - [binance] Error in symbol watcher for HFT/BTC: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,137 - WARNING - [binance] Error in symbol watcher for GALA/BRL: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,137 - WARNING - [binance] Error in symbol watcher for ADA/BNB: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,137 - WARNING - [binance] Error in symbol watcher for THETA/USDC: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,137 - WARNING - [binance] Error in symbol watcher for KSM/TRY: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,137 - WARNING - [binance] Error in symbol watcher for BIO/TRY: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,137 - WARNING - [binance] Error in symbol watcher for DOT/USDT: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,137 - WARNING - [binance] Error in symbol watcher for SHELL/FDUSD: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,150 - WARNING - [binance] Error in symbol watcher for SUI/FDUSD: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,151 - WARNING - [binance] Error in symbol watcher for QTUM/USDT: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,152 - WARNING - [binance] Error in symbol watcher for JUV/TRY: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,153 - WARNING - [binance] Error in symbol watcher for USDT/TRY: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,155 - WARNING - [binance] Error in symbol watcher for CETUS/TRY: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,157 - WARNING - [binance] Error in symbol watcher for D/USDT: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,157 - WARNING - [binance] Error in symbol watcher for INJ/USDT: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,159 - WARNING - [binance] Error in symbol watcher for ARB/FDUSD: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,159 - WARNING - [binance] Error in symbol watcher for ADA/USDT: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,159 - WARNING - [binance] Error in symbol watcher for USDC/BRL: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,159 - WARNING - [binance] Error in symbol watcher for KERNEL/BNB: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,159 - WARNING - [binance] Error in symbol watcher for ENS/BTC: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,159 - WARNING - [binance] Error in symbol watcher for XRP/USDT: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,159 - WARNING - [binance] Error in symbol watcher for NEWT/USDT: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,159 - WARNING - [binance] Error in symbol watcher for FIL/USDT: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,172 - WARNING - [binance] Error in symbol watcher for COOKIE/USDC: Cannot connect to host stream.binance.com:9443 ssl:default [Timeout while contacting DNS servers]
+2025-09-12 06:43:58,258 - WARNING - Failed to fetch balance for binance (attempt 2): binance requires "apiKey" credential
+2025-09-12 06:43:58,421 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,421 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,421 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,421 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,421 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,436 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,436 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,436 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,450 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,453 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,462 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,466 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,467 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,468 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,469 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,469 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,470 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,472 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,473 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,477 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,478 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,480 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,481 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,482 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:43:58,483 - INFO - [binance] Reconnecting in 60 seconds...
+2025-09-12 06:44:03,450 - WARNING - Failed to fetch balance for binance (attempt 3): binance requires "apiKey" credential
+2025-09-12 06:44:10,459 - ERROR - Unable to fetch balances for binance after retries.
+2025-09-12 06:44:10,459 - INFO - Account balances updated successfully.

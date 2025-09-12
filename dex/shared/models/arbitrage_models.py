@@ -61,3 +61,28 @@ class ExecutionResult:
     profit_realized: Optional[Decimal] = None
     execution_time_ms: Optional[int] = None
     error_message: Optional[str] = None
+
+@dataclass
+class CrossChainOpportunity:
+    """Cross-chain arbitrage opportunity between different blockchains"""
+    opportunity_id: str
+    source_chain: str
+    target_chain: str
+    profit_percentage: Decimal
+    profit_amount_usd: Decimal
+    bridge_cost_usd: Decimal
+    net_profit_usd: Decimal
+    detected_at: datetime
+    status: str = "active"
+    
+    # Source chain details
+    source_pair: Optional[DexPair] = None
+    source_price: Optional[Decimal] = None
+    
+    # Target chain details  
+    target_pair: Optional[DexPair] = None
+    target_price: Optional[Decimal] = None
+    
+    # Bridge details
+    bridge_protocol: Optional[str] = None
+    bridge_time_mins: Optional[int] = None

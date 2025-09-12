@@ -18,7 +18,13 @@ class ArbitrageApp:
             'api_key': self.config.BASE44_APP_TOKEN,
             'Content-Type': 'application/json'
         }
-        self.notifier = TelegramNotifier(self.config.TELEGRAM_CHAT_ID) if self.config.TELEGRAM_ALERTS_ENABLED else None
+        self.notifier = None
+        if self.config.TELEGRAM_ALERTS_ENABLED and self.config.TELEGRAM_BOT_TOKEN and self.config.TELEGRAM_CHAT_ID:
+            try:
+                self.notifier = TelegramNotifier(self.config.TELEGRAM_CHAT_ID)
+            except Exception as e:
+                print(f"[WARNING] Failed to initialize Telegram notifier: {e}")
+                self.notifier = None
         self.engine = Engine(config.BASE44_API_URL, config.BASE44_APP_TOKEN, self.notifier)
         self.cross_engine = CrossExchange(self.engine, self.config)
         self.triangular_engine = Triangular(self.engine)
@@ -47,9 +53,9 @@ class ArbitrageApp:
         The orchestrator ensures single concurrent execution through a lock here.
         """
         async with self.trade_lock:
-            # Simple auth check (API key)
-            if auth_key and auth_key != self.config.BASE44_APP_TOKEN:
-                return TradeResult("error", "Unauthorized request")
+            # Required auth check (API key)
+            if not auth_key or auth_key != self.config.BASE44_APP_TOKEN:
+                return TradeResult("error", "Unauthorized request - valid API key required")
 
             op_type = trade_request.get('type')
             entity_name = 'ArbitrageOpportunity' if op_type == 'cross' else 'TriangularOpportunity'

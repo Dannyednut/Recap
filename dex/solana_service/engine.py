@@ -5,13 +5,24 @@ from typing import Dict, Any, Optional, Union, List
 import json
 import base58
 from solana.rpc.async_api import AsyncClient
-from solana.keypair import Keypair
-from solana.publickey import PublicKey
-from solana.transaction import Transaction
-from solana.system_program import TransferParams, transfer
-from solders.compute_budget import set_compute_unit_limit, set_compute_unit_price
-from solders.keypair import Keypair as SoldersKeypair
-from solders.pubkey import Pubkey as SoldersPubkey
+try:
+    from solana.keypair import Keypair
+    from solana.publickey import PublicKey
+    from solana.transaction import Transaction
+    from solana.system_program import TransferParams, transfer
+except ImportError:
+    # Try newer solders import structure
+    from solders.keypair import Keypair
+    from solders.pubkey import Pubkey as PublicKey
+    Transaction = None  # Will need to be implemented
+    TransferParams = None
+    transfer = None
+
+try:
+    from solders.compute_budget import set_compute_unit_limit, set_compute_unit_price
+except ImportError:
+    set_compute_unit_limit = None
+    set_compute_unit_price = None
 import sys
 import os
 

@@ -15,7 +15,7 @@ from models.arbitrage_models import ArbitrageOpportunity, ExecutionResult, Cross
 # Microservice imports
 from ..ethereum_service.arbitrage import EthereumArbitrageService
 from .service_registry import ServiceRegistry
-from .opportunity_aggregator import OpportunityAggregator
+from .opportunity_agregator import OpportunityAggregator
 from .execution_coordinator import ExecutionCoordinator
 from .risk_manager import RiskManager
 

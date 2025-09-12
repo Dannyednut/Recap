@@ -43,6 +43,9 @@ class BaseArbitrageStrategy(ABC):
         """Execute arbitrage with flashloan"""
         pass
 
+# Alias for backward compatibility
+BaseArbitrageEngine = BaseArbitrageStrategy
+
 class BaseProtocolAdapter(ABC):
     """Base interface for DEX protocol adapters"""
     

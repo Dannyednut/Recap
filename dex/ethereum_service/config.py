@@ -3,7 +3,7 @@ from typing import List, Dict
 
 class EthereumConfig:
     # Network Configuration
-    CHAIN_ID = int(os.getenv("ETH_CHAIN_ID", "1"))  # 1=mainnet, 11155111=sepolia
+    CHAIN_ID = int(os.getenv("ETH_CHAIN_ID", "11155111"))  # 1=mainnet, 11155111=sepolia
     RPC_URL = os.getenv("ETH_RPC_URL", "https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY")
     WSS_URL = os.getenv("ETH_WSS_URL", "wss://eth-mainnet.g.alchemy.com/v2/YOUR_KEY")
     

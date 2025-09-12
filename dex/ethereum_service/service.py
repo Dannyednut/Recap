@@ -15,8 +15,9 @@ from .cross_arbitrage import EthereumCrossArbitrage
 from .triangular_arbitrage import EthereumTriangularArbitrage
 from .mempool_monitor import EthereumMempoolMonitor
 from .flashloan_engine import EthereumFlashLoanEngine
-from .protocols.v2.uniswap_v2 import UniswapV2Adapter
-from .protocols.v3.uniswap_v3 import UniswapV3Adapter
+from .contract_executor import EthereumContractExecutor
+from .protocols.uniswap_v2_adapter import UniswapV2Adapter
+from .protocols.uniswap_v3_adapter import UniswapV3Adapter
 
 logger = logging.getLogger(__name__)
 
@@ -32,10 +33,9 @@ class EthereumArbitrageService:
         self.triangular_arbitrage = EthereumTriangularArbitrage(self.engine, self.config)
         self.mempool_monitor = EthereumMempoolMonitor(self.engine, self.config)
         self.flashloan_engine = EthereumFlashLoanEngine(self.engine, self.config)
+        self.contract_executor = EthereumContractExecutor(self.engine.w3, self.config)
         
-        # Protocol adapters
-        self.uniswap_v2 = UniswapV2Adapter(self.engine, self.config)
-        self.uniswap_v3 = UniswapV3Adapter(self.engine, self.config)
+        # Protocol adapters are initialized in cross_arbitrage component
         
         # State
         self.is_running = False
@@ -56,10 +56,9 @@ class EthereumArbitrageService:
             await self.triangular_arbitrage.initialize()
             await self.mempool_monitor.initialize()
             await self.flashloan_engine.initialize()
+            await self.contract_executor.initialize()
             
-            # Initialize protocol adapters
-            await self.uniswap_v2.initialize()
-            await self.uniswap_v3.initialize()
+            # Protocol adapters are initialized within cross_arbitrage component
             
             # Setup mempool opportunity callback
             self.mempool_monitor.add_opportunity_callback(self._handle_mempool_opportunity)
@@ -84,7 +83,8 @@ class EthereumArbitrageService:
             tasks = [
                 asyncio.create_task(self._opportunity_scanner()),
                 asyncio.create_task(self._mempool_monitoring()),
-                asyncio.create_task(self._health_monitor())
+                asyncio.create_task(self._health_monitor()),
+                asyncio.create_task(self.cross_arbitrage.start_price_monitoring())
             ]
             
             # Wait for all tasks
@@ -217,16 +217,52 @@ class EthereumArbitrageService:
             logger.error(f"Error handling mempool opportunity: {e}")
     
     async def get_status(self) -> Dict[str, Any]:
-        """Get service status"""
+        """Get comprehensive service status"""
         try:
+            # Get the actual connected chain ID from web3 connection
+            actual_chain_id = await self.engine.w3.eth.chain_id if self.engine.w3 else self.config.CHAIN_ID
+            
+            # Get wallet balance if available
+            eth_balance = None
+            if self.engine.wallet_address and self.engine.w3:
+                try:
+                    eth_balance = await self.engine.get_balance("ETH", self.engine.wallet_address)
+                except Exception as e:
+                    logger.debug(f"Could not get wallet balance: {e}")
+            
+            # Get gas price information
+            gas_info = None
+            try:
+                gas_info = await self.engine.get_gas_price()
+            except Exception as e:
+                logger.debug(f"Could not get gas price: {e}")
+            
             return {
                 "service": "ethereum_arbitrage",
                 "status": "running" if self.is_running else "stopped",
-                "chain_id": self.config.CHAIN_ID,
+                "chain_id": actual_chain_id,
+                "config_chain_id": self.config.CHAIN_ID,
                 "wallet_address": self.engine.wallet_address,
+                "wallet_balance_eth": float(eth_balance) if eth_balance else None,
                 "block_number": await self.engine.get_block_number() if self.engine.w3 else 0,
                 "active_opportunities": len(self.active_opportunities),
+                "execution_locks": len(self.execution_locks),
                 "mempool_monitoring": self.config.MEMPOOL_MONITOR_ENABLED,
+                "price_monitoring_running": self.cross_arbitrage.running,
+                "monitoring_pairs_count": len(self.cross_arbitrage.monitoring_pairs),
+                "gas_price": gas_info,
+                "contract_executor": {
+                    "initialized": hasattr(self.contract_executor, 'w3') and self.contract_executor.w3 is not None,
+                    "chain_id": actual_chain_id
+                },
+                "components": {
+                    "engine": "initialized" if self.engine.w3 else "not_initialized",
+                    "cross_arbitrage": "running" if self.cross_arbitrage.running else "stopped",
+                    "triangular_arbitrage": "initialized",
+                    "mempool_monitor": "enabled" if self.config.MEMPOOL_MONITOR_ENABLED else "disabled",
+                    "flashloan_engine": "initialized",
+                    "contract_executor": "initialized"
+                },
                 "last_update": datetime.now().isoformat()
             }
         except Exception as e:

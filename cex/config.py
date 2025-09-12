@@ -27,7 +27,7 @@ class Config:
 
     # Quart / Flask Configuration
     FLASK_HOST = os.getenv("FLASK_HOST", "0.0.0.0")
-    FLASK_PORT = int(os.getenv("FLASK_PORT", "5001"))
+    FLASK_PORT = int(os.getenv("FLASK_PORT", "5000"))
     EXECUTE_URL = os.getenv("EXECUTE_URL", "https://arbitragewise-production.up.railway.app/execute")
 
     # Logging Configuration
