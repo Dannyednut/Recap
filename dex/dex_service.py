@@ -5,38 +5,66 @@ import os
 from typing import Dict, Any, List, Optional
 
 from .arbitrage_manager import ArbitrageManager
+from .orchestrator.main import DEXArbitrageOrchestrator
+from .shared.orchestration_config import (
+    get_orchestration_config, 
+    determine_optimal_mode, 
+    get_chain_capabilities,
+    OrchestrationMode,
+    validate_config
+)
+from .shared.network_config import NetworkConfig
 
 logger = logging.getLogger(__name__)
 
 class MultiChainDEXService:
-    """Service for managing multi-chain DEX arbitrage"""
+    """Service for managing multi-chain DEX arbitrage with configurable orchestration layers"""
     
     def __init__(self, config_path: str = 'dex_config.json'):
         """Initialize the DEX service"""
         self.config_path = config_path
         self.config = {}
-        self.manager = None
+        self.orchestration_config = get_orchestration_config()
+        self.orchestration_mode = None
+        
+        # Orchestration layer instances
+        self.manager = None  # ArbitrageManager (simple layer)
+        self.orchestrator = None  # DEXArbitrageOrchestrator (advanced layer)
+        
         self.is_initialized = False
         self.is_running = False
         self.stats_task = None
     
     async def initialize(self) -> bool:
-        """Initialize the DEX service"""
+        """Initialize the DEX service with appropriate orchestration layer"""
         try:
             # Load configuration
             self.config = await self._load_config()
             
-            # Create arbitrage manager
-            self.manager = ArbitrageManager(self.config)
-            
-            # Initialize manager
-            if not await self.manager.initialize():
-                logger.error("Failed to initialize arbitrage manager")
+            # Validate orchestration configuration
+            validation = validate_config(self.orchestration_config)
+            if not validation['valid']:
+                logger.error(f"Orchestration config validation failed: {validation['issues']}")
                 return False
             
-            self.is_initialized = True
-            logger.info("DEX service initialized successfully")
-            return True
+            if validation['recommendations']:
+                for rec in validation['recommendations']:
+                    logger.warning(f"Orchestration recommendation: {rec}")
+            
+            # Determine optimal orchestration mode with chain capability awareness
+            chains = self.config.get('chains', ['ethereum'])
+            chain_count = len(chains)
+            chain_capabilities = get_chain_capabilities(chains)
+            self.orchestration_mode = determine_optimal_mode(self.orchestration_config, chain_count, chain_capabilities)
+            
+            logger.info(f"Using orchestration mode: {self.orchestration_mode.value}")
+            logger.info(f"Mode description: {validation['mode_description']}")
+            
+            # Initialize appropriate orchestration layer
+            if self.orchestration_mode == OrchestrationMode.SIMPLE:
+                return await self._initialize_simple_layer()
+            else:
+                return await self._initialize_advanced_layer()
         
         except Exception as e:
             logger.error(f"Error initializing DEX service: {e}")
@@ -53,9 +81,13 @@ class MultiChainDEXService:
             return True
         
         try:
-            # Start arbitrage manager
-            if not await self.manager.start():
-                logger.error("Failed to start arbitrage manager")
+            # Start appropriate orchestration layer
+            if self.orchestration_mode == OrchestrationMode.SIMPLE:
+                success = await self._start_simple_layer()
+            else:
+                success = await self._start_advanced_layer()
+            
+            if not success:
                 return False
             
             # Start stats reporter
@@ -63,7 +95,7 @@ class MultiChainDEXService:
             self.stats_task = asyncio.create_task(self._stats_reporter(stats_interval))
             
             self.is_running = True
-            logger.info("DEX service started successfully")
+            logger.info(f"DEX service started successfully using {self.orchestration_mode.value} layer")
             return True
         
         except Exception as e:
@@ -77,9 +109,11 @@ class MultiChainDEXService:
             return True
         
         try:
-            # Stop arbitrage manager
-            if self.manager:
-                await self.manager.stop()
+            # Stop appropriate orchestration layer
+            if self.orchestration_mode == OrchestrationMode.SIMPLE:
+                await self._stop_simple_layer()
+            else:
+                await self._stop_advanced_layer()
             
             # Cancel stats reporter task
             if self.stats_task:
@@ -91,7 +125,7 @@ class MultiChainDEXService:
                 self.stats_task = None
             
             self.is_running = False
-            logger.info("DEX service stopped successfully")
+            logger.info(f"DEX service stopped successfully ({self.orchestration_mode.value} layer)")
             return True
         
         except Exception as e:
@@ -242,18 +276,13 @@ class MultiChainDEXService:
     
     def _create_default_config(self) -> Dict[str, Any]:
         """Create default configuration"""
+        config = NetworkConfig.get_all_configs()
         return {
-            "chains": ["ethereum"],
-            "ethereum": {
-                "rpc_url": "https://mainnet.infura.io/v3/YOUR_INFURA_KEY",
-                "ws_url": "wss://mainnet.infura.io/ws/v3/YOUR_INFURA_KEY",
-                "private_key": "",  # Add your private key here
-                "min_profit_threshold": 0.001,  # 0.1%
-                "use_flashloan_by_default": True,
-                "mempool_enabled": True,
-                "token_whitelist": [],  # Empty means all tokens
-                "token_blacklist": [],  # Tokens to exclude
-            },
+            "chains": [chain for chain in config],
+            "ethereum": config["ethereum"],
+            "bsc": config["bsc"],
+            "polygon": config["polygon"],
+            "solana": config["solana"],
             "global": {
                 "log_level": "INFO",
                 "stats_interval": 60,  # seconds
@@ -272,9 +301,6 @@ class MultiChainDEXService:
                     stats = await self.manager.get_stats()
                     logger.info(f"Arbitrage Stats: {json.dumps(stats['global'], indent=2)}")
                     
-                    # Save stats to file
-                    with open('dex_stats.json', 'w') as f:
-                        json.dump(stats, f, indent=2)
                 
                 await asyncio.sleep(interval)
             
@@ -284,3 +310,149 @@ class MultiChainDEXService:
             except Exception as e:
                 logger.error(f"Error in stats reporter: {e}")
                 await asyncio.sleep(interval)
+
+    
+    # =============================================================================
+    # ORCHESTRATION LAYER MANAGEMENT
+    # =============================================================================
+
+    async def _initialize_simple_layer(self) -> bool:
+        """Initialize the simple orchestration layer"""
+        try:
+            logger.info("Initializing Simple Layer (ArbitrageManager)...")
+            self.manager = ArbitrageManager(self.config)
+            
+            if not await self.manager.initialize():
+                logger.error("Failed to initialize arbitrage manager")
+                return False
+            
+            self.is_initialized = True
+            logger.info("Simple layer initialized successfully")
+            return True
+        except Exception as e:
+            logger.error(f"Error initializing simple layer: {e}")
+            return False
+
+    async def _start_simple_layer(self) -> bool:
+        """Start the simple orchestration layer"""
+        if not await self.manager.start():
+            logger.error("Failed to start arbitrage manager")
+            return False
+        return True
+
+    async def _stop_simple_layer(self) -> bool:
+        """Stop the simple orchestration layer"""
+        if self.manager:
+            await self.manager.stop()
+        return True
+
+    async def _initialize_advanced_layer(self) -> bool:
+        """Initialize the advanced orchestration layer"""
+        try:
+            logger.info("Initializing Advanced Layer (DEXArbitrageOrchestrator)...")
+            self.orchestrator = DEXArbitrageOrchestrator()
+            
+            # Configure orchestrator with our settings
+            self.orchestrator.config.update({
+                "max_concurrent_executions": self.orchestration_config.max_concurrent_executions,
+                "min_profit_threshold_usd": self.orchestration_config.min_profit_threshold_usd,
+                "max_position_size_usd": self.orchestration_config.max_position_size_usd,
+                "execution_timeout": self.orchestration_config.execution_timeout,
+                "health_check_interval": self.orchestration_config.health_check_interval
+            })
+            
+            await self.orchestrator.initialize()
+            
+            self.is_initialized = True
+            logger.info("Advanced layer initialized successfully")
+            return True
+        except Exception as e:
+            logger.error(f"Error initializing advanced layer: {e}")
+            return False
+
+    async def _start_advanced_layer(self) -> bool:
+        """Start the advanced orchestration layer"""
+        # The orchestrator starts automatically during initialization
+        return True
+
+    async def _stop_advanced_layer(self) -> bool:
+        """Stop the advanced orchestration layer"""
+        if self.orchestrator:
+            await self.orchestrator.shutdown()
+        return True
+
+    async def get_orchestration_status(self) -> Dict[str, Any]:
+        """Get detailed orchestration layer status"""
+        base_status = {
+            "orchestration_mode": self.orchestration_mode.value if self.orchestration_mode else "unknown",
+            "layer_description": self.orchestration_config.__dict__ if self.orchestration_config else {},
+            "initialized": self.is_initialized,
+            "running": self.is_running
+        }
+        
+        if self.orchestration_mode == OrchestrationMode.SIMPLE and self.manager:
+            # Get simple layer status
+            base_status.update({
+                "active_chains": self.manager.get_active_chains(),
+                "stats": await self.manager.get_stats() if self.is_running else {}
+            })
+        elif self.orchestration_mode == OrchestrationMode.ADVANCED and self.orchestrator:
+            # Get advanced layer status
+            try:
+                system_health = await self.orchestrator.get_system_status()
+                base_status.update({
+                    "system_health": system_health.__dict__,
+                    "active_chains": system_health.active_chains,
+                    "inactive_chains": system_health.inactive_chains,
+                    "total_opportunities": system_health.total_opportunities,
+                    "execution_success_rate": system_health.execution_success_rate
+                })
+            except Exception as e:
+                base_status["orchestrator_error"] = str(e)
+        
+        return base_status
+
+    async def switch_orchestration_mode(self, new_mode: str) -> bool:
+        """Switch orchestration mode at runtime"""
+        try:
+            # Parse new mode
+            try:
+                target_mode = OrchestrationMode(new_mode.lower())
+            except ValueError:
+                logger.error(f"Invalid orchestration mode: {new_mode}")
+                return False
+            
+            if target_mode == self.orchestration_mode:
+                logger.info(f"Already using {target_mode.value} mode")
+                return True
+            
+            logger.info(f"Switching from {self.orchestration_mode.value} to {target_mode.value} mode")
+            
+            # Stop current layer
+            was_running = self.is_running
+            if was_running:
+                await self.stop()
+            
+            # Update mode
+            self.orchestration_mode = target_mode
+            
+            # Initialize new layer
+            if target_mode == OrchestrationMode.SIMPLE:
+                success = await self._initialize_simple_layer()
+            else:
+                success = await self._initialize_advanced_layer()
+            
+            if not success:
+                logger.error(f"Failed to initialize {target_mode.value} layer")
+                return False
+            
+            # Restart if it was running
+            if was_running:
+                await self.start()
+            
+            logger.info(f"Successfully switched to {target_mode.value} mode")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error switching orchestration mode: {e}")
+            return False

@@ -2,29 +2,6 @@ from abc import ABC, abstractmethod
 from typing import Dict, List, Optional, Any
 from decimal import Decimal
 
-class BaseEngine(ABC):
-    """Base interface for all chain engines"""
-    
-    @abstractmethod
-    async def initialize(self) -> bool:
-        """Initialize Web3 connection and contracts"""
-        pass
-    
-    @abstractmethod
-    async def get_balance(self, token_address: str, wallet_address: str) -> Decimal:
-        """Get token balance for wallet"""
-        pass
-    
-    @abstractmethod
-    async def get_gas_price(self) -> int:
-        """Get current gas price"""
-        pass
-    
-    @abstractmethod
-    async def execute_transaction(self, tx_data: Dict[str, Any]) -> str:
-        """Execute transaction and return tx hash"""
-        pass
-
 class BaseArbitrageStrategy(ABC):
     """Base interface for arbitrage strategies"""
     
@@ -45,6 +22,21 @@ class BaseArbitrageStrategy(ABC):
 
 # Alias for backward compatibility
 BaseArbitrageEngine = BaseArbitrageStrategy
+
+# Import BaseEngine - using try/except to handle import issues gracefully
+try:
+    from ..base_engine import BaseEngine
+except ImportError:
+    # Fallback for when running as standalone module
+    import sys
+    import os
+    sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+    try:
+        from base_engine import BaseEngine
+    except ImportError:
+        # Create a minimal BaseEngine if not available
+        class BaseEngine:
+            pass
 
 class BaseProtocolAdapter(ABC):
     """Base interface for DEX protocol adapters"""

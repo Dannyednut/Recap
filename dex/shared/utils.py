@@ -275,3 +275,49 @@ def safe_decimal(value: Any, default: Decimal = Decimal("0")) -> Decimal:
         return Decimal(str(value))
     except (ValueError, TypeError, decimal.InvalidOperation):
         return default
+
+def _opportunity_flag(opportunity: Any, name: str, default: Optional[bool] = None) -> Optional[bool]:
+    """Safely extract a boolean flag from an opportunity object or its meta dict."""
+    try:
+        if hasattr(opportunity, name):
+            val = getattr(opportunity, name)
+            if isinstance(val, bool):
+                return val
+        meta = getattr(opportunity, 'meta', None)
+        if isinstance(meta, dict) and name in meta and isinstance(meta[name], bool):
+            return meta[name]
+    except Exception:
+        pass
+    return default
+
+def decide_execution_mode(service: Any, opportunity: Any) -> str:
+    """Decide execution mode for an opportunity.
+
+    Priority order:
+    1) Per-opportunity flag: use_flashloan/use_contract
+    2) Service/chain config flags: config.USE_FLASHLOAN / config.USE_CONTRACT_EXECUTOR
+    3) Default to standard strategy execution
+
+    Returns one of: 'contract_executor', 'flashloan_engine', 'standard'
+    """
+    # 1) Per-opportunity flags
+    use_contract = _opportunity_flag(opportunity, 'use_contract', None)
+    use_flashloan = _opportunity_flag(opportunity, 'use_flashloan', None)
+
+    # 2) Service config fallbacks
+    cfg = getattr(service, 'config', None)
+    if use_contract is None:
+        use_contract = bool(getattr(cfg, 'USE_CONTRACT_EXECUTOR', False))
+    if use_flashloan is None:
+        use_flashloan = bool(getattr(cfg, 'USE_FLASHLOAN', False))
+
+    # Contract executor path takes precedence when requested
+    if use_contract:
+        return 'contract_executor'
+
+    # Flash loan engine if requested
+    if use_flashloan:
+        return 'flashloan_engine'
+
+    # Otherwise standard strategies
+    return 'standard'

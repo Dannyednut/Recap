@@ -15,24 +15,13 @@ import os
 from .engine import BSCEngine
 from .config import BSCConfig
 from ..shared.mev_protection import UniversalMEVProtection
+from ..shared.contract_addresses import get_chain_addresses, get_router_address
+from ..shared.abi_fetcher import ABIFetcher, FALLBACK_ABIS
 
 logger = logging.getLogger(__name__)
 
 class BSCContractExecutor:
     """Execute arbitrage opportunities using smart contracts on BSC"""
-    
-    # Router addresses
-    ROUTERS = {
-        'pancakeswap_v2': '0x10ED43C718714eb63d5aA57B78B54704E256024E',
-        'pancakeswap_v3': '0x1b81D678ffb9C0263b24A97847620C99d213eB14',
-        'biswap': '0x3a6d8cA21D1CF76F653A67577FA0D27453350dD8',
-        'apeswap': '0xcF0feBd3f17CEf5b47b0cD257aCf6025c5BFf3b7'
-    }
-    
-    # Flash loan providers
-    FLASH_LOAN_PROVIDERS = {
-        'venus': '0xfD36E2c2a6789Db23113685031d7F16329158384'
-    }
     
     def __init__(self, engine: BSCEngine, config: BSCConfig):
         self.engine = engine
@@ -40,6 +29,14 @@ class BSCContractExecutor:
         self.w3 = engine.w3
         self.account = engine.account
         self.wallet_address = engine.wallet_address
+        
+        # Get network-aware addresses
+        self.chain_addresses = get_chain_addresses('bsc')
+        self.routers = self.chain_addresses.get('routers', {})
+        self.flash_loan_providers = self.chain_addresses.get('flash_loan_providers', {})
+        
+        # ABI fetcher for dynamic contract interaction
+        self.abi_fetcher = ABIFetcher()
         
         # Contract management
         self.arbitrage_executor = None
@@ -61,32 +58,39 @@ class BSCContractExecutor:
         """Initialize the contract executor"""
         logger.info("Initializing BSC contract executor...")
         
-        # Load contract ABIs
-        self.pancakeswap_v2_router_abi = await self._load_abi("PancakeSwapV2Router")
-        self.pancakeswap_v3_router_abi = await self._load_abi("PancakeSwapV3Router")
-        self.biswap_router_abi = await self._load_abi("BiswapRouter")
-        self.apeswap_router_abi = await self._load_abi("ApeSwapRouter")
-        self.arbitrage_executor_abi = await self._load_abi("BSCArbitrageExecutor")
+        # Initialize ABI fetcher
+        await self.abi_fetcher.__aenter__()
         
-        # Initialize router contracts
-        self.router_contracts = {
-            'pancakeswap_v2': self.w3.eth.contract(
-                address=self.w3.to_checksum_address(self.ROUTERS['pancakeswap_v2']),
-                abi=self.pancakeswap_v2_router_abi
-            ),
-            'pancakeswap_v3': self.w3.eth.contract(
-                address=self.w3.to_checksum_address(self.ROUTERS['pancakeswap_v3']),
-                abi=self.pancakeswap_v3_router_abi
-            ),
-            'biswap': self.w3.eth.contract(
-                address=self.w3.to_checksum_address(self.ROUTERS['biswap']),
-                abi=self.biswap_router_abi
-            ),
-            'apeswap': self.w3.eth.contract(
-                address=self.w3.to_checksum_address(self.ROUTERS['apeswap']),
-                abi=self.apeswap_router_abi
-            )
-        }
+        # Load contract ABIs dynamically
+        self.router_contracts = {}
+        network_name = self.chain_addresses.get('network_name', 'mainnet')
+        
+        for router_name, router_address in self.routers.items():
+            try:
+                # Try to fetch ABI from BSCScan
+                abi = await self.abi_fetcher.fetch_abi('bsc', network_name, router_address)
+                
+                if not abi:
+                    # Use fallback ABI based on router type
+                    if 'v2' in router_name or 'pancakeswap' in router_name:
+                        abi = FALLBACK_ABIS.get('uniswap_v2_router', [])
+                    else:
+                        abi = []
+                
+                if abi:
+                    self.router_contracts[router_name] = self.w3.eth.contract(
+                        address=self.w3.to_checksum_address(router_address),
+                        abi=abi
+                    )
+                    logger.info(f"Loaded {router_name} router contract with dynamic ABI")
+                else:
+                    logger.warning(f"No ABI found for {router_name} router")
+                    
+            except Exception as e:
+                logger.error(f"Error loading {router_name} router ABI: {e}")
+        
+        # Load arbitrage executor ABI
+        self.arbitrage_executor_abi = await self._load_abi("BSCArbitrageExecutor")
         
         # Check if arbitrage executor is deployed
         await self._load_or_deploy_arbitrage_executor()

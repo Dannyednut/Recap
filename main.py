@@ -140,6 +140,48 @@ async def get_dex_status():
         return jsonify({"status": "error", "message": str(e)}), 500
 
 
+@app.route('/dex/orchestration/status', methods=['GET'])
+async def get_orchestration_status():
+    """Get detailed orchestration layer status"""
+    if not multi_chain_dex_service:
+        return jsonify({"status": "unavailable", "message": "DEX service not available"}), 503
+    
+    try:
+        status = await multi_chain_dex_service.get_orchestration_status()
+        return jsonify(status)
+    except Exception as e:
+        logger.error(f"Error getting orchestration status: {e}")
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+
+@app.route('/dex/orchestration/switch', methods=['POST'])
+async def switch_orchestration_mode():
+    """Switch orchestration mode"""
+    if not multi_chain_dex_service:
+        return jsonify({"status": "unavailable", "message": "DEX service not available"}), 503
+    
+    try:
+        data = await request.get_json()
+        if not data or 'mode' not in data:
+            return jsonify({"status": "error", "message": "Missing 'mode' parameter"}), 400
+        
+        new_mode = data['mode']
+        success = await multi_chain_dex_service.switch_orchestration_mode(new_mode)
+        
+        if success:
+            return jsonify({
+                "status": "success", 
+                "message": f"Switched to {new_mode} mode",
+                "new_status": await multi_chain_dex_service.get_orchestration_status()
+            })
+        else:
+            return jsonify({"status": "error", "message": f"Failed to switch to {new_mode} mode"}), 400
+    
+    except Exception as e:
+        logger.error(f"Error switching orchestration mode: {e}")
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+
 @app.route('/dex/opportunities', methods=['GET'])
 async def get_dex_opportunities():
     """Get current DEX arbitrage opportunities"""
@@ -248,6 +290,10 @@ async def get_system_status():
         try:
             dex_status = await multi_chain_dex_service.get_status()
             dex_status["initialized"] = True
+            
+            # Add orchestration layer information
+            orchestration_status = await multi_chain_dex_service.get_orchestration_status()
+            dex_status["orchestration"] = orchestration_status
         except Exception as e:
             dex_status = {"error": str(e)}
     
@@ -266,11 +312,15 @@ if __name__ == "__main__":
         try:
             # Initialize DEX system
             if DEX_AVAILABLE:
-                logger.info("Initializing Multi-Chain DEX service...")
+                logger.info("Initializing Multi-Chain DEX service with orchestration layer...")
                 try:
                     multi_chain_dex_service = MultiChainDEXService()
                     await multi_chain_dex_service.initialize()
-                    logger.info("Multi-Chain DEX service initialized successfully")
+                    
+                    # Log orchestration mode
+                    orch_status = await multi_chain_dex_service.get_orchestration_status()
+                    logger.info(f"DEX service initialized with {orch_status.get('orchestration_mode', 'unknown')} orchestration layer")
+                    
                 except Exception as e:
                     logger.warning(f"Multi-Chain DEX initialization failed (continuing with CEX only): {e}")
                     multi_chain_dex_service = None

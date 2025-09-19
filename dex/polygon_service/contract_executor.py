@@ -60,11 +60,58 @@ class PolygonContractExecutor:
         }
         
         # Load contract ABIs
+        from ..shared.utils import load_contract_abi
         self.arbitrage_executor_abi = load_contract_abi("PolygonArbitrageExecutor")
         
         # Contract instances
         self.arbitrage_executor_address = None
         self.arbitrage_executor_contract = None
+        
+        # Deployment info file
+        self.deployment_file_path = os.path.join(
+            os.path.dirname(__file__), 'deployed_contracts.json'
+        )
+    
+    async def initialize(self):
+        """Initialize the contract executor"""
+        logger.info("Initializing Polygon contract executor...")
+        
+        # Check if arbitrage executor is deployed
+        await self._load_or_deploy_arbitrage_executor()
+        
+        logger.info("Polygon contract executor initialized")
+    
+    async def _load_or_deploy_arbitrage_executor(self):
+        """Load existing arbitrage executor or deploy a new one"""
+        try:
+            # Try to load from deployment file
+            if os.path.exists(self.deployment_file_path):
+                with open(self.deployment_file_path, 'r') as f:
+                    deployment_data = json.load(f)
+                    
+                if "polygon_arbitrage_executor" in deployment_data:
+                    address = deployment_data["polygon_arbitrage_executor"]
+                    logger.info(f"Loading PolygonArbitrageExecutor from {address}")
+                    
+                    # Verify contract exists on chain
+                    code = await self.w3.eth.get_code(address)
+                    if len(code) > 0:
+                        self.arbitrage_executor_address = self.w3.to_checksum_address(address)
+                        self.arbitrage_executor_contract = self.w3.eth.contract(
+                            address=self.arbitrage_executor_address,
+                            abi=self.arbitrage_executor_abi
+                        )
+                        return
+                    else:
+                        logger.warning(f"Contract at {address} has no code, redeploying")
+            
+            # If not found, deploy a new one
+            logger.info("Deploying new PolygonArbitrageExecutor contract...")
+            await self._deploy_arbitrage_executor()
+            
+        except Exception as e:
+            logger.error(f"Error loading/deploying Polygon arbitrage executor: {e}")
+            raise
     
     def load_arbitrage_executor(self, address: str) -> None:
         """Load an existing arbitrage executor contract
@@ -72,47 +119,67 @@ class PolygonContractExecutor:
         Args:
             address: Address of the deployed contract
         """
-        self.arbitrage_executor_address = Web3.to_checksum_address(address)
+        self.arbitrage_executor_address = self.w3.to_checksum_address(address)
         self.arbitrage_executor_contract = self.w3.eth.contract(
             address=self.arbitrage_executor_address,
             abi=self.arbitrage_executor_abi
         )
         logger.info(f"Loaded arbitrage executor contract at {address}")
     
-    def deploy_arbitrage_executor(self) -> str:
-        """Deploy a new arbitrage executor contract
+    async def _deploy_arbitrage_executor(self) -> str:
+        """Deploy a new arbitrage executor contract using the contract deployer
         
         Returns:
             str: Address of the deployed contract
         """
-        # Get contract bytecode
-        contract_path = os.path.join(
-            os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-            "polygon_service",
-            "contracts",
-            "compiled",
-            "PolygonArbitrageExecutor.json"
-        )
+        try:
+            # Use the contract deployer to deploy arbitrage contract
+            from .contracts.deploy import PolygonContractDeployer
+            
+            deployer = PolygonContractDeployer(self.w3, self.engine.config.PRIVATE_KEY)
+            await deployer.initialize()
+            
+            # Deploy the contract
+            result = await deployer.deploy_arbitrage_contract()
+            
+            if result['success']:
+                contract_address = result['contract_address']
+                
+                # Save deployment info
+                deployment_data = {}
+                if os.path.exists(self.deployment_file_path):
+                    with open(self.deployment_file_path, 'r') as f:
+                        deployment_data = json.load(f)
+                
+                deployment_data["polygon_arbitrage_executor"] = contract_address
+                
+                with open(self.deployment_file_path, 'w') as f:
+                    json.dump(deployment_data, f, indent=2)
+                
+                # Set contract address and instance
+                self.arbitrage_executor_address = self.w3.to_checksum_address(contract_address)
+                self.arbitrage_executor_contract = self.w3.eth.contract(
+                    address=self.arbitrage_executor_address,
+                    abi=self.arbitrage_executor_abi
+                )
+                
+                logger.info(f"Deployed arbitrage executor contract at {contract_address}")
+                return contract_address
+            else:
+                raise Exception(f"Contract deployment failed: {result.get('error', 'Unknown error')}")
+                
+        except Exception as e:
+            logger.error(f"Error deploying Polygon arbitrage executor: {e}")
+            raise
+    
+    def deploy_arbitrage_executor(self) -> str:
+        """Deploy a new arbitrage executor contract (synchronous wrapper)
         
-        with open(contract_path, 'r') as f:
-            contract_json = json.load(f)
-        
-        bytecode = contract_json['bytecode']
-        
-        # Deploy contract
-        contract = self.w3.eth.contract(abi=self.arbitrage_executor_abi, bytecode=bytecode)
-        tx_hash = contract.constructor().transact({'from': self.engine.account.address})
-        tx_receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash)
-        
-        # Set contract address and instance
-        self.arbitrage_executor_address = tx_receipt.contractAddress
-        self.arbitrage_executor_contract = self.w3.eth.contract(
-            address=self.arbitrage_executor_address,
-            abi=self.arbitrage_executor_abi
-        )
-        
-        logger.info(f"Deployed arbitrage executor contract at {self.arbitrage_executor_address}")
-        return self.arbitrage_executor_address
+        Returns:
+            str: Address of the deployed contract
+        """
+        import asyncio
+        return asyncio.run(self._deploy_arbitrage_executor())
     
     def execute_cross_exchange_arbitrage(
         self,
@@ -159,8 +226,8 @@ class PolygonContractExecutor:
         
         # Prepare transaction parameters
         params = {
-            'tokenA': Web3.to_checksum_address(token_a),
-            'tokenB': Web3.to_checksum_address(token_b),
+            'tokenA': self.w3.to_checksum_address(token_a),
+            'tokenB': self.w3.to_checksum_address(token_b),
             'amountIn': amount_in,
             'buyRouter': buy_router,
             'sellRouter': sell_router,
@@ -342,7 +409,7 @@ class PolygonContractExecutor:
         
         # Prepare transaction parameters
         params = {
-            'targetTxHash': Web3.to_bytes(hexstr=target_tx_hash),
+            'targetTxHash': self.w3.to_bytes(hexstr=target_tx_hash),
             'path': path_addresses,
             'routers': router_addresses,
             'fees': fees,
@@ -391,7 +458,7 @@ class PolygonContractExecutor:
         
         # Execute transaction
         tx_hash = self.arbitrage_executor_contract.functions.emergencyWithdraw(
-            Web3.to_checksum_address(token_address)
+            self.w3.to_checksum_address(token_address)
         ).transact({
             'from': self.engine.account.address
         })
@@ -441,8 +508,8 @@ class PolygonContractExecutor:
         
         # Call contract function
         result = self.arbitrage_executor_contract.functions.getArbitrageQuote(
-            Web3.to_checksum_address(token_a),
-            Web3.to_checksum_address(token_b),
+            self.w3.to_checksum_address(token_a),
+            self.w3.to_checksum_address(token_b),
             amount_in,
             buy_router,
             sell_router,

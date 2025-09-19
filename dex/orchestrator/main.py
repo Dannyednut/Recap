@@ -90,11 +90,30 @@ class DEXArbitrageOrchestrator:
             raise
     
     async def _initialize_blockchain_services(self) -> None:
-        """Initialize all blockchain microservices"""
-        services_to_init = [
-            ("ethereum", EthereumArbitrageService),
-            # Will add more services: BSC, Polygon, Solana
-        ]
+        """Initialize all blockchain microservices with capability awareness"""
+        # Import services dynamically based on availability
+        services_to_init = []
+        
+        # Try to import and add Ethereum service (most sophisticated)
+        try:
+            from ..ethereum_service.arbitrage import EthereumArbitrageService
+            services_to_init.append(("ethereum", EthereumArbitrageService))
+        except ImportError:
+            logger.warning("Ethereum service not available")
+        
+        # Try to import and add BSC service (basic)
+        try:
+            from ..bsc_service.arbitrage import BSCArbitrageService
+            services_to_init.append(("bsc", BSCArbitrageService))
+        except ImportError:
+            logger.warning("BSC service not available")
+        
+        # Try to import and add Polygon service (basic)
+        try:
+            from ..polygon_service.arbitrage import PolygonArbitrageService
+            services_to_init.append(("polygon", PolygonArbitrageService))
+        except ImportError:
+            logger.warning("Polygon service not available")
         
         for chain_name, service_class in services_to_init:
             try:

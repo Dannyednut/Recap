@@ -38,7 +38,7 @@ import os
 
 # Add shared modules to path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'shared'))
-from interfaces.base_engine import BaseEngine
+from base_engine import BaseEngine
 from models.arbitrage_models import ExecutionResult
 
 from .config import SolanaConfig

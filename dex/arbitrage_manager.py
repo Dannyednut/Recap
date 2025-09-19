@@ -10,10 +10,15 @@ logger = logging.getLogger(__name__)
 class ArbitrageManager:
     """Manager for coordinating arbitrage across multiple chains"""
     
-    def __init__(self, config: Dict[str, Any]):
+    def __init__(self, config):
         """Initialize the arbitrage manager"""
-        self.config = config
-        self.chains = config.get('chains', ['ethereum'])
+        # Handle both list of chains and config dictionary
+        if isinstance(config, list):
+            self.chains = config
+            self.config = {'chains': config}
+        else:
+            self.config = config
+            self.chains = config.get('chains', ['ethereum'])
         self.engines = {}
         self.cross_arbitrage_strategies = {}
         self.triangular_arbitrage_strategies = {}

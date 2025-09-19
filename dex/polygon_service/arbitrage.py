@@ -15,6 +15,7 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'shared'))
 from models.arbitrage_models import ArbitrageOpportunity, ExecutionResult
+from utils import decide_execution_mode
 from telegram_notifier import DEXTelegramNotifier
 
 logger = logging.getLogger(__name__)
@@ -90,21 +91,31 @@ class PolygonArbitrageService:
             return []
     
     async def execute_opportunity(self, opportunity: ArbitrageOpportunity) -> ExecutionResult:
-        """Execute a specific arbitrage opportunity"""
+        """Execute a specific arbitrage opportunity with unified contract/flashloan/standard selection"""
         if not self.is_initialized:
             raise RuntimeError("Polygon Service not initialized")
         
         try:
             logger.info(f"Executing Polygon opportunity {opportunity.id} of type {opportunity.type}")
-            
-            if opportunity.type == "cross_exchange":
-                result = await self.cross_arbitrage.execute_opportunity(opportunity)
-            elif opportunity.type == "triangular":
-                result = await self.triangular_arbitrage.execute_opportunity(opportunity)
-            elif opportunity.type == "flash_loan":
+
+            mode = decide_execution_mode(self, opportunity)
+
+            if mode == 'contract_executor':
+                if hasattr(self, 'contract_executor') and self.contract_executor:
+                    result = await self.contract_executor.execute_opportunity(opportunity)
+                else:
+                    result = await self.flash_loan.execute_opportunity(opportunity)
+            elif mode == 'flashloan_engine':
                 result = await self.flash_loan.execute_opportunity(opportunity)
             else:
-                raise ValueError(f"Unknown opportunity type: {opportunity.type}")
+                if opportunity.type == "cross_exchange":
+                    result = await self.cross_arbitrage.execute_opportunity(opportunity)
+                elif opportunity.type == "triangular":
+                    result = await self.triangular_arbitrage.execute_opportunity(opportunity)
+                elif opportunity.type == "flash_loan":
+                    result = await self.flash_loan.execute_opportunity(opportunity)
+                else:
+                    raise ValueError(f"Unknown opportunity type: {opportunity.type}")
             
             # Send Telegram notification for completed trade
             if self.telegram_notifier and result:

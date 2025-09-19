@@ -13923,3 +13923,1117 @@ ConnectionResetError: Cannot write to closing transport
 2025-09-12 23:19:00,114 - WARNING - Failed to fetch balance for bingx (attempt 2): bingx requires "apiKey" credential
 2025-09-12 23:19:08,156 - WARNING - Failed to fetch balance for bingx (attempt 3): bingx requires "apiKey" credential
 2025-09-12 23:19:17,076 - ERROR - Unable to fetch balances for bingx after retries.
+2025-09-12 23:42:06,387 - INFO - Telegram bot manager initialized successfully
+2025-09-12 23:42:06,520 - INFO - Initializing Multi-Chain DEX service...
+2025-09-12 23:42:06,520 - WARNING - Config file dex_config.json not found, using default config
+2025-09-12 23:42:10,936 - INFO - Ethereum engine initialized on chain 1
+2025-09-12 23:42:10,997 - INFO - Initializing token discovery service...
+2025-09-12 23:42:11,052 - INFO - Loaded 0 tokens and 0 pairs from cache
+2025-09-12 23:42:11,062 - ERROR - Failed to initialize token discovery for chain ethereum
+2025-09-12 23:42:11,063 - ERROR - Failed to initialize arbitrage manager
+2025-09-12 23:42:11,065 - INFO - Multi-Chain DEX service initialized successfully
+2025-09-12 23:42:11,065 - INFO - Started Multi-Chain DEX service
+2025-09-12 23:42:11,068 - WARNING - run_scanners() is deprecated. Use initialize() then start() instead.
+2025-09-12 23:42:11,068 - INFO - Initializing CEX Arbitrage App...
+2025-09-12 23:42:11,069 - INFO - Telegram notifier initialized successfully
+2025-09-12 23:42:11,069 - ERROR - DEX service is not initialized
+2025-09-12 23:42:11,082 - INFO - Running on http://0.0.0.0:5001 (CTRL + C to quit)
+2025-09-12 23:42:16,269 - INFO - Successfully initialized bybit
+2025-09-12 23:42:21,021 - INFO - Successfully initialized kucoin
+2025-09-12 23:42:24,121 - INFO - Successfully initialized bingx
+2025-09-12 23:42:40,105 - INFO - Successfully initialized gate
+2025-09-12 23:42:46,210 - INFO - Successfully initialized binance
+2025-09-12 23:42:46,210 - INFO - CEX Arbitrage App initialized successfully
+2025-09-12 23:42:46,210 - INFO - Starting CEX Arbitrage App scanners...
+2025-09-12 23:42:46,213 - INFO - CEX Arbitrage App started successfully
+2025-09-12 23:42:46,214 - INFO - Starting cross-exchange price streams...
+2025-09-12 23:42:46,224 - INFO - Starting Triangular Arbitrage Engine...
+2025-09-12 23:42:46,225 - INFO - Initialized 5 exchanges: ['bybit', 'kucoin', 'bingx', 'gate', 'binance']
+2025-09-12 23:42:46,233 - INFO - Starting triangular opportunity scanning...
+2025-09-12 23:42:46,237 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-12 22:42:46.210589"
+}
+2025-09-12 23:42:46,248 - INFO - [bybit] Subscribing to FIL/USDT...
+2025-09-12 23:42:46,248 - INFO - [bybit] Subscribing to QTUM/USDT...
+2025-09-12 23:42:46,248 - INFO - [bybit] Subscribing to DOT/USDT...
+2025-09-12 23:42:46,248 - INFO - [bybit] Subscribing to XRP/USDT...
+2025-09-12 23:42:46,248 - INFO - [bybit] Subscribing to ADA/USDT...
+2025-09-12 23:42:46,248 - INFO - [kucoin] Subscribing to FIL/USDT...
+2025-09-12 23:42:46,248 - INFO - [kucoin] Subscribing to QTUM/USDT...
+2025-09-12 23:42:46,248 - INFO - [kucoin] Subscribing to DOT/USDT...
+2025-09-12 23:42:46,248 - INFO - [kucoin] Subscribing to XRP/USDT...
+2025-09-12 23:42:46,248 - INFO - [kucoin] Subscribing to ADA/USDT...
+2025-09-12 23:42:46,266 - INFO - [bingx] Subscribing to FIL/USDT...
+2025-09-12 23:42:46,268 - INFO - [bingx] Subscribing to QTUM/USDT...
+2025-09-12 23:42:46,269 - INFO - [bingx] Subscribing to DOT/USDT...
+2025-09-12 23:42:46,271 - INFO - [bingx] Subscribing to XRP/USDT...
+2025-09-12 23:42:46,272 - INFO - [bingx] Subscribing to ADA/USDT...
+2025-09-12 23:42:46,273 - INFO - [gate] Subscribing to FIL/USDT...
+2025-09-12 23:42:46,274 - INFO - [gate] Subscribing to QTUM/USDT...
+2025-09-12 23:42:46,275 - INFO - [gate] Subscribing to DOT/USDT...
+2025-09-12 23:42:46,276 - INFO - [gate] Subscribing to XRP/USDT...
+2025-09-12 23:42:46,278 - INFO - [gate] Subscribing to ADA/USDT...
+2025-09-12 23:42:46,279 - INFO - [binance] Subscribing to FIL/USDT...
+2025-09-12 23:42:46,282 - INFO - [binance] Subscribing to QTUM/USDT...
+2025-09-12 23:42:46,283 - INFO - [binance] Subscribing to DOT/USDT...
+2025-09-12 23:42:46,285 - INFO - [binance] Subscribing to XRP/USDT...
+2025-09-12 23:42:46,287 - INFO - [binance] Subscribing to ADA/USDT...
+2025-09-12 23:42:46,288 - INFO - [bybit] Initializing triangular scanner...
+2025-09-12 23:42:46,292 - INFO - [bybit] Found 671 active spot markets.
+2025-09-12 23:42:46,881 - INFO - [bybit] Generated 684 total triangular paths.
+2025-09-12 23:42:46,897 - INFO - [bybit] Filtered to 678 priority paths.
+2025-09-12 23:42:46,897 - INFO - [bybit] Generated 678 paths across 263 symbols.
+2025-09-12 23:42:46,897 - INFO - [kucoin] Initializing triangular scanner...
+2025-09-12 23:42:46,897 - INFO - [kucoin] Found 1307 active spot markets.
+2025-09-12 23:42:49,759 - INFO - [kucoin] Generated 1156 total triangular paths.
+2025-09-12 23:42:49,777 - INFO - [kucoin] Filtered to 1156 priority paths.
+2025-09-12 23:42:49,794 - INFO - [kucoin] Generated 1156 paths across 370 symbols.
+2025-09-12 23:42:49,797 - INFO - [bingx] Initializing triangular scanner...
+2025-09-12 23:42:49,798 - INFO - [bingx] Found 956 active spot markets.
+2025-09-12 23:42:51,701 - INFO - [bingx] Generated 69 total triangular paths.
+2025-09-12 23:42:51,701 - INFO - [bingx] Filtered to 69 priority paths.
+2025-09-12 23:42:51,701 - INFO - [bingx] Generated 69 paths across 44 symbols.
+2025-09-12 23:42:51,701 - INFO - [gate] Initializing triangular scanner...
+2025-09-12 23:42:51,723 - INFO - [gate] Found 2653 active spot markets.
+2025-09-12 23:43:06,794 - INFO - [gate] Generated 567 total triangular paths.
+2025-09-12 23:43:06,828 - INFO - [gate] Filtered to 567 priority paths.
+2025-09-12 23:43:06,828 - INFO - [gate] Generated 567 paths across 271 symbols.
+2025-09-12 23:43:06,828 - INFO - [binance] Initializing triangular scanner...
+2025-09-12 23:43:06,828 - INFO - [binance] Found 1530 active spot markets.
+2025-09-12 23:43:07,683 - INFO - [binance] Generated 7632 total triangular paths.
+2025-09-12 23:43:07,844 - INFO - [binance] Filtered to 7206 priority paths.
+2025-09-12 23:43:07,873 - INFO - [binance] Generated 7206 paths across 1484 symbols.
+2025-09-12 23:43:07,918 - INFO - Updating account balances...
+2025-09-12 23:43:07,948 - ERROR - [HTTP] Timeout when calling https://app.base44.com/api/apps/68a64cab1d8018e91bdafa59/entities/Exchange
+2025-09-12 23:43:07,949 - ERROR - Failed to fetch exchanges from Base44 (status=None)
+2025-09-12 23:43:08,076 - WARNING - Failed to fetch balance for bybit (attempt 1): bybit requires "apiKey" credential
+2025-09-12 23:43:11,219 - WARNING - Failed to fetch balance for bybit (attempt 2): bybit requires "apiKey" credential
+2025-09-12 23:43:16,301 - WARNING - Failed to fetch balance for bybit (attempt 3): bybit requires "apiKey" credential
+2025-09-12 23:43:23,169 - WARNING - [gate] Error in symbol watcher for EGL1/USD1: gate nonce is behind cache after 3 tries.
+2025-09-12 23:43:23,260 - WARNING - [gate] Error in symbol watcher for ALEPH/USDT: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,260 - WARNING - [gate] Error in symbol watcher for TNSR/USDT: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,260 - WARNING - [gate] Error in symbol watcher for OMG/BTC: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,260 - WARNING - [gate] Error in symbol watcher for WAVES/USDT: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,260 - WARNING - [gate] Error in symbol watcher for CVC/ETH: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,260 - WARNING - [gate] Error in symbol watcher for DOT/BTC: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,260 - WARNING - [gate] Error in symbol watcher for LTC/BTC: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,260 - WARNING - [gate] Error in symbol watcher for APT/USDC: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,260 - WARNING - [gate] Error in symbol watcher for QTUM/USDT: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,268 - WARNING - [gate] Error in symbol watcher for ADA/USDT: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,269 - WARNING - [gate] Error in symbol watcher for NMR/ETH: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,270 - WARNING - [gate] Error in symbol watcher for ARB/USDT: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,270 - WARNING - [gate] Error in symbol watcher for DOGE/USD1: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,270 - WARNING - [gate] Error in symbol watcher for CFX/USDC: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,270 - WARNING - [gate] Error in symbol watcher for FLOKI/USDC: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,270 - WARNING - [gate] Error in symbol watcher for FIL/USDT: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,277 - WARNING - [gate] Error in symbol watcher for DOT/USDT: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,278 - WARNING - [gate] Error in symbol watcher for RENDER/USDC: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,279 - WARNING - [gate] Error in symbol watcher for JUP/USDT: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,280 - WARNING - [gate] Error in symbol watcher for BTC/USDC: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,281 - WARNING - [gate] Error in symbol watcher for XRP/USDT: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,282 - WARNING - [gate] Error in symbol watcher for XRP/GUSD: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,283 - WARNING - [gate] Error in symbol watcher for AAVE/USDT: Connection closed by remote server, closing code 1006
+2025-09-12 23:43:23,311 - ERROR - Unable to fetch balances for bybit after retries.
+2025-09-12 23:43:23,392 - WARNING - Failed to fetch balance for kucoin (attempt 1): kucoin requires "apiKey" credential
+2025-09-12 23:43:23,536 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,536 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,536 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,536 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,536 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,536 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,536 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,552 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,552 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,552 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,555 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,556 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,558 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,559 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,560 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,561 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,562 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,563 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,564 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,565 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,568 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,569 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,569 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:23,576 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-12 23:43:26,772 - WARNING - Failed to fetch balance for kucoin (attempt 2): kucoin requires "apiKey" credential
+2025-09-12 23:43:31,837 - WARNING - Failed to fetch balance for kucoin (attempt 3): kucoin requires "apiKey" credential
+2025-09-13 13:23:15,952 - INFO - Telegram bot manager initialized successfully
+2025-09-13 13:23:16,053 - INFO - Initializing Multi-Chain DEX service...
+2025-09-13 13:23:16,054 - WARNING - Config file dex_config.json not found, using default config
+2025-09-13 13:23:19,501 - INFO - Ethereum engine initialized on chain 1
+2025-09-13 13:23:19,552 - INFO - Initializing token discovery service...
+2025-09-13 13:23:19,604 - INFO - Loaded 0 tokens and 0 pairs from cache
+2025-09-13 13:23:19,604 - ERROR - Failed to initialize token discovery for chain ethereum
+2025-09-13 13:23:19,619 - ERROR - Failed to initialize arbitrage manager
+2025-09-13 13:23:19,620 - INFO - Multi-Chain DEX service initialized successfully
+2025-09-13 13:23:19,620 - INFO - Started Multi-Chain DEX service
+2025-09-13 13:23:19,620 - WARNING - run_scanners() is deprecated. Use initialize() then start() instead.
+2025-09-13 13:23:19,620 - INFO - Initializing CEX Arbitrage App...
+2025-09-13 13:23:19,620 - INFO - Telegram notifier initialized successfully
+2025-09-13 13:23:19,620 - ERROR - DEX service is not initialized
+2025-09-13 13:23:19,620 - INFO - Running on http://0.0.0.0:5001 (CTRL + C to quit)
+2025-09-13 13:23:23,951 - INFO - Successfully initialized bybit
+2025-09-13 13:23:28,619 - INFO - Successfully initialized kucoin
+2025-09-13 13:23:31,669 - INFO - Successfully initialized bingx
+2025-09-15 14:09:18,949 - INFO - Telegram bot manager initialized successfully
+2025-09-15 14:09:19,095 - INFO - Initializing Multi-Chain DEX service...
+2025-09-15 14:09:19,096 - WARNING - Config file dex_config.json not found, using default config
+2025-09-15 14:09:25,749 - ERROR - Failed to initialize Ethereum engine: 401, message='Unauthorized', url='https://eth-sepolia.g.alchemy.com/v2/YOUR_KEY'
+2025-09-15 14:09:25,751 - ERROR - Failed to initialize engine for chain ethereum
+2025-09-15 14:09:25,752 - ERROR - Failed to initialize arbitrage manager
+2025-09-15 14:09:25,753 - INFO - Multi-Chain DEX service initialized successfully
+2025-09-15 14:09:25,754 - INFO - Started Multi-Chain DEX service
+2025-09-15 14:09:25,755 - WARNING - run_scanners() is deprecated. Use initialize() then start() instead.
+2025-09-15 14:09:25,756 - INFO - Initializing CEX Arbitrage App...
+2025-09-15 14:09:25,758 - INFO - Telegram notifier initialized successfully
+2025-09-15 14:09:25,760 - ERROR - DEX service is not initialized
+2025-09-15 14:09:25,773 - INFO - Running on http://0.0.0.0:5001 (CTRL + C to quit)
+2025-09-15 14:09:25,776 - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x0000021F9A604C50>
+2025-09-15 14:09:56,793 - ERROR - Timeout initializing bybit
+2025-09-15 14:10:27,137 - ERROR - Timeout initializing gate
+2025-09-15 14:10:33,611 - INFO - Successfully initialized bingx
+2025-09-15 14:10:38,944 - INFO - Successfully initialized kucoin
+2025-09-15 14:14:58,329 - INFO - Telegram bot manager initialized successfully
+2025-09-15 14:14:58,427 - INFO - Initializing Multi-Chain DEX service...
+2025-09-15 14:14:58,429 - WARNING - Config file dex_config.json not found, using default config
+2025-09-15 14:15:08,816 - ERROR - Failed to initialize Ethereum engine: 404, message='Not Found', url='https://eth-sepolia.g.alchemy.com/v2/%20+%20ALCHEMY_API_KEY'
+2025-09-15 14:15:08,818 - ERROR - Failed to initialize engine for chain ethereum
+2025-09-15 14:15:08,819 - ERROR - Failed to initialize arbitrage manager
+2025-09-15 14:15:08,820 - INFO - Multi-Chain DEX service initialized successfully
+2025-09-15 14:15:08,822 - INFO - Started Multi-Chain DEX service
+2025-09-15 14:15:08,825 - WARNING - run_scanners() is deprecated. Use initialize() then start() instead.
+2025-09-15 14:15:08,827 - INFO - Initializing CEX Arbitrage App...
+2025-09-15 14:15:08,830 - INFO - Telegram notifier initialized successfully
+2025-09-15 14:15:08,838 - ERROR - DEX service is not initialized
+2025-09-15 14:15:08,859 - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001960A505610>
+2025-09-15 14:15:08,856 - INFO - Running on http://0.0.0.0:5001 (CTRL + C to quit)
+2025-09-15 14:21:31,982 - INFO - Telegram bot manager initialized successfully
+2025-09-15 14:21:32,082 - INFO - Initializing Multi-Chain DEX service...
+2025-09-15 14:21:32,085 - WARNING - Config file dex_config.json not found, using default config
+2025-09-15 14:21:36,950 - ERROR - Failed to initialize Ethereum engine: Non-hexadecimal digit found
+2025-09-15 14:21:36,952 - ERROR - Failed to initialize engine for chain ethereum
+2025-09-15 14:21:36,954 - ERROR - Failed to initialize arbitrage manager
+2025-09-15 14:21:36,954 - INFO - Multi-Chain DEX service initialized successfully
+2025-09-15 14:21:36,956 - INFO - Started Multi-Chain DEX service
+2025-09-15 14:21:36,958 - WARNING - run_scanners() is deprecated. Use initialize() then start() instead.
+2025-09-15 14:21:36,960 - INFO - Initializing CEX Arbitrage App...
+2025-09-15 14:21:36,963 - INFO - Telegram notifier initialized successfully
+2025-09-15 14:21:36,966 - ERROR - DEX service is not initialized
+2025-09-15 14:21:36,986 - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x0000026DDC305AD0>
+2025-09-15 14:21:36,988 - INFO - Running on http://0.0.0.0:5001 (CTRL + C to quit)
+2025-09-15 14:21:45,350 - INFO - Successfully initialized bybit
+2025-09-15 14:25:26,623 - INFO - Telegram bot manager initialized successfully
+2025-09-15 14:25:26,743 - INFO - Initializing Multi-Chain DEX service...
+2025-09-15 14:25:26,745 - WARNING - Config file dex_config.json not found, using default config
+2025-09-15 14:25:30,442 - ERROR - Failed to initialize Ethereum engine: Non-hexadecimal digit found
+2025-09-15 14:25:30,442 - ERROR - Failed to initialize engine for chain ethereum
+2025-09-15 14:25:30,444 - ERROR - Failed to initialize arbitrage manager
+2025-09-15 14:25:30,444 - INFO - Multi-Chain DEX service initialized successfully
+2025-09-15 14:25:30,445 - INFO - Started Multi-Chain DEX service
+2025-09-15 14:25:30,448 - WARNING - run_scanners() is deprecated. Use initialize() then start() instead.
+2025-09-15 14:25:30,449 - INFO - Initializing CEX Arbitrage App...
+2025-09-15 14:25:30,450 - INFO - Telegram notifier initialized successfully
+2025-09-15 14:25:30,457 - ERROR - DEX service is not initialized
+2025-09-15 14:25:30,468 - INFO - Running on http://0.0.0.0:5001 (CTRL + C to quit)
+2025-09-15 14:25:30,474 - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001A8DBA04F10>
+2025-09-15 14:25:34,818 - INFO - Successfully initialized bybit
+2025-09-15 14:25:53,002 - INFO - Successfully initialized gate
+2025-09-15 14:25:57,873 - INFO - Successfully initialized bingx
+2025-09-15 14:26:03,541 - INFO - Successfully initialized kucoin
+2025-09-15 14:26:09,694 - INFO - Successfully initialized binance
+2025-09-15 14:26:09,695 - INFO - CEX Arbitrage App initialized successfully
+2025-09-15 14:26:09,696 - INFO - Starting CEX Arbitrage App scanners...
+2025-09-15 14:26:09,697 - INFO - CEX Arbitrage App started successfully
+2025-09-15 14:26:09,698 - INFO - Starting cross-exchange price streams...
+2025-09-15 14:26:09,699 - INFO - Starting Triangular Arbitrage Engine...
+2025-09-15 14:26:09,700 - INFO - Initialized 5 exchanges: ['bybit', 'gate', 'bingx', 'kucoin', 'binance']
+2025-09-15 14:26:09,701 - INFO - Starting triangular opportunity scanning...
+2025-09-15 14:26:09,704 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-15 13:26:09.695819"
+}
+2025-09-15 14:26:09,707 - INFO - [bybit] Subscribing to FIL/USDT...
+2025-09-15 14:26:09,709 - INFO - [bybit] Subscribing to QTUM/USDT...
+2025-09-15 14:26:09,710 - INFO - [bybit] Subscribing to DOT/USDT...
+2025-09-15 14:26:09,711 - INFO - [bybit] Subscribing to XRP/USDT...
+2025-09-15 14:26:09,713 - INFO - [bybit] Subscribing to ADA/USDT...
+2025-09-15 14:26:09,714 - INFO - [gate] Subscribing to FIL/USDT...
+2025-09-15 14:26:09,719 - INFO - [gate] Subscribing to QTUM/USDT...
+2025-09-15 14:26:09,719 - INFO - [gate] Subscribing to DOT/USDT...
+2025-09-15 14:26:09,721 - INFO - [gate] Subscribing to XRP/USDT...
+2025-09-15 14:26:09,723 - INFO - [gate] Subscribing to ADA/USDT...
+2025-09-15 14:26:09,725 - INFO - [bingx] Subscribing to FIL/USDT...
+2025-09-15 14:26:09,730 - INFO - [bingx] Subscribing to QTUM/USDT...
+2025-09-15 14:26:09,732 - INFO - [bingx] Subscribing to DOT/USDT...
+2025-09-15 14:26:09,734 - INFO - [bingx] Subscribing to XRP/USDT...
+2025-09-15 14:26:09,735 - INFO - [bingx] Subscribing to ADA/USDT...
+2025-09-15 14:26:09,736 - INFO - [kucoin] Subscribing to FIL/USDT...
+2025-09-15 14:26:09,737 - INFO - [kucoin] Subscribing to QTUM/USDT...
+2025-09-15 14:26:09,738 - INFO - [kucoin] Subscribing to DOT/USDT...
+2025-09-15 14:26:09,739 - INFO - [kucoin] Subscribing to XRP/USDT...
+2025-09-15 14:26:09,742 - INFO - [kucoin] Subscribing to ADA/USDT...
+2025-09-15 14:26:09,743 - INFO - [binance] Subscribing to FIL/USDT...
+2025-09-15 14:26:09,753 - INFO - [binance] Subscribing to QTUM/USDT...
+2025-09-15 14:26:09,755 - INFO - [binance] Subscribing to DOT/USDT...
+2025-09-15 14:26:09,757 - INFO - [binance] Subscribing to XRP/USDT...
+2025-09-15 14:26:09,758 - INFO - [binance] Subscribing to ADA/USDT...
+2025-09-15 14:26:09,768 - INFO - [bybit] Initializing triangular scanner...
+2025-09-15 14:26:09,772 - INFO - [bybit] Found 671 active spot markets.
+2025-09-15 14:26:10,359 - INFO - [bybit] Generated 684 total triangular paths.
+2025-09-15 14:26:10,375 - INFO - [bybit] Filtered to 678 priority paths.
+2025-09-15 14:26:10,379 - INFO - [bybit] Generated 678 paths across 263 symbols.
+2025-09-15 14:26:10,381 - INFO - [gate] Initializing triangular scanner...
+2025-09-15 14:26:10,387 - INFO - [gate] Found 2640 active spot markets.
+2025-09-15 14:26:23,946 - INFO - [gate] Generated 567 total triangular paths.
+2025-09-15 14:26:23,963 - INFO - [gate] Filtered to 567 priority paths.
+2025-09-15 14:26:23,973 - INFO - [gate] Generated 567 paths across 271 symbols.
+2025-09-15 14:26:23,976 - INFO - [bingx] Initializing triangular scanner...
+2025-09-15 14:26:23,990 - INFO - [bingx] Found 949 active spot markets.
+2025-09-15 14:26:26,462 - INFO - [bingx] Generated 69 total triangular paths.
+2025-09-15 14:26:26,464 - INFO - [bingx] Filtered to 69 priority paths.
+2025-09-15 14:26:26,465 - INFO - [bingx] Generated 69 paths across 44 symbols.
+2025-09-15 14:26:26,466 - INFO - [kucoin] Initializing triangular scanner...
+2025-09-15 14:26:26,468 - INFO - [kucoin] Found 1308 active spot markets.
+2025-09-15 14:26:29,700 - INFO - [kucoin] Generated 1156 total triangular paths.
+2025-09-15 14:26:29,753 - INFO - [kucoin] Filtered to 1156 priority paths.
+2025-09-15 14:26:29,767 - INFO - [kucoin] Generated 1156 paths across 370 symbols.
+2025-09-15 14:26:29,769 - INFO - [binance] Initializing triangular scanner...
+2025-09-15 14:26:29,782 - INFO - [binance] Found 1529 active spot markets.
+2025-09-15 14:26:31,028 - INFO - [binance] Generated 7623 total triangular paths.
+2025-09-15 14:26:31,164 - INFO - [binance] Filtered to 7197 priority paths.
+2025-09-15 14:26:31,191 - INFO - [binance] Generated 7197 paths across 1483 symbols.
+2025-09-15 14:26:31,233 - INFO - Updating account balances...
+2025-09-15 14:26:31,252 - ERROR - [HTTP] Timeout when calling https://app.base44.com/api/apps/68a64cab1d8018e91bdafa59/entities/Exchange
+2025-09-15 14:26:31,253 - ERROR - Failed to fetch exchanges from Base44 (status=None)
+2025-09-15 14:26:31,355 - WARNING - Failed to fetch balance for bybit (attempt 1): bybit requires "apiKey" credential
+2025-09-15 14:26:34,460 - WARNING - Failed to fetch balance for bybit (attempt 2): bybit requires "apiKey" credential
+2025-09-15 14:26:39,922 - WARNING - [gate] Error in symbol watcher for LDO/USDC: gate nonce is behind cache after 3 tries.
+2025-09-15 14:26:40,106 - WARNING - Failed to fetch balance for bybit (attempt 3): bybit requires "apiKey" credential
+2025-09-15 14:26:40,487 - ERROR - Exception in callback Client.receive_loop()
+handle: <Handle Client.receive_loop()>
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.1264.0_x64__qbz5n2kfra8p0\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\ws\client.py", line 114, in receive_loop
+    if len(self.buffer) > 1:
+           ^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\ws\client.py", line 183, in buffer
+    return self.connection._conn.protocol._payload._buffer
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute '_buffer'
+2025-09-15 14:26:40,883 - ERROR - Future exception was never retrieved
+future: <Future finished exception=RuntimeError('Session is closed')>
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 566, in load_order_book
+    order_book = await self.fetch_order_book(symbol, limit, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\gate.py", line 2564, in fetch_order_book
+    response = await self.publicSpotGetOrderBook(self.extend(request, query))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 978, in request
+    return await self.fetch2(path, api, method, params, headers, body, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 974, in fetch2
+    raise e
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 963, in fetch2
+    return await self.fetch(request['url'], request['method'], request['headers'], request['body'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 217, in fetch
+    async with session_method(yarl.URL(url, encoded=True),
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 1488, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 527, in _request
+    raise RuntimeError("Session is closed")
+RuntimeError: Session is closed
+2025-09-15 14:26:44,608 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-15 14:26:46,521 - WARNING - [gate] Error in symbol watcher for CVC/USDT: gate GET https://api.gateio.ws/api/v4/spot/order_book?currency_pair=CVC_USDT&limit=100&with_id=true
+2025-09-15 14:26:46,752 - WARNING - [gate] Error in symbol watcher for ETC/USDT: Connector is closed.
+2025-09-15 14:26:46,752 - WARNING - [gate] Error in symbol watcher for ETH/USDC: Connector is closed.
+2025-09-15 14:26:46,754 - WARNING - [gate] Error in symbol watcher for GT/BTC: Connector is closed.
+2025-09-15 14:26:46,754 - WARNING - [gate] Error in symbol watcher for DOT/USDT: Connector is closed.
+2025-09-15 14:26:46,755 - WARNING - [gate] Error in symbol watcher for FIL/USDT: Connector is closed.
+2025-09-15 14:26:46,756 - WARNING - [gate] Error in symbol watcher for LDO/USDT: Connector is closed.
+2025-09-15 14:26:46,902 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-15 14:26:47,201 - ERROR - Exception in callback Exchange.spawn.<locals>.callback(<Task cancell...hange.py:556>>) at C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py:380
+handle: <Handle Exchange.spawn.<locals>.callback(<Task cancell...hange.py:556>>) at C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py:380>
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 217, in fetch
+    async with session_method(yarl.URL(url, encoded=True),
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 1488, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 652, in connect
+    raise ClientConnectionError("Connector is closed.")
+aiohttp.client_exceptions.ClientConnectionError: Connector is closed.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\SCENTECH SERVICES\Desktop\codes\ArbitrageWise-Refined\cex\triangular.py", line 74, in _watch_symbol
+    ob = await asyncio.wait_for(exchange.watch_order_book(symbol), timeout=None)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.1264.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py", line 442, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\pro\gate.py", line 399, in watch_order_book
+    orderbook = await self.subscribe_public(url, messageHash, payload, channel, query, subscription)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\pro\gate.py", line 1855, in subscribe_public
+    return await self.watch(url, messageHash, message, messageHash, subscription)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 566, in load_order_book
+    order_book = await self.fetch_order_book(symbol, limit, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\gate.py", line 2564, in fetch_order_book
+    response = await self.publicSpotGetOrderBook(self.extend(request, query))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 978, in request
+    return await self.fetch2(path, api, method, params, headers, body, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 972, in fetch2
+    raise e
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 963, in fetch2
+    return await self.fetch(request['url'], request['method'], request['headers'], request['body'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 257, in fetch
+    raise ExchangeNotAvailable(details) from e
+ccxt.base.errors.ExchangeNotAvailable: gate GET https://api.gateio.ws/api/v4/spot/order_book?currency_pair=CVC_USDT&limit=100&with_id=true
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.1264.0_x64__qbz5n2kfra8p0\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 381, in callback
+    exception = asyncio_future.exception()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 579, in load_order_book
+    await self.load_order_book(client, messageHash, symbol, limit, params)
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 566, in load_order_book
+    order_book = await self.fetch_order_book(symbol, limit, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\gate.py", line 2564, in fetch_order_book
+    response = await self.publicSpotGetOrderBook(self.extend(request, query))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 978, in request
+    return await self.fetch2(path, api, method, params, headers, body, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 963, in fetch2
+    return await self.fetch(request['url'], request['method'], request['headers'], request['body'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ccxt\async_support\base\exchange.py", line 217, in fetch
+    async with session_method(yarl.URL(url, encoded=True),
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 1488, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1209, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SCENTECH SERVICES\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\aiohttp\connector.py", line 1148, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+2025-09-15 14:26:47,290 - ERROR - Unable to fetch balances for bybit after retries.
+2025-09-15 14:26:47,697 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-15 14:26:47,698 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-15 14:26:47,699 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-15 14:26:47,700 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-15 14:26:47,700 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-15 14:26:47,701 - INFO - [gate] Reconnecting in 30 seconds...
+2025-09-15 14:26:48,129 - WARNING - Failed to fetch balance for gate (attempt 1): gate requires "apiKey" credential
+2025-09-15 14:26:51,140 - WARNING - Failed to fetch balance for gate (attempt 2): gate requires "apiKey" credential
+2025-09-15 14:26:56,190 - WARNING - Failed to fetch balance for gate (attempt 3): gate requires "apiKey" credential
+2025-09-15 14:27:03,518 - ERROR - Unable to fetch balances for gate after retries.
+2025-09-15 14:27:03,784 - WARNING - Failed to fetch balance for bingx (attempt 1): bingx requires "apiKey" credential
+2025-09-15 14:27:06,949 - WARNING - Failed to fetch balance for bingx (attempt 2): bingx requires "apiKey" credential
+2025-09-15 14:27:09,896 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-15 13:26:09.695819"
+}
+2025-09-15 14:27:12,139 - WARNING - Failed to fetch balance for bingx (attempt 3): bingx requires "apiKey" credential
+2025-09-15 14:27:19,126 - ERROR - Unable to fetch balances for bingx after retries.
+2025-09-15 14:27:19,181 - WARNING - Failed to fetch balance for kucoin (attempt 1): kucoin requires "apiKey" credential
+2025-09-15 14:27:22,549 - WARNING - Failed to fetch balance for kucoin (attempt 2): kucoin requires "apiKey" credential
+2025-09-15 14:27:27,696 - WARNING - Failed to fetch balance for kucoin (attempt 3): kucoin requires "apiKey" credential
+2025-09-15 14:27:34,721 - ERROR - Unable to fetch balances for kucoin after retries.
+2025-09-15 14:27:35,241 - WARNING - Failed to fetch balance for binance (attempt 1): binance requires "apiKey" credential
+2025-09-15 14:27:38,435 - WARNING - Failed to fetch balance for binance (attempt 2): binance requires "apiKey" credential
+2025-09-15 14:27:44,097 - WARNING - Failed to fetch balance for binance (attempt 3): binance requires "apiKey" credential
+2025-09-15 14:27:51,273 - ERROR - Unable to fetch balances for binance after retries.
+2025-09-15 14:27:51,274 - INFO - Account balances updated successfully.
+2025-09-15 14:28:10,393 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-15 13:26:09.695819"
+}
+2025-09-15 14:29:10,418 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-15 13:26:09.695819"
+}
+2025-09-15 14:30:10,481 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-15 13:26:09.695819"
+}
+2025-09-15 14:31:10,934 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-15 13:26:09.695819"
+}
+2025-09-15 14:32:14,727 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-15 13:26:09.695819"
+}
+2025-09-15 14:32:35,621 - INFO - Cross-Exchange Opportunity: XRP/USDT | Profit: 0.333%
+2025-09-15 14:32:40,764 - INFO - Saved ArbitrageOpportunity opportunity: 68c8158109686b29d092b3d0
+2025-09-15 14:32:45,617 - ERROR - Failed to send Telegram message: HTTP Client says - ClientConnectorDNSError: Cannot connect to host api.telegram.org:443 ssl:default [Timeout while contacting DNS servers]
+2025-09-15 14:32:45,617 - ERROR - Failed to send CEX opportunity alert via shared manager
+2025-09-15 14:32:48,000 - INFO - Cross-Exchange Opportunity: XRP/USDT | Profit: 0.380%
+2025-09-15 14:32:51,355 - INFO - Updating account balances...
+2025-09-15 14:32:52,493 - WARNING - Failed to fetch balance for bybit (attempt 1): bybit requires "apiKey" credential
+2025-09-15 14:32:52,725 - INFO - Saved ArbitrageOpportunity opportunity: 68c8158dd991eb39ce7299a7
+2025-09-15 14:32:57,680 - ERROR - Failed to send Telegram message: HTTP Client says - ClientConnectorDNSError: Cannot connect to host api.telegram.org:443 ssl:default [Timeout while contacting DNS servers]
+2025-09-15 14:32:57,682 - ERROR - Failed to send CEX opportunity alert via shared manager
+2025-09-15 14:32:58,875 - WARNING - Failed to fetch balance for bybit (attempt 2): bybit requires "apiKey" credential
+2025-09-15 14:33:00,450 - INFO - Cross-Exchange Opportunity: XRP/USDT | Profit: 0.343%
+2025-09-15 14:33:04,590 - INFO - Saved ArbitrageOpportunity opportunity: 68c8159938530489ae725566
+2025-09-15 14:33:05,149 - WARNING - Failed to fetch balance for bybit (attempt 3): bybit requires "apiKey" credential
+2025-09-15 14:33:09,993 - ERROR - Failed to send Telegram message: HTTP Client says - ClientConnectorDNSError: Cannot connect to host api.telegram.org:443 ssl:default [Timeout while contacting DNS servers]
+2025-09-15 14:33:09,994 - ERROR - Failed to send CEX opportunity alert via shared manager
+2025-09-15 14:33:12,292 - INFO - Cross-Exchange Opportunity: XRP/USDT | Profit: 0.394%
+2025-09-15 14:33:12,565 - ERROR - Unable to fetch balances for bybit after retries.
+2025-09-15 14:33:13,211 - WARNING - Failed to fetch balance for gate (attempt 1): gate requires "apiKey" credential
+2025-09-15 14:33:15,127 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-15 13:26:09.695819"
+}
+2025-09-15 14:33:16,914 - INFO - Saved ArbitrageOpportunity opportunity: 68c815a4c7855f02b12330c4
+2025-09-15 14:33:17,468 - WARNING - Failed to fetch balance for gate (attempt 2): gate requires "apiKey" credential
+2025-09-15 14:33:21,886 - ERROR - Failed to send Telegram message: HTTP Client says - ClientConnectorDNSError: Cannot connect to host api.telegram.org:443 ssl:default [Timeout while contacting DNS servers]
+2025-09-15 14:33:21,886 - ERROR - Failed to send CEX opportunity alert via shared manager
+2025-09-15 14:33:26,676 - INFO - Cross-Exchange Opportunity: XRP/USDT | Profit: 0.530%
+2025-09-15 14:33:26,961 - WARNING - Failed to fetch balance for gate (attempt 3): gate requires "apiKey" credential
+2025-09-15 14:33:33,117 - INFO - Saved ArbitrageOpportunity opportunity: 68c815b6acc979ef4f047d9d
+2025-09-15 14:33:34,236 - ERROR - Unable to fetch balances for gate after retries.
+2025-09-15 14:33:34,833 - WARNING - Failed to fetch balance for bingx (attempt 1): bingx requires "apiKey" credential
+2025-09-15 14:33:38,535 - ERROR - Failed to send Telegram message: HTTP Client says - ClientConnectorDNSError: Cannot connect to host api.telegram.org:443 ssl:default [Timeout while contacting DNS servers]
+2025-09-15 14:33:38,536 - ERROR - Failed to send CEX opportunity alert via shared manager
+2025-09-15 14:33:39,127 - WARNING - Failed to fetch balance for bingx (attempt 2): bingx requires "apiKey" credential
+2025-09-15 14:33:41,129 - INFO - Cross-Exchange Opportunity: XRP/USDT | Profit: 0.607%
+2025-09-15 14:33:44,915 - WARNING - Failed to fetch balance for bingx (attempt 3): bingx requires "apiKey" credential
+2025-09-15 14:33:45,044 - INFO - Saved ArbitrageOpportunity opportunity: 68c815c1155f3c1bd6242c75
+2025-09-15 14:33:49,540 - ERROR - Failed to send Telegram message: HTTP Client says - ClientConnectorDNSError: Cannot connect to host api.telegram.org:443 ssl:default [Timeout while contacting DNS servers]
+2025-09-15 14:33:49,540 - ERROR - Failed to send CEX opportunity alert via shared manager
+2025-09-16 16:46:52,269 - INFO - Telegram bot manager initialized successfully
+2025-09-16 16:46:55,462 - INFO - Initializing Multi-Chain DEX service with orchestration layer...
+2025-09-16 16:46:55,462 - WARNING - Config file dex_config.json not found, using default config
+2025-09-16 16:46:55,462 - INFO - Using orchestration mode: simple
+2025-09-16 16:46:55,462 - INFO - Mode description: Auto Selection - Chooses optimal layer based on configuration
+2025-09-16 16:46:55,462 - INFO - Initializing Simple Layer (ArbitrageManager)...
+2025-09-16 16:46:57,006 - ERROR - Failed to initialize Ethereum engine: Non-hexadecimal digit found
+2025-09-16 16:46:57,006 - ERROR - Failed to initialize engine for chain ethereum
+2025-09-16 16:46:57,006 - ERROR - Failed to initialize arbitrage manager
+2025-09-16 16:46:57,006 - INFO - DEX service initialized with simple orchestration layer
+2025-09-16 16:46:57,006 - INFO - Started Multi-Chain DEX service
+2025-09-16 16:46:57,006 - WARNING - run_scanners() is deprecated. Use initialize() then start() instead.
+2025-09-16 16:46:57,006 - INFO - Initializing CEX Arbitrage App...
+2025-09-16 16:46:57,006 - INFO - Telegram notifier initialized successfully
+2025-09-16 16:46:57,017 - ERROR - DEX service is not initialized
+2025-09-16 16:46:57,031 - INFO - Running on http://0.0.0.0:5001 (CTRL + C to quit)
+2025-09-16 16:47:00,138 - ERROR - Failed to initialize bybit: bybit GET https://api.bybit.com/v5/market/instruments-info?category=option&baseCoin=ETH 403 Forbidden <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>ERROR: The request could not be satisfied</TITLE>
+</HEAD><BODY>
+<H1>403 ERROR</H1>
+<H2>The request could not be satisfied.</H2>
+<HR noshade size="1px">
+The Amazon CloudFront distribution is configured to block access from your country.
+We can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.
+<BR clear="all">
+If you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation.
+<BR clear="all">
+<HR noshade size="1px">
+<PRE>
+Generated by cloudfront (CloudFront)
+Request ID: h_3yUZpETUPTVajRoVXbMttUm7u6fM8xpKXzd4t2yFB_YmRg6GOSEw==
+</PRE>
+<ADDRESS>
+</ADDRESS>
+</BODY></HTML>
+2025-09-16 16:47:01,850 - ERROR - Failed to initialize binance: binance GET https://api.binance.com/api/v3/exchangeInfo 451  {
+  "code": 0,
+  "msg": "Service unavailable from a restricted location according to 'b. Eligibility' in https://www.binance.com/en/terms. Please contact customer service if you believe you received this message in error."
+}
+2025-09-16 16:47:05,799 - INFO - Successfully initialized okx
+2025-09-16 16:47:12,417 - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001AEEC7CD5D0>
+2025-09-16 16:47:12,631 - INFO - Successfully initialized bitget
+2025-09-16 16:47:12,631 - INFO - CEX Arbitrage App initialized successfully
+2025-09-16 16:47:12,631 - INFO - Starting CEX Arbitrage App scanners...
+2025-09-16 16:47:12,631 - INFO - CEX Arbitrage App started successfully
+2025-09-16 16:47:12,631 - INFO - Starting cross-exchange price streams...
+2025-09-16 16:47:12,631 - INFO - Starting Triangular Arbitrage Engine...
+2025-09-16 16:47:12,631 - INFO - Initialized 2 exchanges: ['okx', 'bitget']
+2025-09-16 16:47:12,631 - INFO - Starting triangular opportunity scanning...
+2025-09-16 16:47:12,631 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-16 15:47:12.631007"
+}
+2025-09-16 16:47:12,631 - INFO - [okx] Subscribing to FIL/USDT...
+2025-09-16 16:47:12,631 - INFO - [okx] Subscribing to QTUM/USDT...
+2025-09-16 16:47:12,631 - INFO - [okx] Subscribing to DOT/USDT...
+2025-09-16 16:47:12,631 - INFO - [okx] Subscribing to XRP/USDT...
+2025-09-16 16:47:12,631 - INFO - [okx] Subscribing to ADA/USDT...
+2025-09-16 16:47:12,631 - INFO - [bitget] Subscribing to FIL/USDT...
+2025-09-16 16:47:12,631 - INFO - [bitget] Subscribing to QTUM/USDT...
+2025-09-16 16:47:12,631 - INFO - [bitget] Subscribing to DOT/USDT...
+2025-09-16 16:47:12,648 - INFO - [bitget] Subscribing to XRP/USDT...
+2025-09-16 16:47:12,649 - INFO - [bitget] Subscribing to ADA/USDT...
+2025-09-16 16:47:12,650 - INFO - [okx] Initializing triangular scanner...
+2025-09-16 16:47:12,651 - INFO - [okx] Found 673 active spot markets.
+2025-09-16 16:47:12,999 - INFO - [okx] Generated 1266 total triangular paths.
+2025-09-16 16:47:13,048 - INFO - [okx] Filtered to 1266 priority paths.
+2025-09-16 16:47:13,053 - INFO - [okx] Generated 1266 paths across 653 symbols.
+2025-09-16 16:47:13,055 - INFO - [bitget] Initializing triangular scanner...
+2025-09-16 16:47:13,057 - INFO - [bitget] Found 786 active spot markets.
+2025-09-16 16:47:14,196 - INFO - [bitget] Generated 525 total triangular paths.
+2025-09-16 16:47:14,223 - INFO - [bitget] Filtered to 525 priority paths.
+2025-09-16 16:47:14,227 - INFO - [bitget] Generated 525 paths across 165 symbols.
+2025-09-16 16:47:17,630 - INFO - Updating account balances...
+2025-09-16 16:47:17,727 - WARNING - Failed to fetch balance for okx (attempt 1): okx requires "apiKey" credential
+2025-09-16 16:47:20,947 - WARNING - Failed to fetch balance for okx (attempt 2): okx requires "apiKey" credential
+2025-09-16 16:47:26,131 - WARNING - Failed to fetch balance for okx (attempt 3): okx requires "apiKey" credential
+2025-09-16 16:47:33,120 - ERROR - Unable to fetch balances for okx after retries.
+2025-09-16 16:47:33,196 - WARNING - Failed to fetch balance for bitget (attempt 1): bitget requires "apiKey" credential
+2025-09-16 16:47:36,297 - WARNING - Failed to fetch balance for bitget (attempt 2): bitget requires "apiKey" credential
+2025-09-16 16:47:41,397 - WARNING - Failed to fetch balance for bitget (attempt 3): bitget requires "apiKey" credential
+2025-09-16 16:47:48,397 - ERROR - Unable to fetch balances for bitget after retries.
+2025-09-16 16:47:48,397 - INFO - Account balances updated successfully.
+2025-09-16 16:48:12,620 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-16 15:47:12.631007"
+}
+2025-09-16 16:49:12,621 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-16 15:47:12.631007"
+}
+2025-09-16 17:27:38,231 - INFO - Telegram bot manager initialized successfully
+2025-09-16 17:27:40,862 - INFO - Initializing Multi-Chain DEX service with orchestration layer...
+2025-09-16 17:27:40,862 - WARNING - Config file dex_config.json not found, using default config
+2025-09-16 17:27:40,862 - INFO - Using orchestration mode: advanced
+2025-09-16 17:27:40,862 - INFO - Mode description: Auto Selection - Chooses optimal layer based on configuration
+2025-09-16 17:27:40,862 - INFO - Initializing Advanced Layer (DEXArbitrageOrchestrator)...
+2025-09-16 17:27:40,869 - INFO - Initializing DEX Arbitrage Orchestrator...
+2025-09-16 17:27:40,869 - INFO - Initializing Service Registry...
+2025-09-16 17:27:40,869 - INFO - Service Registry initialized
+2025-09-16 17:27:40,871 - INFO - Initializing Opportunity Aggregator...
+2025-09-16 17:27:40,872 - INFO - Opportunity Aggregator initialized
+2025-09-16 17:27:40,876 - INFO - Initializing Execution Coordinator...
+2025-09-16 17:27:40,877 - INFO - Execution Coordinator initialized
+2025-09-16 17:27:40,878 - INFO - Initializing Risk Manager...
+2025-09-16 17:27:40,879 - INFO - Using default risk configuration
+2025-09-16 17:27:40,879 - INFO - Risk Manager initialized
+2025-09-16 17:27:41,033 - ERROR - Failed to initialize orchestrator: 'uniswap_v3'
+2025-09-16 17:27:41,033 - ERROR - Error initializing advanced layer: 'uniswap_v3'
+2025-09-16 17:27:41,033 - INFO - DEX service initialized with advanced orchestration layer
+2025-09-16 17:27:41,033 - INFO - Started Multi-Chain DEX service
+2025-09-16 17:27:41,033 - WARNING - run_scanners() is deprecated. Use initialize() then start() instead.
+2025-09-16 17:27:41,033 - INFO - Initializing CEX Arbitrage App...
+2025-09-16 17:27:41,033 - INFO - Telegram notifier initialized successfully
+2025-09-16 17:27:41,080 - ERROR - DEX service is not initialized
+2025-09-16 17:27:41,102 - INFO - Running on http://0.0.0.0:5001 (CTRL + C to quit)
+2025-09-16 17:27:44,232 - ERROR - Failed to initialize bybit: bybit GET https://api.bybit.com/v5/market/instruments-info?category=option&baseCoin=BTC 403 Forbidden <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>ERROR: The request could not be satisfied</TITLE>
+</HEAD><BODY>
+<H1>403 ERROR</H1>
+<H2>The request could not be satisfied.</H2>
+<HR noshade size="1px">
+The Amazon CloudFront distribution is configured to block access from your country.
+We can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.
+<BR clear="all">
+If you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation.
+<BR clear="all">
+<HR noshade size="1px">
+<PRE>
+Generated by cloudfront (CloudFront)
+Request ID: WWvbVcLrkoVXspZkjncT-g5z1U9seW8ttGcCVgAIwaizYupLe0vP-Q==
+</PRE>
+<ADDRESS>
+</ADDRESS>
+</BODY></HTML>
+2025-09-16 17:27:46,020 - ERROR - Failed to initialize binance: binance GET https://api.binance.com/api/v3/exchangeInfo 451  {
+  "code": 0,
+  "msg": "Service unavailable from a restricted location according to 'b. Eligibility' in https://www.binance.com/en/terms. Please contact customer service if you believe you received this message in error."
+}
+2025-09-16 17:27:49,847 - INFO - Successfully initialized okx
+2025-09-16 17:27:57,931 - INFO - Successfully initialized bitget
+2025-09-16 17:27:57,931 - INFO - CEX Arbitrage App initialized successfully
+2025-09-16 17:27:57,931 - INFO - Starting CEX Arbitrage App scanners...
+2025-09-16 17:27:57,931 - INFO - CEX Arbitrage App started successfully
+2025-09-16 17:27:57,931 - INFO - Starting cross-exchange price streams...
+2025-09-16 17:27:57,931 - INFO - Starting Triangular Arbitrage Engine...
+2025-09-16 17:27:57,948 - INFO - Initialized 2 exchanges: ['okx', 'bitget']
+2025-09-16 17:27:57,948 - INFO - Starting triangular opportunity scanning...
+2025-09-16 17:27:57,952 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-16 16:27:57.931392"
+}
+2025-09-16 17:27:57,956 - INFO - [okx] Subscribing to FIL/USDT...
+2025-09-16 17:27:57,958 - INFO - [okx] Subscribing to QTUM/USDT...
+2025-09-16 17:27:57,958 - INFO - [okx] Subscribing to DOT/USDT...
+2025-09-16 17:27:57,960 - INFO - [okx] Subscribing to XRP/USDT...
+2025-09-16 17:27:57,960 - INFO - [okx] Subscribing to ADA/USDT...
+2025-09-16 17:27:57,961 - INFO - [bitget] Subscribing to FIL/USDT...
+2025-09-16 17:27:57,963 - INFO - [bitget] Subscribing to QTUM/USDT...
+2025-09-16 17:27:57,965 - INFO - [bitget] Subscribing to DOT/USDT...
+2025-09-16 17:27:57,966 - INFO - [bitget] Subscribing to XRP/USDT...
+2025-09-16 17:27:57,970 - INFO - [bitget] Subscribing to ADA/USDT...
+2025-09-16 17:27:57,970 - INFO - [okx] Initializing triangular scanner...
+2025-09-16 17:27:57,970 - INFO - [okx] Found 673 active spot markets.
+2025-09-16 17:27:58,481 - INFO - [okx] Generated 1266 total triangular paths.
+2025-09-16 17:27:58,520 - INFO - [okx] Filtered to 1266 priority paths.
+2025-09-16 17:27:58,520 - INFO - [okx] Generated 1266 paths across 653 symbols.
+2025-09-16 17:27:58,520 - INFO - [bitget] Initializing triangular scanner...
+2025-09-16 17:27:58,530 - INFO - [bitget] Found 786 active spot markets.
+2025-09-16 17:27:59,745 - INFO - [bitget] Generated 525 total triangular paths.
+2025-09-16 17:27:59,756 - INFO - [bitget] Filtered to 525 priority paths.
+2025-09-16 17:27:59,758 - INFO - [bitget] Generated 525 paths across 165 symbols.
+2025-09-16 17:28:02,932 - INFO - Updating account balances...
+2025-09-16 17:28:03,062 - WARNING - Failed to fetch balance for okx (attempt 1): okx requires "apiKey" credential
+2025-09-16 17:28:06,270 - WARNING - Failed to fetch balance for okx (attempt 2): okx requires "apiKey" credential
+2025-09-16 17:28:11,481 - WARNING - Failed to fetch balance for okx (attempt 3): okx requires "apiKey" credential
+2025-09-16 17:28:18,471 - ERROR - Unable to fetch balances for okx after retries.
+2025-09-16 17:28:18,526 - WARNING - Failed to fetch balance for bitget (attempt 1): bitget requires "apiKey" credential
+2025-09-16 17:28:21,623 - WARNING - Failed to fetch balance for bitget (attempt 2): bitget requires "apiKey" credential
+2025-09-16 17:28:26,762 - WARNING - Failed to fetch balance for bitget (attempt 3): bitget requires "apiKey" credential
+2025-09-16 17:28:33,780 - ERROR - Unable to fetch balances for bitget after retries.
+2025-09-16 17:28:33,780 - INFO - Account balances updated successfully.
+2025-09-16 17:33:47,740 - INFO - Telegram bot manager initialized successfully
+2025-09-16 17:33:49,780 - INFO - Initializing Multi-Chain DEX service with orchestration layer...
+2025-09-16 17:33:49,780 - WARNING - Config file dex_config.json not found, using default config
+2025-09-16 17:33:49,780 - INFO - Using orchestration mode: advanced
+2025-09-16 17:33:49,780 - INFO - Mode description: Auto Selection - Chooses optimal layer based on configuration
+2025-09-16 17:33:49,780 - INFO - Initializing Advanced Layer (DEXArbitrageOrchestrator)...
+2025-09-16 17:33:49,796 - INFO - Initializing DEX Arbitrage Orchestrator...
+2025-09-16 17:33:49,800 - INFO - Initializing Service Registry...
+2025-09-16 17:33:49,801 - INFO - Service Registry initialized
+2025-09-16 17:33:49,802 - INFO - Initializing Opportunity Aggregator...
+2025-09-16 17:33:49,803 - INFO - Opportunity Aggregator initialized
+2025-09-16 17:33:49,804 - INFO - Initializing Execution Coordinator...
+2025-09-16 17:33:49,805 - INFO - Execution Coordinator initialized
+2025-09-16 17:33:49,807 - INFO - Initializing Risk Manager...
+2025-09-16 17:33:49,808 - INFO - Using default risk configuration
+2025-09-16 17:33:49,809 - INFO - Risk Manager initialized
+2025-09-16 17:33:49,898 - ERROR - Failed to initialize orchestrator: 'uniswap_v3'
+2025-09-16 17:33:49,898 - ERROR - Error initializing advanced layer: 'uniswap_v3'
+2025-09-16 17:33:49,899 - INFO - DEX service initialized with advanced orchestration layer
+2025-09-16 17:33:49,900 - INFO - Started Multi-Chain DEX service
+2025-09-16 17:33:49,902 - WARNING - run_scanners() is deprecated. Use initialize() then start() instead.
+2025-09-16 17:33:49,903 - INFO - Initializing CEX Arbitrage App...
+2025-09-16 17:33:49,906 - INFO - Telegram notifier initialized successfully
+2025-09-16 17:33:49,929 - ERROR - DEX service is not initialized
+2025-09-16 17:33:49,945 - INFO - Running on http://0.0.0.0:5001 (CTRL + C to quit)
+2025-09-16 17:33:52,939 - ERROR - Failed to initialize bybit: bybit GET https://api.bybit.com/v5/market/instruments-info?category=spot 403 Forbidden <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>ERROR: The request could not be satisfied</TITLE>
+</HEAD><BODY>
+<H1>403 ERROR</H1>
+<H2>The request could not be satisfied.</H2>
+<HR noshade size="1px">
+The Amazon CloudFront distribution is configured to block access from your country.
+We can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.
+<BR clear="all">
+If you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation.
+<BR clear="all">
+<HR noshade size="1px">
+<PRE>
+Generated by cloudfront (CloudFront)
+Request ID: QhpcfN6TSxOeGkKuXlXzSpJpvwqEQQooQ6dHhP_KueQu5YgYJFcVqg==
+</PRE>
+<ADDRESS>
+</ADDRESS>
+</BODY></HTML>
+2025-09-16 17:37:46,620 - INFO - Telegram bot manager initialized successfully
+2025-09-16 17:37:48,631 - INFO - Initializing Multi-Chain DEX service with orchestration layer...
+2025-09-16 17:37:48,631 - WARNING - Config file dex_config.json not found, using default config
+2025-09-16 17:37:48,631 - WARNING - Orchestration recommendation: Risk management works better with ADVANCED mode
+2025-09-16 17:37:48,631 - INFO - Using orchestration mode: simple
+2025-09-16 17:37:48,631 - INFO - Mode description: Simple Layer (ArbitrageManager) - Fast, lightweight, single-chain focused
+2025-09-16 17:37:48,646 - INFO - Initializing Simple Layer (ArbitrageManager)...
+2025-09-16 17:37:49,931 - ERROR - Failed to initialize Ethereum engine: Non-hexadecimal digit found
+2025-09-16 17:37:49,931 - ERROR - Failed to initialize engine for chain ethereum
+2025-09-16 17:37:49,976 - ERROR - Error creating engine for chain bsc: module 'dex.bsc_service.engine' has no attribute 'BscEngine'
+2025-09-16 17:37:49,979 - ERROR - Failed to create engine for chain bsc
+2025-09-16 17:37:49,981 - ERROR - Error creating engine for chain polygon: 'uniswap_v3'
+2025-09-16 17:37:49,981 - ERROR - Failed to create engine for chain polygon
+2025-09-16 17:37:50,919 - ERROR - Error creating engine for chain solana: Can't instantiate abstract class SolanaEngine with abstract methods call_function, deploy_contract, estimate_gas, get_account, get_block, get_chain_id, get_contract, get_gas_price, get_logs, get_native_balance, get_network_name, get_token_balance, get_transaction, get_transaction_count, get_web3_instance, is_contract, send_transaction, wait_for_transaction_receipt
+2025-09-16 17:37:50,919 - ERROR - Failed to create engine for chain solana
+2025-09-16 17:37:50,919 - ERROR - Unsupported chain: mainnet
+2025-09-16 17:37:50,919 - ERROR - Failed to create engine for chain mainnet
+2025-09-16 17:37:50,919 - ERROR - Failed to initialize arbitrage manager
+2025-09-16 17:37:50,919 - INFO - DEX service initialized with simple orchestration layer
+2025-09-16 17:37:50,919 - INFO - Started Multi-Chain DEX service
+2025-09-16 17:37:50,919 - WARNING - run_scanners() is deprecated. Use initialize() then start() instead.
+2025-09-16 17:37:50,919 - INFO - Initializing CEX Arbitrage App...
+2025-09-16 17:37:50,919 - INFO - Telegram notifier initialized successfully
+2025-09-16 17:37:50,930 - ERROR - DEX service is not initialized
+2025-09-16 17:37:50,941 - INFO - Running on http://0.0.0.0:5001 (CTRL + C to quit)
+2025-09-16 17:37:54,993 - ERROR - Failed to initialize bybit: bybit GET https://api.bybit.com/v5/market/instruments-info?category=option&baseCoin=BTC 403 Forbidden <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>ERROR: The request could not be satisfied</TITLE>
+</HEAD><BODY>
+<H1>403 ERROR</H1>
+<H2>The request could not be satisfied.</H2>
+<HR noshade size="1px">
+The Amazon CloudFront distribution is configured to block access from your country.
+We can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.
+<BR clear="all">
+If you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation.
+<BR clear="all">
+<HR noshade size="1px">
+<PRE>
+Generated by cloudfront (CloudFront)
+Request ID: uACuhyWGroJMIsV4ltun-ASLsAhyX5nZimsIFlxh6P87upUkA09ZYQ==
+</PRE>
+<ADDRESS>
+</ADDRESS>
+</BODY></HTML>
+2025-09-16 17:37:56,730 - ERROR - Failed to initialize binance: binance GET https://api.binance.com/api/v3/exchangeInfo 451  {
+  "code": 0,
+  "msg": "Service unavailable from a restricted location according to 'b. Eligibility' in https://www.binance.com/en/terms. Please contact customer service if you believe you received this message in error."
+}
+2025-09-16 17:38:00,770 - INFO - Successfully initialized okx
+2025-09-16 17:38:08,264 - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001BD2E0BA110>
+2025-09-16 17:38:09,531 - INFO - Successfully initialized bitget
+2025-09-16 17:38:09,531 - INFO - CEX Arbitrage App initialized successfully
+2025-09-16 17:38:09,531 - INFO - Starting CEX Arbitrage App scanners...
+2025-09-16 17:38:09,531 - INFO - CEX Arbitrage App started successfully
+2025-09-16 17:38:09,531 - INFO - Starting cross-exchange price streams...
+2025-09-16 17:38:09,546 - INFO - Starting Triangular Arbitrage Engine...
+2025-09-16 17:38:09,546 - INFO - Initialized 2 exchanges: ['okx', 'bitget']
+2025-09-16 17:38:09,546 - INFO - Starting triangular opportunity scanning...
+2025-09-16 17:38:09,552 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-16 16:38:09.531221"
+}
+2025-09-16 17:38:09,556 - INFO - [okx] Subscribing to FIL/USDT...
+2025-09-16 17:38:09,558 - INFO - [okx] Subscribing to QTUM/USDT...
+2025-09-16 17:38:09,558 - INFO - [okx] Subscribing to DOT/USDT...
+2025-09-16 17:38:09,558 - INFO - [okx] Subscribing to XRP/USDT...
+2025-09-16 17:38:09,558 - INFO - [okx] Subscribing to ADA/USDT...
+2025-09-16 17:38:09,558 - INFO - [bitget] Subscribing to FIL/USDT...
+2025-09-16 17:38:09,558 - INFO - [bitget] Subscribing to QTUM/USDT...
+2025-09-16 17:38:09,567 - INFO - [bitget] Subscribing to DOT/USDT...
+2025-09-16 17:38:09,568 - INFO - [bitget] Subscribing to XRP/USDT...
+2025-09-16 17:38:09,569 - INFO - [bitget] Subscribing to ADA/USDT...
+2025-09-16 17:38:09,571 - INFO - [okx] Initializing triangular scanner...
+2025-09-16 17:38:09,574 - INFO - [okx] Found 673 active spot markets.
+2025-09-16 17:38:09,880 - INFO - [okx] Generated 1266 total triangular paths.
+2025-09-16 17:38:09,901 - INFO - [okx] Filtered to 1266 priority paths.
+2025-09-16 17:38:09,920 - INFO - [okx] Generated 1266 paths across 653 symbols.
+2025-09-16 17:38:09,921 - INFO - [bitget] Initializing triangular scanner...
+2025-09-16 17:38:09,923 - INFO - [bitget] Found 786 active spot markets.
+2025-09-16 17:38:11,286 - INFO - [bitget] Generated 525 total triangular paths.
+2025-09-16 17:38:11,304 - INFO - [bitget] Filtered to 525 priority paths.
+2025-09-16 17:38:11,307 - INFO - [bitget] Generated 525 paths across 165 symbols.
+2025-09-16 17:38:14,547 - INFO - Updating account balances...
+2025-09-16 17:38:14,646 - WARNING - Failed to fetch balance for okx (attempt 1): okx requires "apiKey" credential
+2025-09-16 17:38:17,862 - WARNING - Failed to fetch balance for okx (attempt 2): okx requires "apiKey" credential
+2025-09-16 17:38:23,047 - WARNING - Failed to fetch balance for okx (attempt 3): okx requires "apiKey" credential
+2025-09-16 17:38:30,070 - ERROR - Unable to fetch balances for okx after retries.
+2025-09-16 17:38:30,135 - WARNING - Failed to fetch balance for bitget (attempt 1): bitget requires "apiKey" credential
+2025-09-16 17:38:33,481 - WARNING - Failed to fetch balance for bitget (attempt 2): bitget requires "apiKey" credential
+2025-09-16 17:38:38,581 - WARNING - Failed to fetch balance for bitget (attempt 3): bitget requires "apiKey" credential
+2025-09-16 17:38:45,578 - ERROR - Unable to fetch balances for bitget after retries.
+2025-09-16 17:38:45,579 - INFO - Account balances updated successfully.
+2025-09-17 17:03:34,824 - INFO - Telegram bot manager initialized successfully
+2025-09-17 17:03:46,228 - INFO - Initializing Multi-Chain DEX service with orchestration layer...
+2025-09-17 17:03:46,230 - WARNING - Config file dex_config.json not found, using default config
+2025-09-17 17:03:46,231 - WARNING - Orchestration recommendation: Risk management works better with ADVANCED mode
+2025-09-17 17:03:46,232 - INFO - Using orchestration mode: simple
+2025-09-17 17:03:46,233 - INFO - Mode description: Simple Layer (ArbitrageManager) - Fast, lightweight, single-chain focused
+2025-09-17 17:03:46,234 - INFO - Initializing Simple Layer (ArbitrageManager)...
+2025-09-17 17:03:48,013 - ERROR - Failed to initialize Ethereum engine: Non-hexadecimal digit found
+2025-09-17 17:03:48,021 - ERROR - Failed to initialize engine for chain ethereum
+2025-09-17 17:03:48,084 - ERROR - Error creating engine for chain bsc: module 'dex.bsc_service.engine' has no attribute 'BscEngine'
+2025-09-17 17:03:48,094 - ERROR - Failed to create engine for chain bsc
+2025-09-17 17:03:48,256 - ERROR - Error creating engine for chain polygon: 'uniswap_v3'
+2025-09-17 17:03:48,259 - ERROR - Failed to create engine for chain polygon
+2025-09-17 17:03:48,627 - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001D7CCBCCE50>
+2025-09-17 17:03:50,371 - ERROR - Error creating engine for chain solana: Can't instantiate abstract class SolanaEngine with abstract methods call_function, deploy_contract, estimate_gas, get_account, get_block, get_chain_id, get_contract, get_gas_price, get_logs, get_native_balance, get_network_name, get_token_balance, get_transaction, get_transaction_count, get_web3_instance, is_contract, send_transaction, wait_for_transaction_receipt
+2025-09-17 17:03:50,379 - ERROR - Failed to create engine for chain solana
+2025-09-17 17:03:50,381 - ERROR - Unsupported chain: mainnet
+2025-09-17 17:03:50,391 - ERROR - Failed to create engine for chain mainnet
+2025-09-17 17:03:50,393 - ERROR - Failed to initialize arbitrage manager
+2025-09-17 17:03:50,395 - INFO - DEX service initialized with simple orchestration layer
+2025-09-17 17:03:50,404 - INFO - Started Multi-Chain DEX service
+2025-09-17 17:03:50,411 - WARNING - run_scanners() is deprecated. Use initialize() then start() instead.
+2025-09-17 17:03:50,414 - INFO - Initializing CEX Arbitrage App...
+2025-09-17 17:03:50,456 - INFO - Telegram notifier initialized successfully
+2025-09-17 17:03:50,474 - ERROR - DEX service is not initialized
+2025-09-17 17:03:50,523 - INFO - Running on http://0.0.0.0:5001 (CTRL + C to quit)
+2025-09-17 17:03:59,322 - ERROR - [HTTP] Timeout when calling https://app.base44.com/api/apps/68a64cab1d8018e91bdafa59/entities/Exchange
+2025-09-17 17:03:59,323 - ERROR - Failed to fetch exchanges from Base44 (status=None)
+2025-09-17 17:03:59,326 - WARNING - No exchange configurations available to initialize.
+2025-09-17 17:03:59,329 - INFO - CEX Arbitrage App initialized successfully
+2025-09-17 17:03:59,331 - INFO - Starting CEX Arbitrage App scanners...
+2025-09-17 17:03:59,332 - INFO - CEX Arbitrage App started successfully
+2025-09-17 17:03:59,333 - INFO - Starting cross-exchange price streams...
+2025-09-17 17:03:59,335 - INFO - Starting Triangular Arbitrage Engine...
+2025-09-17 17:03:59,336 - ERROR - No exchanges configured for triangular arbitrage
+2025-09-17 17:03:59,369 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-17 16:03:59.328691"
+}
+2025-09-17 17:04:04,374 - INFO - Updating account balances...
+2025-09-17 17:04:04,375 - INFO - Account balances updated successfully.
+2025-09-17 17:09:04,397 - INFO - Updating account balances...
+2025-09-17 17:09:04,437 - INFO - Account balances updated successfully.
+2025-09-17 17:14:04,503 - INFO - Updating account balances...
+2025-09-17 17:14:04,504 - INFO - Account balances updated successfully.
+2025-09-17 17:19:04,521 - INFO - Updating account balances...
+2025-09-17 17:19:04,527 - INFO - Account balances updated successfully.
+2025-09-17 17:24:04,528 - INFO - Updating account balances...
+2025-09-17 17:24:04,537 - INFO - Account balances updated successfully.
+2025-09-17 17:29:04,543 - INFO - Updating account balances...
+2025-09-17 17:29:04,548 - INFO - Account balances updated successfully.
+2025-09-17 17:33:59,390 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-17 16:03:59.328691"
+}
+2025-09-17 17:34:04,611 - INFO - Updating account balances...
+2025-09-17 17:34:04,795 - INFO - Account balances updated successfully.
+2025-09-17 17:39:05,021 - INFO - Updating account balances...
+2025-09-17 17:39:05,052 - INFO - Account balances updated successfully.
+2025-09-17 17:44:05,056 - INFO - Updating account balances...
+2025-09-17 17:44:05,057 - INFO - Account balances updated successfully.
+2025-09-17 17:49:05,065 - INFO - Updating account balances...
+2025-09-17 17:49:05,067 - INFO - Account balances updated successfully.
+2025-09-17 17:54:05,082 - INFO - Updating account balances...
+2025-09-17 17:54:05,083 - INFO - Account balances updated successfully.
+2025-09-17 17:59:05,104 - INFO - Updating account balances...
+2025-09-17 17:59:05,106 - INFO - Account balances updated successfully.
+2025-09-17 18:03:59,426 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-17 16:03:59.328691"
+}
+2025-09-17 18:04:05,425 - INFO - Updating account balances...
+2025-09-17 18:04:05,632 - INFO - Account balances updated successfully.
+2025-09-17 18:09:06,008 - INFO - Updating account balances...
+2025-09-17 18:09:06,012 - INFO - Account balances updated successfully.
+2025-09-17 18:14:06,008 - INFO - Updating account balances...
+2025-09-17 18:14:06,009 - INFO - Account balances updated successfully.
+2025-09-17 18:19:06,015 - INFO - Updating account balances...
+2025-09-17 18:19:06,018 - INFO - Account balances updated successfully.
+2025-09-17 19:20:07,855 - INFO - Updating account balances...
+2025-09-17 19:20:07,855 - INFO - Account balances updated successfully.
+2025-09-17 19:20:07,855 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-17 16:03:59.328691"
+}
+2025-09-17 19:20:10,251 - ERROR - [HTTP] Error when calling https://app.base44.com/api/apps/68a64cab1d8018e91bdafa59/entities/Exchange: Cannot connect to host app.base44.com:443 ssl:default [Could not contact DNS servers]
+2025-09-17 19:20:10,491 - ERROR - Failed to fetch exchanges from Base44 (status=None)
+2025-09-17 19:25:07,852 - INFO - Updating account balances...
+2025-09-17 19:25:07,856 - INFO - Account balances updated successfully.
+2025-09-17 19:30:07,858 - INFO - Updating account balances...
+2025-09-17 19:30:07,859 - INFO - Account balances updated successfully.
+2025-09-17 21:35:13,296 - INFO - Updating account balances...
+2025-09-17 21:35:13,556 - INFO - Account balances updated successfully.
+2025-09-17 21:35:13,832 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-17 16:03:59.328691"
+}
+2025-09-17 21:40:13,726 - INFO - Updating account balances...
+2025-09-17 21:40:13,734 - INFO - Account balances updated successfully.
+2025-09-17 21:45:13,771 - INFO - Updating account balances...
+2025-09-17 21:45:13,803 - INFO - Account balances updated successfully.
+2025-09-17 21:50:13,807 - INFO - Updating account balances...
+2025-09-17 21:50:13,807 - INFO - Account balances updated successfully.
+2025-09-17 21:55:13,808 - INFO - Updating account balances...
+2025-09-17 21:55:13,808 - INFO - Account balances updated successfully.
+2025-09-17 22:00:13,825 - INFO - Updating account balances...
+2025-09-17 22:00:13,826 - INFO - Account balances updated successfully.
+2025-09-17 22:05:13,815 - INFO - Updating account balances...
+2025-09-17 22:05:13,834 - INFO - Account balances updated successfully.
+2025-09-17 22:05:14,015 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-17 16:03:59.328691"
+}
+2025-09-17 22:10:13,842 - INFO - Updating account balances...
+2025-09-17 22:10:13,842 - INFO - Account balances updated successfully.
+2025-09-17 22:15:13,860 - INFO - Updating account balances...
+2025-09-17 22:15:13,861 - INFO - Account balances updated successfully.
+2025-09-17 22:20:13,881 - INFO - Updating account balances...
+2025-09-17 22:20:13,889 - INFO - Account balances updated successfully.
+2025-09-17 22:25:13,902 - INFO - Updating account balances...
+2025-09-17 22:25:13,902 - INFO - Account balances updated successfully.
+2025-09-17 22:30:13,918 - INFO - Updating account balances...
+2025-09-17 22:30:13,918 - INFO - Account balances updated successfully.
+2025-09-17 22:35:13,934 - INFO - Updating account balances...
+2025-09-17 22:35:13,955 - INFO - Account balances updated successfully.
+2025-09-17 22:35:14,067 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-17 16:03:59.328691"
+}
+2025-09-17 22:40:13,969 - INFO - Updating account balances...
+2025-09-17 22:40:13,971 - INFO - Account balances updated successfully.
+2025-09-17 22:45:13,987 - INFO - Updating account balances...
+2025-09-17 22:45:13,989 - INFO - Account balances updated successfully.
+2025-09-17 22:50:13,994 - INFO - Updating account balances...
+2025-09-17 22:50:13,994 - INFO - Account balances updated successfully.
+2025-09-17 22:55:14,002 - INFO - Updating account balances...
+2025-09-17 22:55:14,002 - INFO - Account balances updated successfully.
+2025-09-17 23:00:14,026 - INFO - Updating account balances...
+2025-09-17 23:00:14,026 - INFO - Account balances updated successfully.
+2025-09-17 23:05:14,034 - INFO - Updating account balances...
+2025-09-17 23:05:14,034 - INFO - Account balances updated successfully.
+2025-09-17 23:05:14,151 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-17 16:03:59.328691"
+}
+2025-09-17 23:10:14,034 - INFO - Updating account balances...
+2025-09-17 23:10:14,036 - INFO - Account balances updated successfully.
+2025-09-17 23:15:14,038 - INFO - Updating account balances...
+2025-09-17 23:15:14,038 - INFO - Account balances updated successfully.
+2025-09-17 23:20:14,051 - INFO - Updating account balances...
+2025-09-17 23:20:14,051 - INFO - Account balances updated successfully.
+2025-09-17 23:25:14,055 - INFO - Updating account balances...
+2025-09-17 23:25:14,055 - INFO - Account balances updated successfully.
+2025-09-18 00:29:42,390 - INFO - Updating account balances...
+2025-09-18 00:29:42,390 - INFO - Account balances updated successfully.
+2025-09-18 00:29:42,390 - INFO - CEX Arbitrage Stats: {
+  "opportunities_detected": 0,
+  "trades_executed": 0,
+  "successful_trades": 0,
+  "failed_trades": 0,
+  "total_profit_usd": 0.0,
+  "uptime_start": "2025-09-17 16:03:59.328691"
+}
+2025-09-18 00:29:44,250 - ERROR - [HTTP] Error when calling https://app.base44.com/api/apps/68a64cab1d8018e91bdafa59/entities/Exchange: Cannot connect to host app.base44.com:443 ssl:default [Could not contact DNS servers]
+2025-09-18 00:29:44,329 - ERROR - Failed to fetch exchanges from Base44 (status=None)
+2025-09-18 00:34:42,401 - INFO - Updating account balances...
+2025-09-18 00:34:42,401 - INFO - Account balances updated successfully.
+2025-09-18 00:39:42,418 - INFO - Updating account balances...
+2025-09-18 00:39:42,419 - INFO - Account balances updated successfully.
+2025-09-18 00:44:42,451 - INFO - Updating account balances...
+2025-09-18 00:44:42,451 - INFO - Account balances updated successfully.
+2025-09-18 00:49:42,476 - INFO - Updating account balances...
+2025-09-18 00:49:42,476 - INFO - Account balances updated successfully.
+2025-09-18 00:54:42,484 - INFO - Updating account balances...
+2025-09-18 00:54:42,485 - INFO - Account balances updated successfully.

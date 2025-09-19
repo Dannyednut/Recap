@@ -16,6 +16,8 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'shared'))
 from models.arbitrage_models import ArbitrageOpportunity, ExecutionResult
+from utils import decide_execution_mode
+from .swap_orchestrator import SwapOrchestrator
 from telegram_notifier import DEXTelegramNotifier
 
 logger = logging.getLogger(__name__)
@@ -96,21 +98,44 @@ class EthereumArbitrageService:
             return []
     
     async def execute_opportunity(self, opportunity: ArbitrageOpportunity) -> ExecutionResult:
-        """Execute an arbitrage opportunity"""
+        """Execute an arbitrage opportunity with unified selection between contract/flashloan/standard paths"""
         if not self.is_initialized:
             raise RuntimeError("Service not initialized")
         
         try:
             logger.info(f"Executing opportunity {opportunity.id} of type {opportunity.type}")
-            
-            if opportunity.type == "cross_exchange":
-                result = await self.cross_arbitrage.execute_opportunity(opportunity)
-            elif opportunity.type == "triangular":
-                result = await self.triangular_arbitrage.execute_opportunity(opportunity)
-            elif opportunity.type == "flash_loan":
+
+            # Decide execution mode
+            mode = decide_execution_mode(self, opportunity)
+
+            if mode == 'contract_executor':
+                # Prefer dedicated contract executor if available
+                if hasattr(self, 'contract_executor') and self.contract_executor:
+                    result = await self.contract_executor.execute_opportunity(opportunity)
+                else:
+                    # Fallback: use SwapOrchestrator for router-level execution when possible
+                    orchestrator = SwapOrchestrator(self.engine)
+                    # Delegate by type to strategy-specific helpers if available
+                    if opportunity.type == "cross_exchange" and hasattr(self.cross_arbitrage, 'execute_with_orchestrator'):
+                        result = await self.cross_arbitrage.execute_with_orchestrator(orchestrator, opportunity)
+                    elif opportunity.type == "triangular" and hasattr(self.triangular_arbitrage, 'execute_with_orchestrator'):
+                        result = await self.triangular_arbitrage.execute_with_orchestrator(orchestrator, opportunity)
+                    else:
+                        # As a safe fallback, use flash loan engine if contract path not specialized
+                        result = await self.flash_loan.execute_opportunity(opportunity)
+
+            elif mode == 'flashloan_engine':
                 result = await self.flash_loan.execute_opportunity(opportunity)
             else:
-                raise ValueError(f"Unknown opportunity type: {opportunity.type}")
+                # Standard strategy-based execution
+                if opportunity.type == "cross_exchange":
+                    result = await self.cross_arbitrage.execute_opportunity(opportunity)
+                elif opportunity.type == "triangular":
+                    result = await self.triangular_arbitrage.execute_opportunity(opportunity)
+                elif opportunity.type == "flash_loan":
+                    result = await self.flash_loan.execute_opportunity(opportunity)
+                else:
+                    raise ValueError(f"Unknown opportunity type: {opportunity.type}")
             
             # Send Telegram notification for completed trade
             if self.telegram_notifier and result:

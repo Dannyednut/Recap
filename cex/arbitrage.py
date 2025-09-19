@@ -110,7 +110,7 @@ class ArbitrageApp:
             ]
             
             # Start stats reporter
-            stats_interval = getattr(self.config, 'STATS_INTERVAL', 60)
+            stats_interval = getattr(self.config, 'STATS_INTERVAL', 1800)
             self.stats_task = asyncio.create_task(self._stats_reporter(stats_interval))
             
             # Store tasks for later cleanup

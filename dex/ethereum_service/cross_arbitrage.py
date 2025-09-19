@@ -9,9 +9,9 @@ import sys
 import os
 
 # Add shared modules to path
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'shared'))
-from interfaces.base_engine import BaseArbitrageStrategy
-from models.arbitrage_models import ArbitrageOpportunity, DexPair, Token, ExecutionResult
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+from dex.shared.interfaces.base_engine import BaseArbitrageStrategy
+from dex.shared.models.arbitrage_models import ArbitrageOpportunity, DexPair, Token, ExecutionResult
 
 from .engine import EthereumEngine
 from .config import EthereumConfig
@@ -388,30 +388,183 @@ class CrossArbitrageEngine(BaseArbitrageStrategy):
         """Execute cross-exchange arbitrage opportunity using real DEX contracts"""
         start_time = time.time()
         
-    async def execute_arbitrage(self, opportunity: ArbitrageOpportunity) -> Dict[str, Any]:
-        """Execute cross-DEX arbitrage with flash loan"""
         try:
-            logger.info(f"Executing cross-arbitrage: {opportunity.opportunity_id}")
+            logger.info(f"Executing Ethereum cross arbitrage: {opportunity.id}")
             
-            # This would:
-            # 1. Request flash loan
-            # 2. Buy on cheaper DEX
-            # 3. Sell on more expensive DEX 
-            # 4. Repay flash loan
-            # 5. Keep profit
+            # Step 1: Buy on exchange A (cheaper DEX)
+            buy_result = await self._execute_buy(
+                opportunity.exchange_a,
+                opportunity.token_a,
+                opportunity.token_b,
+                opportunity.amount_in
+            )
             
-            # Placeholder implementation
-            return {
-                "status": "success",
-                "tx_hash": "0x123...",
-                "profit_realized": "0.5",
-                "gas_used": 300000
-            }
+            if not buy_result["success"]:
+                raise Exception(f"Buy failed: {buy_result['error']}")
+            
+            # Step 2: Sell on exchange B (more expensive DEX)
+            sell_result = await self._execute_sell(
+                opportunity.exchange_b,
+                opportunity.token_b,
+                opportunity.token_a,
+                buy_result["amount_out"]
+            )
+            
+            if not sell_result["success"]:
+                raise Exception(f"Sell failed: {sell_result['error']}")
+            
+            execution_time = time.time() - start_time
+            
+            # Calculate actual profit
+            actual_profit = sell_result["amount_out"] - opportunity.amount_in
+            
+            return ExecutionResult(
+                opportunity_id=opportunity.id,
+                success=True,
+                profit_usd=float(actual_profit * opportunity.price_a),  # Convert to USD
+                gas_cost_usd=float(buy_result["gas_cost"] + sell_result["gas_cost"]),
+                execution_time=execution_time,
+                transaction_hashes=[buy_result["tx_hash"], sell_result["tx_hash"]]
+            )
             
         except Exception as e:
-            logger.error(f"Error executing arbitrage: {e}")
+            execution_time = time.time() - start_time
+            logger.error(f"Ethereum cross arbitrage execution failed: {e}")
+            
+            return ExecutionResult(
+                opportunity_id=opportunity.id,
+                success=False,
+                profit_usd=0.0,
+                gas_cost_usd=0.0,
+                execution_time=execution_time,
+                error=str(e)
+            )
+    
+    async def _execute_buy(
+        self, 
+        dex: str, 
+        token_in: str, 
+        token_out: str, 
+        amount_in: Decimal
+    ) -> Dict[str, Any]:
+        """Execute real buy order on specified DEX using router contract"""
+        try:
+            logger.info(f"Executing real buy on {dex}: {amount_in} {token_in} -> {token_out}")
+            
+            # Get DEX adapter based on name
+            adapter = None
+            if "uniswap_v2" in dex.lower():
+                adapter = self.uniswap_v2
+            elif "uniswap_v3" in dex.lower():
+                adapter = self.uniswap_v3
+            elif "sushiswap" in dex.lower():
+                adapter = self.sushiswap_v2
+            else:
+                raise ValueError(f"Unsupported DEX: {dex}")
+            
+            # Execute swap through adapter
+            tx_hash = await adapter.execute_swap(
+                token_in, token_out, int(amount_in * Decimal(10**18))
+            )
+            
+            if not tx_hash:
+                return {
+                    "success": False,
+                    "error": "Failed to execute swap",
+                    "gas_cost": Decimal("0")
+                }
+            
+            # Wait for confirmation
+            result = await self.engine.wait_for_transaction_receipt(tx_hash)
+            
+            if result:
+                # Calculate actual output amount (simplified estimation)
+                fee_rate = Decimal("0.003")  # 0.3% typical DEX fee
+                amount_out = amount_in * (Decimal("1") - fee_rate)
+                gas_cost_usd = await self._calculate_real_gas_cost(result.gasUsed)
+                
+                return {
+                    "success": True,
+                    "amount_out": amount_out,
+                    "tx_hash": tx_hash.hex(),
+                    "gas_cost": gas_cost_usd
+                }
+            else:
+                return {
+                    "success": False,
+                    "error": "Transaction failed",
+                    "gas_cost": Decimal("0")
+                }
+            
+        except Exception as e:
+            logger.error(f"Error executing buy on {dex}: {e}")
             return {
-                "status": "failed",
-                "error": str(e)
+                "success": False,
+                "error": str(e),
+                "gas_cost": Decimal("0")
+            }
+    
+    async def _execute_sell(
+        self, 
+        dex: str, 
+        token_in: str, 
+        token_out: str, 
+        amount_in: Decimal
+    ) -> Dict[str, Any]:
+        """Execute real sell order on specified DEX using router contract"""
+        try:
+            logger.info(f"Executing real sell on {dex}: {amount_in} {token_in} -> {token_out}")
+            
+            # Get DEX adapter based on name
+            adapter = None
+            if "uniswap_v2" in dex.lower():
+                adapter = self.uniswap_v2
+            elif "uniswap_v3" in dex.lower():
+                adapter = self.uniswap_v3
+            elif "sushiswap" in dex.lower():
+                adapter = self.sushiswap
+            else:
+                raise ValueError(f"Unsupported DEX: {dex}")
+            
+            # Execute swap through adapter
+            tx_hash = await adapter.execute_swap(
+                token_in, token_out, int(amount_in * Decimal(10**18))
+            )
+            
+            if not tx_hash:
+                return {
+                    "success": False,
+                    "error": "Failed to execute swap",
+                    "gas_cost": Decimal("0")
+                }
+            
+            # Wait for confirmation
+            result = await self.engine.wait_for_transaction_receipt(tx_hash)
+            
+            if result:
+                # Calculate actual output amount (simplified estimation)
+                fee_rate = Decimal("0.003")  # 0.3% typical DEX fee
+                amount_out = amount_in * (Decimal("1") - fee_rate)
+                gas_cost_usd = await self._calculate_real_gas_cost(result.gasUsed)
+                
+                return {
+                    "success": True,
+                    "amount_out": amount_out,
+                    "tx_hash": tx_hash.hex(),
+                    "gas_cost": gas_cost_usd
+                }
+            else:
+                return {
+                    "success": False,
+                    "error": "Transaction failed",
+                    "gas_cost": Decimal("0")
+                }
+            
+        except Exception as e:
+            logger.error(f"Error executing sell on {dex}: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+                "gas_cost": Decimal("0")
             }
     

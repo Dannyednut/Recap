@@ -85,8 +85,14 @@ class ChainFactory:
             # Import the strategy module
             module = importlib.import_module(strategy_module)
             
-            # Get the strategy class
-            strategy_class_name = f"{chain_id.capitalize()}{strategy_type.capitalize()}Arbitrage"
+            # Get the strategy class - use correct naming convention
+            if strategy_type == "cross":
+                strategy_class_name = "CrossArbitrageEngine"
+            elif strategy_type == "triangular":
+                strategy_class_name = "TriangularArbitrageEngine"
+            else:
+                strategy_class_name = f"{chain_id.capitalize()}{strategy_type.capitalize()}Arbitrage"
+            
             strategy_class = getattr(module, strategy_class_name)
             
             # Create config object
@@ -124,8 +130,8 @@ class ChainFactory:
             module_path = cls.SUPPORTED_CHAINS[chain_id]
             module = importlib.import_module(f"{module_path}.mempool_monitor")
             
-            # Get the monitor class
-            monitor_class_name = f"{chain_id.capitalize()}MempoolMonitor"
+            # Get the monitor class - use correct naming convention
+            monitor_class_name = "MempoolMonitor"
             monitor_class = getattr(module, monitor_class_name)
             
             # Create config object
@@ -163,8 +169,8 @@ class ChainFactory:
             module_path = cls.SUPPORTED_CHAINS[chain_id]
             module = importlib.import_module(f"{module_path}.flashloan_engine")
             
-            # Get the flashloan engine class
-            flashloan_class_name = f"{chain_id.capitalize()}FlashLoanEngine"
+            # Get the flashloan engine class - use correct naming convention
+            flashloan_class_name = "FlashLoanEngine"
             flashloan_class = getattr(module, flashloan_class_name)
             
             # Create config object
@@ -188,38 +194,53 @@ class ChainFactory:
             return None
     
     @classmethod
-    def create_contract_executor(cls, chain: str):
-        """Create contract executor for the specified chain with MEV protection"""
+    def create_contract_executor(cls, 
+                                chain_id: str, 
+                                engine: BaseEngine, 
+                                config: Dict[str, Any]) -> Optional[Any]:
+        """Create a chain-specific contract executor"""
         try:
-            # Get chain configuration
-            config = cls._get_chain_config(chain)
+            if chain_id not in cls.SUPPORTED_CHAINS:
+                logger.error(f"Unsupported chain: {chain_id}")
+                return None
             
-            # Import the appropriate contract executor module
-            module_name = f"dex.{chain}_service.contract_executor"
-            module = importlib.import_module(module_name)
+            # Import the chain-specific module
+            module_path = cls.SUPPORTED_CHAINS[chain_id]
+            module = importlib.import_module(f"{module_path}.contract_executor")
             
             # Get the contract executor class
-            class_name = f"{chain.upper()}ContractExecutor"
-            if chain == "ethereum":
-                class_name = "ContractExecutor"
-            elif chain == "bsc":
-                class_name = "BSCContractExecutor"
-            elif chain == "polygon":
-                class_name = "PolygonContractExecutor"
-            elif chain == "solana":
-                class_name = "SolanaContractExecutor"
+            if chain_id == "ethereum":
+                executor_class_name = "ContractExecutor"
+            elif chain_id == "bsc":
+                executor_class_name = "BSCContractExecutor"
+            elif chain_id == "polygon":
+                executor_class_name = "PolygonContractExecutor"
+            elif chain_id == "solana":
+                executor_class_name = "SolanaContractExecutor"
+            else:
+                executor_class_name = f"{chain_id.capitalize()}ContractExecutor"
             
-            executor_class = getattr(module, class_name)
+            executor_class = getattr(module, executor_class_name)
             
-            # Create engine first
-            engine = cls.create_engine(chain)
+            # Create config object
+            config_module = importlib.import_module(f"{module_path}.config")
+            config_class_name = f"{chain_id.capitalize()}Config"
+            config_class = getattr(config_module, config_class_name)
+            # Check if config class needs instantiation or is static
+            try:
+                # Try to instantiate with config parameters
+                chain_config = config_class(**config)
+            except TypeError:
+                # If it fails, use the class directly (static config)
+                chain_config = config_class
             
-            # Create and return contract executor with MEV protection
-            return executor_class(engine, config)
+            # Create and return contract executor instance
+            executor = executor_class(engine, chain_config)
+            return executor
             
         except Exception as e:
-            logger.error(f"Error creating contract executor for {chain}: {e}")
-            raise
+            logger.error(f"Error creating contract executor for chain {chain_id}: {e}")
+            return None
     
     @classmethod
     def create_token_discovery(cls, 

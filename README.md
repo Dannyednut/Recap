@@ -23,7 +23,7 @@ ArbitrageWise is a comprehensive arbitrage system that monitors and executes pro
 
 ## 🏗️ Architecture
 
-The system is built with a modular architecture that allows for easy extension and maintenance:
+The system is built with a modular and microservice architecture that allows for easy extension and maintenance:
 
 ### Core Components
 

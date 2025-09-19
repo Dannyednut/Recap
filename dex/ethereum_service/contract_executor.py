@@ -14,38 +14,36 @@ import os
 
 from .flashbots_relay import FlashbotsIntegration
 from .config import EthereumConfig
+from .engine import EthereumEngine
+from ..shared.contract_addresses import get_chain_addresses, get_router_address
+from ..shared.abi_fetcher import ABIFetcher, FALLBACK_ABIS
 
 logger = logging.getLogger(__name__)
 
 class ContractExecutor:
     """Execute arbitrage opportunities using smart contracts"""
     
-    # Router addresses
-    ROUTERS = {
-        'uniswap_v2': '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D',
-        'uniswap_v3': '0xE592427A0AEce92De3Edee1F18E0157C05861564',
-        'sushiswap_v2': '0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F'
-    }
-    
-    # Flash loan providers
-    FLASH_LOAN_PROVIDERS = {
-        'aave': '0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2',
-        'balancer': '0xBA12222222228d8Ba445958a75a0704d566BF2C8'
-    }
-    
-    def __init__(self, engine, config):
-        """Initialize contract executor with engine and config"""
+    def __init__(self, engine: EthereumEngine, config: EthereumConfig):
         self.engine = engine
         self.config = config
+        self.w3 = engine.w3
+        self.account = engine.account
+        self.wallet_address = engine.wallet_address
         
-        # Account setup
-        self.account: LocalAccount = Account.from_key(config.PRIVATE_KEY)
-        self.wallet_address = self.account.address
+        # Get network-aware addresses
+        self.chain_addresses = get_chain_addresses('ethereum')
+        self.routers = self.chain_addresses.get('routers', {})
+        self.flash_loan_providers = self.chain_addresses.get('flash_loan_providers', {})
+        
+        # ABI fetcher for dynamic contract interaction
+        self.abi_fetcher = ABIFetcher()
         
         # Contract management
-        self.deployer = ContractDeployer(engine.w3, config.PRIVATE_KEY)
-        self.arbitrage_contract = None
+        self.arbitrage_executor = None
         self.contract_address = None
+        
+        # Initialize router addresses from network config
+        self.router_addresses = self.routers
         
         # Flashbots integration
         self.flashbots = FlashbotsIntegration(
@@ -55,7 +53,7 @@ class ContractExecutor:
         )
         
         # Deployment info file
-        self.deployment_file = os.path.join(
+        self.deployment_file_path = os.path.join(
             os.path.dirname(__file__), 'deployed_contracts.json'
         )
     
@@ -63,27 +61,44 @@ class ContractExecutor:
         """Initialize the contract executor"""
         logger.info("Initializing Ethereum contract executor...")
         
-        # Load contract ABIs
-        self.uniswap_v2_router_abi = await self.engine.load_abi("UniswapV2Router")
-        self.uniswap_v3_router_abi = await self.engine.load_abi("UniswapV3Router")
-        self.sushiswap_router_abi = await self.engine.load_abi("SushiSwapRouter")
-        self.arbitrage_executor_abi = await self.engine.load_abi("ArbitrageExecutor")
+        # Initialize ABI fetcher
+        await self.abi_fetcher.__aenter__()
         
-        # Initialize router contracts
-        self.uniswap_v2_router = self.engine.w3.eth.contract(
-            address=self.engine.w3.to_checksum_address(self.router_addresses["uniswap_v2"]),
-            abi=self.uniswap_v2_router_abi
-        )
+        # Load contract ABIs dynamically
+        self.router_contracts = {}
+        network_name = self.chain_addresses.get('network_name', 'mainnet')
         
-        self.uniswap_v3_router = self.engine.w3.eth.contract(
-            address=self.engine.w3.to_checksum_address(self.router_addresses["uniswap_v3"]),
-            abi=self.uniswap_v3_router_abi
-        )
+        for router_name, router_address in self.routers.items():
+            try:
+                # Try to fetch ABI from Etherscan
+                abi = await self.abi_fetcher.fetch_abi('ethereum', network_name, router_address)
+                
+                if not abi:
+                    # Use fallback ABI based on router type
+                    if 'v2' in router_name or 'uniswap_v2' in router_name:
+                        abi = FALLBACK_ABIS.get('uniswap_v2_router', [])
+                    elif 'v3' in router_name or 'uniswap_v3' in router_name:
+                        abi = FALLBACK_ABIS.get('uniswap_v3_router', [])
+                    elif 'sushiswap' in router_name:
+                        abi = FALLBACK_ABIS.get('uniswap_v2_router', [])  # SushiSwap uses V2 interface
+                    else:
+                        abi = []
+                
+                if abi:
+                    self.router_contracts[router_name] = self.w3.eth.contract(
+                        address=self.w3.to_checksum_address(router_address),
+                        abi=abi
+                    )
+                    logger.info(f"Loaded {router_name} router contract with dynamic ABI")
+                else:
+                    logger.warning(f"No ABI found for {router_name} router")
+                    
+            except Exception as e:
+                logger.error(f"Error loading {router_name} router ABI: {e}")
         
-        self.sushiswap_router = self.engine.w3.eth.contract(
-            address=self.engine.w3.to_checksum_address(self.router_addresses["sushiswap"]),
-            abi=self.sushiswap_router_abi
-        )
+        # Load arbitrage executor ABI
+        from ..shared.utils import load_contract_abi
+        self.arbitrage_executor_abi = load_contract_abi("EthereumArbitrageExecutor")
         
         # Check if arbitrage executor is deployed
         await self._load_or_deploy_arbitrage_executor()
@@ -125,28 +140,28 @@ class ContractExecutor:
             
             # Estimate gas for deployment
             constructor_args = [
-                self.router_addresses["uniswap_v2"],
-                self.router_addresses["uniswap_v3"],
-                self.router_addresses["sushiswap"],
-                self.flash_loan_providers["aave"],
-                self.flash_loan_providers["balancer"]
+                self.router_addresses.get("uniswap_v2", "0x0000000000000000000000000000000000000000"),
+                self.router_addresses.get("uniswap_v3", "0x0000000000000000000000000000000000000000"),
+                self.router_addresses.get("sushiswap", "0x0000000000000000000000000000000000000000"),
+                self.flash_loan_providers.get("aave", "0x0000000000000000000000000000000000000000"),
+                self.flash_loan_providers.get("balancer", "0x0000000000000000000000000000000000000000")
             ]
             
             gas_estimate = await contract.constructor(*constructor_args).estimate_gas()
             
             # Build transaction
             tx = await contract.constructor(*constructor_args).build_transaction({
-                'from': self.account.address,
+                'from': self.wallet_address,
                 'gas': int(gas_estimate * 1.2),  # Add 20% buffer
-                'nonce': await self.engine.w3.eth.get_transaction_count(self.account.address)
+                'nonce': await self.w3.eth.get_transaction_count(self.wallet_address)
             })
             
             # Sign and send transaction
             signed_tx = self.account.sign_transaction(tx)
-            tx_hash = await self.engine.w3.eth.send_raw_transaction(signed_tx.rawTransaction)
+            tx_hash = await self.w3.eth.send_raw_transaction(signed_tx.rawTransaction)
             
             # Wait for transaction receipt
-            receipt = await self.engine.w3.eth.wait_for_transaction_receipt(tx_hash)
+            receipt = await self.w3.eth.wait_for_transaction_receipt(tx_hash)
             
             if receipt.status != 1:
                 raise Exception("Contract deployment failed")
@@ -166,7 +181,7 @@ class ContractExecutor:
                 json.dump(deployment_data, f, indent=2)
             
             # Initialize contract instance
-            self.arbitrage_executor = self.engine.w3.eth.contract(
+            self.arbitrage_executor = self.w3.eth.contract(
                 address=contract_address,
                 abi=self.arbitrage_executor_abi
             )
@@ -367,7 +382,6 @@ class ContractExecutor:
             logger.error(f"Error extracting profit from receipt: {e}")
             return 0
     
-    async def get_arbitrage_quote(self, params):
         """Get quote for arbitrage opportunity"""
         try:
             if "tokenB" in params:  # Cross-exchange arbitrage
@@ -375,8 +389,8 @@ class ContractExecutor:
                     params["tokenA"],
                     params["tokenB"],
                     params["amountIn"],
-                    params["buyRouter"],
-                    params["sellRouter"],
+                    self.router_contracts[params["buyRouter"]].address,
+                    self.router_contracts[params["sellRouter"]].address,
                     params["buyFee"],
                     params["sellFee"]
                 ).call()
@@ -389,7 +403,7 @@ class ContractExecutor:
             elif "path" in params:  # Triangular arbitrage
                 result = await self.arbitrage_executor.functions.getTriangularArbitrageQuote(
                     params["path"],
-                    params["routers"],
+                    [self.router_contracts[router].address for router in params["routers"]],
                     params["fees"],
                     params["amountIn"]
                 ).call()

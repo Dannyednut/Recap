@@ -42,7 +42,13 @@ class NetworkConfig:
                         "factory": "0xC0AEe478e3658e2610c5F7A4A2E1777cE9e4f2Ac",
                         "router": "0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F"
                     }
-                }
+                },
+                "private_key": os.getenv("ETH_PRIVATE_KEY", ""),
+                "min_profit_threshold": 0.001,
+                "use_flashloan_by_default": True,
+                "mempool_enabled": True,
+                "token_whitelist": [],
+                "token_blacklist": []
             }
         else:
             return {
@@ -72,7 +78,13 @@ class NetworkConfig:
                         "factory": "0xC0AEe478e3658e2610c5F7A4A2E1777cE9e4f2Ac",
                         "router": "0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F"
                     }
-                }
+                },
+                "private_key": os.getenv("ETH_PRIVATE_KEY", ""),
+                "min_profit_threshold": 0.001,
+                "use_flashloan_by_default": True,
+                "mempool_enabled": True,
+                "token_whitelist": [],
+                "token_blacklist": []
             }
     
     @staticmethod
@@ -105,7 +117,13 @@ class NetworkConfig:
                         "factory": "0x858E3312ed3A876947EA49d572A7C42DE08af7EE",
                         "router": "0x3a6d8cA21D1CF76F653A67577FA0D27453350dD8"
                     }
-                }
+                },
+                "private_key": os.getenv("BSC_PRIVATE_KEY", ""),
+                "min_profit_threshold": 0.001,
+                "use_flashloan_by_default": True,
+                "mempool_enabled": True,
+                "token_whitelist": [],
+                "token_blacklist": []
             }
         else:
             return {
@@ -125,7 +143,13 @@ class NetworkConfig:
                         "factory": "0x6725F303b657a9451d8BA641348b6761A6CC7a17",
                         "router": "0xD99D1c33F9fC3444f8101754aBC46c52416550D1"
                     }
-                }
+                },
+                "private_key": os.getenv("BSC_PRIVATE_KEY", ""),
+                "min_profit_threshold": 0.001,
+                "use_flashloan_by_default": True,
+                "mempool_enabled": True,
+                "token_whitelist": [],
+                "token_blacklist": []
             }
     
     @staticmethod
@@ -159,7 +183,13 @@ class NetworkConfig:
                         "router": "0xE592427A0AEce92De3Edee1F18E0157C05861564",
                         "quoter": "0x61fFE014bA17989E743c5F6cB21bF9697530B21e"
                     }
-                }
+                },
+                "private_key": os.getenv("POLYGON_PRIVATE_KEY", ""),
+                "min_profit_threshold": 0.001,
+                "use_flashloan_by_default": True,
+                "mempool_enabled": True,
+                "token_whitelist": [],
+                "token_blacklist": []
             }
         else:
             return {
@@ -179,7 +209,13 @@ class NetworkConfig:
                         "factory": "0x5757371414417b8C6CAad45bAeF941aBc7d3Ab32",
                         "router": "0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff"
                     }
-                }
+                },
+                "private_key": os.getenv("POLYGON_PRIVATE_KEY", ""),
+                "min_profit_threshold": 0.001,
+                "use_flashloan_by_default": True,
+                "mempool_enabled": True,
+                "token_whitelist": [],
+                "token_blacklist": []
             }
     
     @staticmethod
@@ -209,7 +245,13 @@ class NetworkConfig:
                     "serum": {
                         "program_id": "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin"
                     }
-                }
+                },
+                "private_key": os.getenv("SOLANA_PRIVATE_KEY", ""),  
+                "min_profit_threshold": 0.001,  
+                "use_flashloan_by_default": True,
+                "mempool_enabled": True,
+                "token_whitelist": [],  
+                "token_blacklist": [],  
             }
         else:
             return {
@@ -227,7 +269,13 @@ class NetworkConfig:
                     "raydium": {
                         "program_id": "675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8"
                     }
-                }
+                },
+                "private_key": os.getenv("SOLANA_PRIVATE_KEY", ""),  
+                "min_profit_threshold": 0.001,  
+                "use_flashloan_by_default": True,
+                "mempool_enabled": True,
+                "token_whitelist": [],  
+                "token_blacklist": [],  
             }
     
     @staticmethod
